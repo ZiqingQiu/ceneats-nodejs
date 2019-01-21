@@ -8,7 +8,6 @@ Ziqing(James) Qiu - 300919236
 
 ### Video Link
 
-```
+
 [click here to see the video](https://drive.google.com/drive/folders/137pc6v1kjZq0oG6qbcYCyTrYluH2U1mx?usp=sharing)
-```
 
