@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <!-- CSS Section-->
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="Content/app.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">COMP308</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <% if(title == "Home") { %>
+          <li class="nav-item active"><% } else { %></li>
+
+          <li class="nav-item">
+            <% } %>
+
+            <a class="nav-link" href="/"
+              ><i class="fa fa-lg fa-home"></i> Home
+              <span class="sr-only">(current)</span></a
+            >
+          </li>
+
+          <% if(title == "About") { %>
+          <li class="nav-item active"><% } else { %></li>
+
+          <li class="nav-item">
+            <% } %>
+
+            <a class="nav-link" href="/about"
+              ><i class="fa fa-lg fa-info"></i> About</a
+            >
+          </li>
+
+          <% if(title == "Products") { %>
+          <li class="nav-item active"><% } else { %></li>
+
+          <li class="nav-item">
+            <% } %>
+
+            <a class="nav-link" href="/products"
+              ><i class="fa fa-lg fa-briefcase"></i> Products</a
+            >
+          </li>
+
+          <% if(title == "Services") { %>
+          <li class="nav-item active"><% } else { %></li>
+
+          <li class="nav-item">
+            <% } %>
+
+            <a class="nav-link" href="/services"
+              ><i class="fa fa-lg fa-birthday-cake"></i> Services</a
+            >
+          </li>
+
+          <% if(title == "Contact") { %>
+          <li class="nav-item active"><% } else { %></li>
+
+          <li class="nav-item">
+            <% } %>
+
+            <a class="nav-link" href="/contact"
+              ><i class="fa fa-lg fa-phone"></i> Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
