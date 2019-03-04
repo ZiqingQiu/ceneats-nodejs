@@ -1,0 +1,48 @@
+<% include ../partials/header.ejs %>
+
+<main class="container">
+    <% if(messages.length > 0) { %>
+        <div class="alert alert-danger">
+            <%= messages %>
+        </div>
+    <% } %>
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <h1>Please Register</h1>
+            <form method="POST" autocomplete="off">
+                <fieldset class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" 
+                    name="username" placeholder="Enter Username" 
+                    id="username" required autocomplete="off">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" 
+                    name="password" placeholder="Enter Password" 
+                    id="password" required autocomplete="off">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" 
+                    name="email" placeholder="Enter Email" 
+                    id="email" required autocomplete="off">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="displayName">Dispaly Name:</label>
+                    <input type="text" class="form-control" 
+                    name="displayName" placeholder="Enter Display Name" 
+                    id="displayName" required autocomplete="off">
+                </fieldset>
+                <fieldset class="form-group text-right">
+                    <input type="submit" class="btn btn-success" value="Register">
+                    <a href="/">
+                        <input type="button" class="btn btn-warning" value="Cancel">
+                    </a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
+
+<% include ../partials/footer.ejs %>

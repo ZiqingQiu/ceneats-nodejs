@@ -1,0 +1,55 @@
+<% include ../partials/header.ejs %>
+
+<!-- Content for the Edit Page -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <h1><%= title %></h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="FirstNameTextField">First Name</label>
+                    <input type="text" class="form-control" 
+                    id="FirstNameTextField" 
+                    placeholder="Enter First Name"
+                    name="firstName"
+                    value="<%= contact.firstName %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="LastNameTextField">Last Name</label>
+                    <input type="text" class="form-control" 
+                    id="LastNameTextField" 
+                    placeholder="Enter Last Name"
+                    name="lastName"
+                    value="<%= contact.lastName %>"
+                    required>
+                </div>
+
+                <div class="form-group">
+                    <label for="AgeTextField">Age</label>
+                    <input type="text" class="form-control" 
+                    id="AgeTextField" 
+                    placeholder="Enter Age"
+                    name="age"
+                    value="<%= contact.age %>"
+                    required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Submit</button>
+                <a href="/contact-list" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Cancel</a>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<% include ../partials/footer.ejs %>
