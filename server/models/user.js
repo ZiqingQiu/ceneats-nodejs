@@ -4,11 +4,11 @@ let passportLocalMongoose = require("passport-local-mongoose");
 
 let userSchema = mongoose.Schema(
   {
-    username: {
+    cenid: {
       type: String,
       default: "",
       trim: true,
-      required: "username is required"
+      required: "Centennial Id is required"
     },
     /* taken out because password will be encrypted by passport-local-mongoose
     password: {
@@ -18,25 +18,17 @@ let userSchema = mongoose.Schema(
         required: 'password is required'
     }
     */
-    email: {
-      type: String,
-      default: "",
-      trim: true,
-      required: "email is required"
-    },
     displayName: {
       type: String,
       default: "",
       trim: true,
       required: "Display Name is required"
     },
-    created: {
-      type: Date,
-      default: Date.now
-    },
-    update: {
-      type: Date,
-      default: Date.now
+    accountType: {
+      type: String,
+      default: "S",  //S: student, F: faculty, R: restaurant employee
+      trim: true,
+      required: "Account Type is required"
     }
   },
   {
