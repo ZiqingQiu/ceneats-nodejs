@@ -4,7 +4,7 @@ let passportLocalMongoose = require("passport-local-mongoose");
 
 let userSchema = mongoose.Schema(
   {
-    cenid: {
+    username: {
       type: String,
       default: "",
       trim: true,

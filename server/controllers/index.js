@@ -94,13 +94,13 @@ module.exports.processRegisterPage = (req, res, next) => {
   let newUser = new User({
     username: req.body.username,
     //password: req.body.password
-    email: req.body.email,
-    displayName: req.body.displayName
+    displayName: req.body.displayName,
+    accountType: req.body.accountType
   });
 
   User.register(newUser, req.body.password, (err) => {
     if (err) {
-      console.log("Error: Inserting New User");
+      console.log("Error: Inserting New User: " + err.name);
       if (err.name == "UserExistsError") {
         req.flash(
           "registerMessage",

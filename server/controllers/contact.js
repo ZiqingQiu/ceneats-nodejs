@@ -5,19 +5,18 @@ let router = express.Router();
 let contactModel = require('../models/contact');
 
 module.exports.displayContactList = (req, res, next) =>{
-    contactModel.find((err, contactList) => {
+    contactModel.find((err, accountList) => {
         if(err) {
             return console.error(err);
         }
         else {
-           // console.log(contactList);
+           // console.log(accountList);
 
             res.render('contacts/index', {
                 title: 'Contact List',
-                contactList: contactList,
+                accountList: accountList,
                 displayName: req.user ? req.user.displayName : ""
-            });
-            
+            });           
         }
     });
 }

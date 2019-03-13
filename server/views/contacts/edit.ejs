@@ -8,38 +8,35 @@
 
             <form class="form" method="POST">
                 <div class="form-group">
-                    <label for="FirstNameTextField">First Name</label>
+                    <label for="userid">CenId:</label>
                     <input type="text" class="form-control" 
-                    id="FirstNameTextField" 
-                    placeholder="Enter First Name"
-                    name="firstName"
-                    value="<%= contact.firstName %>"
-                    required>
+                    name="userid" placeholder="Enter Cen Id" 
+                    id="userid" 
+                    value="<%= account.cenid %>"
+                    required autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <label for="LastNameTextField">Last Name</label>
+                    <label for="displayName">Dispaly Name:</label>
                     <input type="text" class="form-control" 
-                    id="LastNameTextField" 
-                    placeholder="Enter Last Name"
-                    name="lastName"
-                    value="<%= contact.lastName %>"
-                    required>
+                    name="displayName" placeholder="Enter Display Name" 
+                    id="displayName" 
+                    value="<%= account.displayName %>"
+                    required autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <label for="AgeTextField">Age</label>
+                    <label for="accountType">Account Type:</label>
                     <input type="text" class="form-control" 
-                    id="AgeTextField" 
-                    placeholder="Enter Age"
-                    name="age"
-                    value="<%= contact.age %>"
-                    required>
+                    name="accountType" placeholder="Enter Account Type" 
+                    id="accountType" 
+                    value="<%= account.accountType %>"                    
+                    required autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-primary">
                 <i class="fas fa-edit"></i> Submit</button>
-                <a href="/contact-list" class="btn btn-warning">
+                <a href="/account-list" class="btn btn-warning">
                     <i class="fas fa-undo"></i> Cancel</a>
             </form>
 
