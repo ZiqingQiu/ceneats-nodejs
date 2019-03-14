@@ -2,21 +2,20 @@ let express = require('express');
 let router = express.Router();
 
 // create a reference to the db schema
-let contactModel = require('../models/contact');
+let orderModel = require('../models/order');
 
 module.exports.displayContactList = (req, res, next) =>{
-    contactModel.find((err, accountList) => {
+    orderModel.find((err, orderList) => {
         if(err) {
             return console.error(err);
         }
         else {
-           // console.log(accountList);
-
             res.render('contacts/index', {
-                title: 'Contact List',
-                accountList: accountList,
+                title: 'Order List',
+                orderList: orderList,
                 displayName: req.user ? req.user.displayName : ""
-            });           
+            });   
+            console.log("dbg displayOrderList: " + orderList);        
         }
     });
 }
@@ -30,13 +29,15 @@ module.exports.displayAddPage = (req, res, next) => {
 
 module.exports.processAddPage = (req, res, next) => {
 
-    let newContact = contactModel({
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName,
-        "age": req.body.age
+    let newOrder = orderModel({
+        "cenId": req.body.cenid,
+        "foodId": req.body.foodid,
+        "quantity": req.body.quantity,
+        "status": req.body.status,
+        "orderDate": req.body.orderdate
     });
 
-    contactModel.create(newContact, (err, contactModel) => {
+    orderModel.create(newOrder, (err, contactModel) => {
         if(err) {
             console.log(err);
             res.end(err);
@@ -50,7 +51,7 @@ module.exports.processAddPage = (req, res, next) => {
 
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
-    contactModel.findById(id, (err, contactObject) => {
+    orderModel.findById(id, (err, orderObject) => {
         if(err) {
             console.log(err);
             res.end(err);
@@ -60,7 +61,7 @@ module.exports.displayEditPage = (req, res, next) => {
             // show the edit view
             res.render('contacts/edit', {
                 title: 'Edit Contact',
-                contact: contactObject,
+                order: orderObject,
                 displayName: req.user ? req.user.displayName : ""
             });
         }
@@ -70,14 +71,16 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
 
-    let updatedContact = contactModel({
+    let updatedContact = orderModel({
         "_id": id,
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName,
-        "age": req.body.age
+        "cenId": req.body.cenid,
+        "foodId": req.body.foodid,
+        "quantity": req.body.quantity,
+        "status": req.body.status,
+        "orderDate": req.body.orderdate
     });
 
-    contactModel.update({_id: id}, updatedContact, (err) => {
+    orderModel.update({_id: id}, updatedContact, (err) => {
         if(err) {
             console.log(err);
             res.end(err);
@@ -92,7 +95,7 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    contactModel.remove({_id: id}, (err) => {
+    orderModel.remove({_id: id}, (err) => {
         if(err) {
             console.log(err);
             res.end(err);
