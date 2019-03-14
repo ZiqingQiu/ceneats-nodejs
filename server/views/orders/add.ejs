@@ -1,6 +1,6 @@
 <% include ../partials/header.ejs %>
 
-<!-- Content for the Edit Page -->
+<!-- Content for the Add Page -->
 <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
@@ -9,37 +9,37 @@
             <form class="form" method="POST">
                 <div class="form-group">
                     <label for="cenid">Centennial Id:</label>
-                    <input type="text" class="form-control" name="cenid" placeholder="Enter Centennial Id"
-                        value="<%= order.cenId %>" id="cenid" required autocomplete="off">
+                    <input type="text" class="form-control" name="cenid" placeholder="Enter Centennial Id" id="cenid"
+                        required autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label for="foodid">Food Id:</label>
-                    <input type="text" class="form-control" name="foodid" placeholder="Enter Food Id"
-                        value="<%= order.foodId %>" id="foodid" required autocomplete="off">
+                    <input type="text" class="form-control" name="foodid" placeholder="Enter Food Id" id="foodid"
+                        required autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity"
-                        value="<%= order.quantity %>" id="quantity" required autocomplete="off">
+                    <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" id="quantity"
+                        required autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label for="status">Status:</label>
                     <input type="text" class="form-control" name="status" placeholder="Enter Status" id="status"
-                        value="<%= order.status %>" required autocomplete="off">
+                        required autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label for="orderdate">Order Date:</label>
                     <input type="date" class="form-control" name="orderdate" placeholder="Enter Status" id="orderdate"
-                    value="<%= order.orderDate %>" required autocomplete="off">
+                        required autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-edit"></i> Submit</button>
-                <a href="/account-list" class="btn btn-warning">
+                <a href="/order-list" class="btn btn-warning">
                     <i class="fas fa-undo"></i> Cancel</a>
             </form>
 

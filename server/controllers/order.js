@@ -4,25 +4,24 @@ let router = express.Router();
 // create a reference to the db schema
 let orderModel = require('../models/order');
 
-module.exports.displayContactList = (req, res, next) =>{
+module.exports.displayOrderList = (req, res, next) =>{
     orderModel.find((err, orderList) => {
         if(err) {
             return console.error(err);
         }
         else {
-            res.render('contacts/index', {
+            res.render('orders/index', {
                 title: 'Order List',
                 orderList: orderList,
                 displayName: req.user ? req.user.displayName : ""
-            });   
-            console.log("dbg displayOrderList: " + orderList);        
+            });        
         }
     });
 }
 
 module.exports.displayAddPage = (req, res, next) => {    
-    res.render('contacts/add', {
-        title: 'Add New Contact',
+    res.render('orders/add', {
+        title: 'Add New Order',
         displayName: req.user ? req.user.displayName : ""
     });
 }
@@ -44,7 +43,7 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else {
             // refresh the contact list
-            res.redirect('/contact-list');
+            res.redirect('/order-list');
         }
     });
 }
@@ -59,8 +58,8 @@ module.exports.displayEditPage = (req, res, next) => {
         else
         {
             // show the edit view
-            res.render('contacts/edit', {
-                title: 'Edit Contact',
+            res.render('orders/edit', {
+                title: 'Edit Order',
                 order: orderObject,
                 displayName: req.user ? req.user.displayName : ""
             });
@@ -87,7 +86,7 @@ module.exports.processEditPage = (req, res, next) => {
         }
         else {
             // refresh the contact list
-            res.redirect('/contact-list');
+            res.redirect('/order-list');
         }
     })
 }
@@ -102,7 +101,7 @@ module.exports.performDelete = (req, res, next) => {
         }
         else {
             // refresh the contact list
-            res.redirect('/contact-list');
+            res.redirect('/order-list');
         }
     });
 }
