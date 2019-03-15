@@ -2,9 +2,9 @@
 
 <main class="container">
     <% if(messages.length > 0) { %>
-        <div class="alert alert-danger">
-            <%= messages %>
-        </div>
+    <div class="alert alert-danger">
+        <%= messages %>
+    </div>
     <% } %>
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
@@ -12,28 +12,42 @@
             <form method="POST" autocomplete="off">
                 <fieldset class="form-group">
                     <label for="username">CenId:</label>
-                    <input type="text" class="form-control" 
-                    name="username" placeholder="Enter Cen Id" 
-                    id="username" required autocomplete="off">
+                    <input type="text" class="form-control" name="username" placeholder="Enter Cen Id" id="username"
+                        required autocomplete="off">
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" 
-                    name="password" placeholder="Enter Password" 
-                    id="password" required autocomplete="off">
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password"
+                        id="password" required autocomplete="off">
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="displayName">Dispaly Name:</label>
-                    <input type="text" class="form-control" 
-                    name="displayName" placeholder="Enter Display Name" 
-                    id="displayName" required autocomplete="off">
+                    <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name"
+                        id="displayName" required autocomplete="off">
                 </fieldset>
-                <fieldset class="form-group">
+                <!-- <fieldset class="form-group">
                     <label for="accountType">Account Type:</label>
                     <input type="text" class="form-control" 
                     name="accountType" placeholder="Enter Account Type" 
                     id="accountType" required autocomplete="off">
-                </fieldset>                
+                </fieldset>                 -->
+                <fieldset class="form-group dropdown">
+                    <label for="accountTypeDropdown">Account Type:</label>
+                    <br />
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="accountTypeDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name="accountTypeDropdown" value="value">
+                        Select Account Type
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="accountType">
+                        <a class="dropdown-item" a href="#">Student</a>
+                        <a class="dropdown-item" a href="#">Faculty</a>
+                        <a class="dropdown-item" a href="#">Restaurant</a>
+                    </div>
+                    <input type="text" class="form-control" 
+                    name="accountType" placeholder="Enter Account Type" 
+                    id="accountType" required autocomplete="off">
+                </fieldset>
+
                 <fieldset class="form-group text-right">
                     <input type="submit" class="btn btn-success" value="Register">
                     <a href="/">
