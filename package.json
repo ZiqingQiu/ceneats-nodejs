@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.1",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -26,7 +26,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
-    "popper.js": "^1.14.6"
+    "popper.js": "^1.14.7"
   },
   "description": "Mongo and Mongoose Demo",
   "main": "server.js",
@@ -47,10 +47,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CentennialCollege/COMP308-W2019-Lesson6B.git"
+    "url": "git+https://github.com/UTSCCSCC01/-smiley-face.git"
   },
   "bugs": {
-    "url": "https://github.com/CentennialCollege/COMP308-W2019-Lesson6B/issues"
+    "url": "https://github.com/UTSCCSCC01/-smiley-face.git"
   },
-  "homepage": "https://github.com/CentennialCollege/COMP308-W2019-Lesson6B#readme"
+  "homepage": "https://github.com/UTSCCSCC01/-smiley-face.git"
 }

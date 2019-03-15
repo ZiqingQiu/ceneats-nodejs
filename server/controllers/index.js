@@ -97,6 +97,8 @@ module.exports.processRegisterPage = (req, res, next) => {
     displayName: req.body.displayName,
     accountType: req.body.accountType
   });
+  console.log("dbg processRegisterPage [accountType]: " + req.body.accountType);
+
 
   User.register(newUser, req.body.password, (err) => {
     if (err) {

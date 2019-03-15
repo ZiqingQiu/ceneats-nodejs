@@ -26,7 +26,7 @@ let userSchema = mongoose.Schema(
     },
     accountType: {
       type: String,
-      default: "S",  //S: student, F: faculty, R: restaurant employee
+      default: "",  //Student, Faculty, Restaurant
       trim: true,
       required: "Account Type is required"
     }
