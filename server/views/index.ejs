@@ -1,12 +1,41 @@
 <% include ./partials/header.ejs %>
 
+<form method="POST">
     <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-4">Welcome to <%= title %></h1>
-        <% if ((title == "Contact") && (displayName == "admin")) { %>
-          <a class="btn btn-primary" href="/order-list" role="button">Contact List</a>
-        <% } %>        
-      </div>
+        <div class="row">
+            <div class="col">
+                <div class="col">
+                    <input id="img-bk" name="imgbtn" type="image" src="/Content/Images/restaurants/burgerking.png"
+                        class="img-thumbnail rounded" alt="burgerking">
+                </div>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col">
+                <div class="col">
+                    <img id="img-mc" name="imgbtn" type="image" src="/Content/Images/restaurants/mcdonalds.png"
+                        class="img-thumbnail rounded" alt="macdonalds">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="col">
+                    <img id="img-pza" name="imgbtn" type="image" src="/Content/Images/restaurants/pizzapizza.png"
+                        class="img-thumbnail rounded" alt="pizzapizza">
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="w-100"></div>
+            </div>
+            <div class="col">
+                <div class="col">
+                    <img id="img-th" name="imgbtn" type="image" src="/Content/Images/restaurants/timhortons.png"
+                        class="img-thumbnail rounded" alt="timhortons">
+                </div>
+            </div>
+        </div>
     </div>
+</form>
 
 <% include ./partials/footer.ejs %>

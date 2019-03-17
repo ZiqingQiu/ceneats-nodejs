@@ -25,9 +25,9 @@ mongoDB.once('open', ()=> {
   console.log("Connected to MongoDB...");
 });
 
+
 let indexRouter = require('../routes/index');
 let orderRouter = require('../routes/order');
-
 
 let app = express();
 
@@ -69,7 +69,7 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
+//routers
 app.use('/', indexRouter);
 app.use('/order-list', orderRouter);
 

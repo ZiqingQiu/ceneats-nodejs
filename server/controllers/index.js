@@ -14,6 +14,10 @@ module.exports.displayHomePage = (req, res, next) => {
   });
 };
 
+module.export.processHomePage = (req, res, next) => {
+  
+}
+
 module.exports.displayAboutPage = (req, res, next) => {
   res.render("index", {
     title: "About",
