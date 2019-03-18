@@ -2,10 +2,10 @@ let mongoose = require('mongoose');
 
 // create a model class
 let itemSchema = mongoose.Schema({
+    itemId: String,
     restaurantName: String,
     itemName: String,
     quantity: Number,
-    stockStatus: String,
     imageURL: String,
     price: Number
 },
