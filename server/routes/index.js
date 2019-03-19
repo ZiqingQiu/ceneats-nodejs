@@ -9,17 +9,14 @@ router.get('/', indexController.displayHomePage);
 /* POST home page. */
 router.post('/', indexController.processHomePage);
 
-/* GET about page. */
-router.get('/about', indexController.displayAboutPage);
-
-/* GET products page. */
-router.get('/products', indexController.displayProductsPage);
-
 /* GET services page. */
 router.get('/services', indexController.displayServicesPage);
 
 /* GET contact page. */
 router.get('/contact', indexController.displayContactPage);
+
+/* GET about page. */
+router.get('/about', indexController.displayAboutPage);
 
 /* GET - displays the Login Page */
 router.get('/login', indexController.displayLoginPage);
