@@ -18,18 +18,7 @@ module.exports.displayHomePage = (req, res, next) => {
 
 //display item list
 module.exports.processHomePage = (req, res, next) => {
-    itemModel.find((err, itemList) => {
-        if (err) {
-            return console.error(err);
-        }
-        else {
-            res.render('items/index', {
-                title: 'Item List',
-                itemList: itemList,
-                displayName: req.user ? req.user.displayName : ""
-            });
-        }
-    });
+    res.redirect('/item-list');
 }
 
 module.exports.displayAboutPage = (req, res, next) => {

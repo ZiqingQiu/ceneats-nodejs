@@ -10,7 +10,7 @@ let itemSchema = mongoose.Schema({
     price: Number
 },
 {
-    collection: "item"
+    collection: "items"
 });
 
 module.exports = mongoose.model('item', itemSchema);

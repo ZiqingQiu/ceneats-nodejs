@@ -17,6 +17,10 @@
                 window.location.assign("/order-list");
             }
         });
+
+        $("input[type=number]").click(function(e) {
+            $(this).attr('value', $(this).val());
+        });
     }
 
     window.addEventListener("load", Start);

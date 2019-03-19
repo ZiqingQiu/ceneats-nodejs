@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+let dateFormat = require('dateformat');
 
 // create a model class
 let orderSchema = mongoose.Schema({
@@ -6,10 +7,13 @@ let orderSchema = mongoose.Schema({
     foodId: String,
     quantity: Number,
     status: String,
-    orderDate: Date
+    orderDate: {
+        type: String,
+        default: dateFormat(new Date(), "ddd mmm dd yyyy HH:MM:ss")
+    }
 },
-{
-    collection: "orders"
-});
+    {
+        collection: "orders"
+    });
 
 module.exports = mongoose.model('order', orderSchema);

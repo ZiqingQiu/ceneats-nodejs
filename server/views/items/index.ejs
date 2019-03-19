@@ -7,55 +7,53 @@
             <a class="btn btn-primary" href="/item-list/add" role="button">
                 <i class="fas fa-plus-circle"></i> Add an Item</a>
             <br>
-            <table class="table table-bordered table-striped table-hover">
-                <!-- Header Row-->
-                <tr>
-                    <th class="text-center">Index</th>
-                    <th class="text-center">Item Id</th>
-                    <th class="text-center">Restaurant Name</th>
-                    <th class="text-center">Item Name</th>
-                    <th class="text-center">Inventory</th>
-                    <th class="text-center">Image</th>
-                    <th class="text-center">Price($)</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-center">Select</th>
-                    <th class="text-center"></th>
-                    <th class="text-center"></th>
-                </tr>
+            <div class="form">
+                <table class="table table-bordered table-striped table-hover">
+                    <!-- Header Row-->
+                    <tr>
+                        <th class="text-center">Index</th>
+                        <th class="text-center">Item Id</th>
+                        <th class="text-center">Restaurant Name</th>
+                        <th class="text-center">Item Name</th>
+                        <th class="text-center">Inventory</th>
+                        <th class="text-center">Image</th>
+                        <th class="text-center">Price($)</th>
+                        <th class="text-center">Order</th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                    </tr>
 
-                <!-- Repeatable Template Row -->
-                <% for(let count = 0; count < itemList.length; count++) { %>
-                <tr>
-                    <td class="text-center"><%= (count+1) %></td>
-                    <td class="text-center"><%= itemList[count].itemId %></td>
-                    <td class="text-center"><%= itemList[count].restaurantName %></td>
-                    <td class="text-center"><%= itemList[count].itemName %></td>
-                    <td class="text-center"><%= itemList[count].quantity %></td>
-                    <td class="text-center"><%= itemList[count].imageURL %></td>
-                    <td class="text-center"><%= itemList[count].price %></td>
+                    <!-- Repeatable Template Row -->
+                    <% for(let count = 0; count < itemList.length; count++) { %>
+                    <tr>
+                        <td class="text-center"><%= (count+1) %></td>
+                        <td class="text-center"><%= itemList[count].itemId %></td>
+                        <td class="text-center"><%= itemList[count].restaurantName %></td>
+                        <td class="text-center"><%= itemList[count].itemName %></td>
+                        <td class="text-center"><%= itemList[count].quantity %></td>
+                        <td class="text-center"><%= itemList[count].imageURL %></td>
+                        <td class="text-center"><%= itemList[count].price %></td>
 
-                    <td class="text-center">
-                        <input type="number" class="form-control" name="purchaseQuantity" placeholder="Enter Quantity" id="purchaseQuantity"
-                            required autocomplete="off" value="1" >
-                    </td>
+                        <td class="text-center">
+                            <a href="/item-list/placeorder/<%= itemList[count]._id %>" class="btn btn-success"><i
+                                    class="fas fa-utensils"></i> Order</a>
+                        </td>
 
-                    <td class="text-center">
-                            <input type="checkbox" class="form-check-input" id="itemCheck<%= count %>" name="itemCheck<%= count %>">
-                    </td>
+                        <td class="text-center">
+                            <a href="/item-list/edit/<%= itemList[count]._id %>" class="btn btn-primary"><i
+                                    class="fas fa-pencil-alt"></i> Edit</a>
+                        </td>
 
-                    <td class="text-center">
-                        <a href="/item-list/edit/<%= itemList[count]._id %>" class="btn btn-primary"><i
-                                class="fas fa-pencil-alt"></i> Edit</a>
-                    </td>
-
-                    <td class="text-center">
-                        <a href="/item-list/delete/<%= itemList[count]._id %>" class="btn btn-danger"><i
-                                class="fas fa-trash-alt"></i> Delete</a>
-                    </td>
-                </tr>
-                <% } %>
-            </table>
-
+                        <td class="text-center">
+                            <a href="/item-list/delete/<%= itemList[count]._id %>" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+                <a href="/item-list" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Cancel</a>
+            </div>
         </div>
     </div>
 </div>

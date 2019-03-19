@@ -3,10 +3,11 @@ let router = express.Router();
 
 // create a reference to the db schema
 let itemModel = require('../models/item');
+let orderModel = require('../models/order');
 
 module.exports.displayItemList = (req, res, next) =>{
     itemModel.find((err, itemList) => {
-        if(err) {
+        if (err) {
             return console.error(err);
         }
         else {
@@ -14,7 +15,70 @@ module.exports.displayItemList = (req, res, next) =>{
                 title: 'Item List',
                 itemList: itemList,
                 displayName: req.user ? req.user.displayName : ""
-            });        
+            });
+        }
+    });
+}
+
+module.exports.displaySelecetedItem = (req, res, next) => {
+    //find item
+    let id = req.params.id;
+    let session = req.session;
+    session.curselitemid = id;
+    itemModel.findById(id, (err, itemObject) => {
+        if(err) {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            //routing to place order view
+            res.render('items/placeorder', {
+                title: 'Place Order',
+                item: itemObject,
+                displayName: req.user ? req.user.displayName : ""
+            });
+        }
+    });
+}
+
+module.exports.processSelecetedItem = (req, res, next) => {
+
+    //update item inventory
+    let remainInventory = req.body.inventory - req.body.quantity;
+    let updatedItem = itemModel({
+        "_id": req.session.curselitemid,
+        "itemId": req.body.itemId,
+        "restaurantName": req.body.resName,
+        "itemName": req.body.itemName,
+        "quantity": remainInventory,
+        "imageURL": req.body.itemURL,
+        "price": req.body.price
+    });
+
+    itemModel.update({itemId: req.body.itemId}, updatedItem, (err) => {
+        if(err) {
+            console.log(err);
+            res.end(err);
+        }
+    })   
+
+    //add item to order
+    let newOrder = orderModel({
+        "cenId": req.user.username,
+        "foodId": req.body.itemId,
+        "quantity": req.body.quantity,
+        "status": "Ordered"
+    });
+
+    orderModel.create(newOrder, (err, contactModel) => {
+        if(err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            // refresh the contact list
+            res.redirect('/order-list');
         }
     });
 }
