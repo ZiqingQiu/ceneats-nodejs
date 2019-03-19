@@ -1,0 +1,60 @@
+<% include ../partials/header.ejs %>
+
+<!-- Content for the Edit Item Page -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <h1><%= title %></h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="itemId">itemId:</label>
+                    <input type="text" class="form-control" name="itemId" placeholder="Enter Item Id" id="itemId"
+                        required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="resName">restaurantName:</label>
+                    <input type="text" class="form-control" name="resName" placeholder="Enter RestaurantName"
+                        id="resName" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="itemName">itemName:</label>
+                    <input type="text" class="form-control" name="itemName" placeholder="Enter Item Name" id="itemName"
+                        required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Inventory:</label>
+                    <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" id="quantity"
+                        required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="itemURL">Image URL</label>
+                    <input type="text" class="form-control" name="itemURL" placeholder="Enter image URL" id="itemURL"
+                        required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" value="9.99" min="0" step="0.01" data-number-to-fixed="2"
+                        data-number-stepfactor="100" class="form-control currency" name="price"
+                        placeholder="Enter price" id="price" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Submit</button>
+                <a href="/item-list" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<% include ../partials/footer.ejs %>

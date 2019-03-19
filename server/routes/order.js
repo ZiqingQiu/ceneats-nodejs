@@ -1,8 +1,6 @@
 let express = require('express');
 let router = express.Router();
 
-let passport = require('passport');
-
 let orderController = require('../controllers/order');
 
 function requireAuth(req, res, next) {

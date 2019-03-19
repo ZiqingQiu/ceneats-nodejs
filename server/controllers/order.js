@@ -32,8 +32,7 @@ module.exports.processAddPage = (req, res, next) => {
         "cenId": req.body.cenid,
         "foodId": req.body.foodid,
         "quantity": req.body.quantity,
-        "status": req.body.status,
-        "orderDate": req.body.orderdate
+        "status": req.body.status
     });
 
     orderModel.create(newOrder, (err, contactModel) => {
@@ -75,8 +74,7 @@ module.exports.processEditPage = (req, res, next) => {
         "cenId": req.body.cenid,
         "foodId": req.body.foodid,
         "quantity": req.body.quantity,
-        "status": req.body.status,
-        "orderDate": req.body.orderdate
+        "status": req.body.status
     });
 
     orderModel.update({_id: id}, updatedContact, (err) => {
