@@ -8,6 +8,12 @@ let reviewSchema = mongoose.Schema({
         trim: true,
         required: "Display Name is required"
       },
+      restaurantName: {
+        type: String,
+        default: "",
+        trim: true,
+        required: "Display Name is required"
+      },
     comment : {
         type: String,
         default: "",
