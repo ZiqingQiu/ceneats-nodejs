@@ -1,0 +1,44 @@
+<% include ../partials/header.ejs %>
+
+<!-- Content for the Add Item Page -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <h1><%= title %></h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="displayName">Display Name:</label>
+                    <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name"
+                        id="displayName" required autocomplete="off"
+                        value="<%= displayName %>">
+                </div>
+                <div class="form-group">
+                    <label for="restaurantName">Restaurant Name:</label>
+                    <input type="text" class="form-control" name="restaurantName" placeholder="Enter Restaurant Name"
+                        id="displayName" required autocomplete="off"
+                        >
+                </div>
+                <div class="form-group">
+                    <label for="comment"> comment:</label>
+                    <input type="text" class="form-control" name="comment" placeholder="Enter Comment"
+                        id="comment" required autocomplete="off"
+                        >
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Submit</button>
+                <a href="/review-list" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Cancel</a>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<% include ../partials/footer.ejs %>
