@@ -9,9 +9,6 @@ router.get('/', indexController.displayHomePage);
 /* POST home page. */
 router.post('/', indexController.processHomePage);
 
-/* GET services page. */
-router.get('/services', indexController.displayServicesPage);
-
 /* GET contact page. */
 router.get('/contact', indexController.displayContactPage);
 

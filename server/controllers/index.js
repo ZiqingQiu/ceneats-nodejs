@@ -28,8 +28,8 @@ module.exports.displayAboutPage = (req, res, next) => {
     });
 };
 
-module.exports.displayServicesPage = (req, res, next) => {
-    res.render("index", {
+module.exports.displayReviewPage = (req, res, next) => {
+    res.render("review-list", {
         title: "Services",
         displayName: req.user ? req.user.displayName : ""
     });

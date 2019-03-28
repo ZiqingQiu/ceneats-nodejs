@@ -15,12 +15,9 @@
                         <th class="text-center">Display Name</th>
                         <th class="text-center">Restaurant Name</th>
                         <th class="text-center">comment</th>
-                        <th class="text-center"></th>
-                        <th class="text-center"></th>
-                        <th class="text-center"></th>
-                        <th class="text-center"></th>
-                        <th class="text-center"></th>
-                        <th class="text-center"></th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+
                     </tr>
 
                     <!-- Repeatable Template Row -->
@@ -30,11 +27,6 @@
                         <td class="text-center"><%= reviewList[count].displayName %></td>
                         <td class="text-center"><%= reviewList[count].restaurantName %></td>
                         <td class="text-center"><%= reviewList[count].comment %></td>
-
-                        <td class="text-center">
-                            <a href="/review-list/placereview/<%= reviewList[count]._id %>" class="btn btn-success"><i
-                                    class="fas fa-utensils"></i> Order</a>
-                        </td>
 
                         <td class="text-center">
                             <a href="/review-list/edit/<%= reviewList[count]._id %>" class="btn btn-primary"><i
