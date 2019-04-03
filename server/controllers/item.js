@@ -89,7 +89,8 @@ module.exports.processSelecetedItem = (req, res, next) => {
 module.exports.displayAddPage = (req, res, next) => {    
     res.render('items/add', {
         title: 'Add New Item',
-        displayName: req.user ? req.user.displayName : ""
+        displayName: req.user ? req.user.displayName : "",
+        restaurant: req.session.restaurant,
     });
 }
 

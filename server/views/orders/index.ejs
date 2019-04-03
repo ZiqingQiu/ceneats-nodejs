@@ -24,7 +24,7 @@
 
                 <!-- Repeatable Template Row -->
                 <% for(let count = 0; count < orderList.length; count++) { %>
-                    <% if(orderList[count].cenId === username) { %>
+                    <% if(orderList[count].cenId === username || accountType === "Admin") { %>
                     <tr>
                         <td class="text-center"><%= (count+1) %></td>
                         <td class="text-center"><%= orderList[count].cenId %></td>
