@@ -4,8 +4,10 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <h1><%= title %></h1>
+            <% if (accountType === 'Restaurant') { %>
             <a class="btn btn-primary" href="/item-list/add" role="button">
                 <i class="fas fa-plus-circle"></i> Add an Item</a>
+            <% } %>
             <br>
             <div class="form">
                 <table class="table table-bordered table-striped table-hover">
@@ -25,30 +27,36 @@
 
                     <!-- Repeatable Template Row -->
                     <% for(let count = 0; count < itemList.length; count++) { %>
-                    <tr>
-                        <td class="text-center"><%= (count+1) %></td>
-                        <td class="text-center"><%= itemList[count].itemId %></td>
-                        <td class="text-center"><%= itemList[count].restaurantName %></td>
-                        <td class="text-center"><%= itemList[count].itemName %></td>
-                        <td class="text-center"><%= itemList[count].quantity %></td>
-                        <td class="text-center"><%= itemList[count].imageURL %></td>
-                        <td class="text-center"><%= itemList[count].price %></td>
-
-                        <td class="text-center">
-                            <a href="/item-list/placeorder/<%= itemList[count]._id %>" class="btn btn-success"><i
-                                    class="fas fa-utensils"></i> Order</a>
-                        </td>
-
-                        <td class="text-center">
-                            <a href="/item-list/edit/<%= itemList[count]._id %>" class="btn btn-primary"><i
-                                    class="fas fa-pencil-alt"></i> Edit</a>
-                        </td>
-
-                        <td class="text-center">
-                            <a href="/item-list/delete/<%= itemList[count]._id %>" class="btn btn-danger"><i
-                                    class="fas fa-trash-alt"></i> Delete</a>
-                        </td>
-                    </tr>
+                        <% if (itemList[count].restaurantName === restaurant) { %>
+                        <tr>
+                            <td class="text-center"><%= (count+1) %></td>
+                            <td class="text-center"><%= itemList[count].itemId %></td>
+                            <td class="text-center"><%= itemList[count].restaurantName %></td>
+                            <td class="text-center"><%= itemList[count].itemName %></td>
+                            <td class="text-center"><%= itemList[count].quantity %></td>
+                            <td class="text-center"><%= itemList[count].imageURL %></td>
+                            <!-- Showcase the Faculty Discount -->
+                            <% if (accountType === 'Faculty') { %>
+                                <td class="text-center"><%= parseFloat(itemList[count].price - (itemList[count].price/(100/15))).toFixed(2) %></td>
+                            <% } else { %>
+                                <td class="text-center"><%= itemList[count].price %></td>
+                            <% } %>
+                            <td class="text-center">
+                                <a href="/item-list/placeorder/<%= itemList[count]._id %>" class="btn btn-success"><i
+                                        class="fas fa-utensils"></i> Order</a>
+                            </td>
+                        
+                            <td class="text-center">
+                                <a href="/item-list/edit/<%= itemList[count]._id %>" class="btn btn-primary"><i
+                                        class="fas fa-pencil-alt"></i> Edit</a>
+                            </td>
+                        
+                            <td class="text-center">
+                                <a href="/item-list/delete/<%= itemList[count]._id %>" class="btn btn-danger"><i
+                                        class="fas fa-trash-alt"></i> Delete</a>
+                            </td>
+                        </tr>
+                        <% } %>
                     <% } %>
                 </table>
                 <a href="/item-list" class="btn btn-warning">

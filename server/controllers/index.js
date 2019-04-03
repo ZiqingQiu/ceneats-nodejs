@@ -18,6 +18,9 @@ module.exports.displayHomePage = (req, res, next) => {
 
 //display item list
 module.exports.processHomePage = (req, res, next) => {
+    let restaurant = Object.keys(req.body)[0].split('.')[0];
+    req.session.restaurant = restaurant;
+    console.log("GET NAME: "+ restaurant);
     res.redirect('/item-list');
 }
 

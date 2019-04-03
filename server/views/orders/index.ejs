@@ -24,24 +24,26 @@
 
                 <!-- Repeatable Template Row -->
                 <% for(let count = 0; count < orderList.length; count++) { %>
-                <tr>
-                    <td class="text-center"><%= (count+1) %></td>
-                    <td class="text-center"><%= orderList[count].cenId %></td>
-                    <td class="text-center"><%= orderList[count].foodId %></td>
-                    <td class="text-center"><%= orderList[count].quantity %></td>
-                    <td class="text-center"><%= orderList[count].status %></td>
-                    <td class="text-center"><%= orderList[count].orderDate %></td>
+                    <% if(orderList[count].cenId === username) { %>
+                    <tr>
+                        <td class="text-center"><%= (count+1) %></td>
+                        <td class="text-center"><%= orderList[count].cenId %></td>
+                        <td class="text-center"><%= orderList[count].foodId %></td>
+                        <td class="text-center"><%= orderList[count].quantity %></td>
+                        <td class="text-center"><%= orderList[count].status %></td>
+                        <td class="text-center"><%= orderList[count].orderDate %></td>
 
-                    <td class="text-center">
-                        <a href="/order-list/edit/<%= orderList[count]._id %>" class="btn btn-primary"><i
-                                class="fas fa-pencil-alt"></i> Edit</a>
-                    </td>
+                        <td class="text-center">
+                            <a href="/order-list/edit/<%= orderList[count]._id %>" class="btn btn-primary"><i
+                                    class="fas fa-pencil-alt"></i> Edit</a>
+                        </td>
 
-                    <td class="text-center">
-                        <a href="/order-list/delete/<%= orderList[count]._id %>" class="btn btn-danger"><i
-                                class="fas fa-trash-alt"></i> Delete</a>
-                    </td>
-                </tr>
+                        <td class="text-center">
+                            <a href="/order-list/delete/<%= orderList[count]._id %>" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                    </tr>
+                    <% } %>
                 <% } %>
             </table>
 

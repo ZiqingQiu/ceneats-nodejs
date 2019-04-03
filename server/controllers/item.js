@@ -6,6 +6,7 @@ let itemModel = require('../models/item');
 let orderModel = require('../models/order');
 
 module.exports.displayItemList = (req, res, next) =>{
+    console.log(req.session.restaurant);
     itemModel.find((err, itemList) => {
         if (err) {
             return console.error(err);
@@ -14,7 +15,9 @@ module.exports.displayItemList = (req, res, next) =>{
             res.render('items/index', {
                 title: 'Item List',
                 itemList: itemList,
-                displayName: req.user ? req.user.displayName : ""
+                displayName: req.user ? req.user.displayName : "",
+                accountType: req.user ? req.user.accountType : "Student",
+                restaurant: req.session.restaurant,
             });
         }
     });
