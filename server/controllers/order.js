@@ -13,7 +13,9 @@ module.exports.displayOrderList = (req, res, next) =>{
             res.render('orders/index', {
                 title: 'Order List',
                 orderList: orderList,
-                displayName: req.user ? req.user.displayName : ""
+                displayName: req.user ? req.user.displayName : "",
+                username: req.user ? req.user.username : "",
+                accountType: req.user ? req.user.accountType : "Student"
             });        
         }
     });
