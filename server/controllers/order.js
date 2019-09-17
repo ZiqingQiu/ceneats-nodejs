@@ -4,6 +4,9 @@ let router = express.Router();
 // create a reference to the db schema
 let orderModel = require('../models/order');
 
+// common apis
+let common_api = require('./api')
+
 module.exports.displayOrderList = (req, res, next) =>{
     orderModel.find((err, orderList) => {
         if(err) {
@@ -43,6 +46,8 @@ module.exports.processAddPage = (req, res, next) => {
             res.end(err);
         }
         else {
+            //send out email
+            common_api.sendEmail(req.body.cenid);
             // refresh the contact list
             res.redirect('/order-list');
         }
