@@ -47,7 +47,7 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else {
             //send out email
-            common_api.sendEmail();
+            common_api.sendEmail(req.body.cenid);
             // refresh the contact list
             res.redirect('/order-list');
         }
