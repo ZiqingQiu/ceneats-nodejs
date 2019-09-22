@@ -1,16 +1,21 @@
 <% include ./partials/header.ejs %>
-
+<!--
 <%=time.hour%>
 <%=time.minute%>
 <%=time.second%>
+-->
 
 <form method="POST">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="col">
-                    <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png"
+                    <% if(time.hour >= 16 || time.hour < 8){ %>
+                        <img src="/Content/Images/restaurants/burgerking_closed.png" alt="burgerking" class="img-thumbnail rounded">
+                    <% } else { %>
+                        <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png"
                         class="img-thumbnail rounded" alt="burgerking" value="Burger King">
+                    <% } %>
                 </div>
             </div>
             <div class="col-1">
