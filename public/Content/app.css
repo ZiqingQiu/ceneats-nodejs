@@ -1,1 +1,10 @@
 /* custom css goes here */
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-container>.card {
+    margin: 50px;
+}
