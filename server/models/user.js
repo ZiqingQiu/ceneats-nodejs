@@ -10,6 +10,12 @@ let userSchema = mongoose.Schema(
       trim: true,
       required: "Centennial Id is required"
     },
+    email: {
+      type: String,
+      default: "",
+      trim: true,
+      required: "Email is required"
+    },    
     /* taken out because password will be encrypted by passport-local-mongoose
     password: {
         type: String,
