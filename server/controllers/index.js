@@ -9,10 +9,48 @@ let User = userModel.User; // alias
 
 let itemModel = require("../models/item");
 
+function getCurrentTime() {
+    var day = new Date();
+    var dayOfWeek;
+    switch (day.getDay()) {
+        case 0:
+            dayOfWeek = "Sunday";
+            break;
+        case 1:
+            dayOfWeek = "Monday";
+            break;
+        case 2:
+            dayOfWeek = "Tuesday";
+            break;
+        case 3:
+            dayOfWeek = "Wednesday"; 
+            break;
+        case 4:
+            dayOfWeek = "Thursday"; 
+            break;
+        case 5:
+            dayOfWeek = "Friday"; 
+            break;
+        case 6:
+            dayOfWeek = "Saturday"; 
+            break;
+    }
+    var seconds = Math.floor(Date.now() / 1000);
+    var minutes = Math.floor(seconds / 60);
+    seconds %= 60;
+    var hours = Math.floor(minutes / 60);
+    minutes %= 60;
+    hours %= 24;
+    hours -= 4;
+    console.log('TIME RIGHT NOW: ' + hours + ':' + minutes + ':' + seconds);
+    return { day: dayOfWeek, hour: hours, minute: minutes, second: seconds };
+}
+
 module.exports.displayHomePage = (req, res, next) => {
     res.render("index", {
         title: "Home",
-        displayName: req.user ? req.user.displayName : ""
+        displayName: req.user ? req.user.displayName : "",
+        time: getCurrentTime()
     });
 };
 
@@ -20,28 +58,31 @@ module.exports.displayHomePage = (req, res, next) => {
 module.exports.processHomePage = (req, res, next) => {
     let restaurant = Object.keys(req.body)[0].split('.')[0];
     req.session.restaurant = restaurant;
-    console.log("GET NAME: "+ restaurant);
+    console.log("GET NAME: " + restaurant);
     res.redirect('/item-list');
 }
 
 module.exports.displayAboutPage = (req, res, next) => {
     res.render("index", {
         title: "About",
-        displayName: req.user ? req.user.displayName : ""
+        displayName: req.user ? req.user.displayName : "",
+        time: getCurrentTime()
     });
 };
 
 module.exports.displayReviewPage = (req, res, next) => {
     res.render("review-list", {
         title: "Services",
-        displayName: req.user ? req.user.displayName : ""
+        displayName: req.user ? req.user.displayName : "",
+        time: getCurrentTime()
     });
 };
 
 module.exports.displayContactPage = (req, res, next) => {
     res.render("index", {
         title: "Contact",
-        displayName: req.user ? req.user.displayName : ""
+        displayName: req.user ? req.user.displayName : "",
+        time: getCurrentTime()
     });
 };
 
@@ -51,7 +92,8 @@ module.exports.displayLoginPage = (req, res, next) => {
         res.render("auth/login", {
             title: "Login",
             messages: req.flash("loginMessage"),
-            displayName: req.user ? req.user.displayName : ""
+            displayName: req.user ? req.user.displayName : "",
+            time: getCurrentTime()
         });
     } else {
         return res.redirect("/");
@@ -85,7 +127,8 @@ module.exports.displayRegisterPage = (req, res, next) => {
         res.render("auth/register", {
             title: "Register",
             messages: req.flash("registerMessage"),
-            displayName: req.user ? req.user.displayName : ""
+            displayName: req.user ? req.user.displayName : "",
+            time: getCurrentTime()
         });
     } else {
         return res.redirect("/");
@@ -117,7 +160,8 @@ module.exports.processRegisterPage = (req, res, next) => {
             return res.render("auth/register", {
                 title: "Register",
                 messages: req.flash("registerMessage"),
-                displayName: req.user ? req.user.displayName : ""
+                displayName: req.user ? req.user.displayName : "",
+                time: getCurrentTime()
             });
         } else {
             // if no error exists, then registration is successful
