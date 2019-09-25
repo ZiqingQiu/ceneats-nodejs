@@ -1,5 +1,6 @@
 <% include ./partials/header.ejs %>
 <!--
+<%=time.day%>
 <%=time.hour%>
 <%=time.minute%>
 <%=time.second%>
@@ -10,7 +11,7 @@
         <div class="row">
             <div class="col">
                 <div class="col">
-                    <% if(time.hour >= 16 || time.hour < 8){ %>
+                    <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
                         <img src="/Content/Images/restaurants/burgerking_closed.png" alt="burgerking" class="img-thumbnail rounded">
                     <% } else { %>
                         <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png"
@@ -22,16 +23,24 @@
             </div>
             <div class="col">
                 <div class="col">
+                    <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                        <img src="/Content/Images/restaurants/mcdonalds_closed.png" alt="macdonalds" class="img-thumbnail rounded">
+                    <% } else { %>
                     <input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png"
                         class="img-thumbnail rounded" alt="macdonalds">
+                    <% } %>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="col">
+                    <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                        <img src="/Content/Images/restaurants/pizzapizza_closed.png" alt="pizzapizza" class="img-thumbnail rounded">
+                    <% } else { %>
                     <input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png"
                         class="img-thumbnail rounded" alt="pizzapizza">
+                    <% } %>
                 </div>
             </div>
             <div class="col-1">
@@ -39,8 +48,15 @@
             </div>
             <div class="col">
                 <div class="col">
+                    <% if((time.day != "Sunday") || 
+                        (time.day == "Saturday" && time.hour >= 8 && time.hour < 15) || 
+                        (time.day == "Friday" && ((time.hour == 7 && time.minute >= 30) || time.hour >= 8) && time.hour < 17) || 
+                        ((time.day != "Sunday" && time.day != "Saturday" && time.day != "Friday") && ((time.hour == 7 && time.minute >= 30) || time.hour >= 8) && time.hour < 19)) { %>
                     <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png"
                         class="img-thumbnail rounded" alt="timhortons">
+                    <% } else { %>
+                        <img src="/Content/Images/restaurants/timhortons_closed.png" alt="timhortons" class="img-thumbnail rounded">
+                    <% } %>
                 </div>
             </div>
         </div>

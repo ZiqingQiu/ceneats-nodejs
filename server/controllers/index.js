@@ -9,7 +9,32 @@ let User = userModel.User; // alias
 
 let itemModel = require("../models/item");
 
-function getCurrentTime(){
+function getCurrentTime() {
+    var day = new Date();
+    var dayOfWeek;
+    switch (day.getDay()) {
+        case 0:
+            dayOfWeek = "Sunday";
+            break;
+        case 1:
+            dayOfWeek = "Monday";
+            break;
+        case 2:
+            dayOfWeek = "Tuesday";
+            break;
+        case 3:
+            dayOfWeek = "Wednesday"; 
+            break;
+        case 4:
+            dayOfWeek = "Thursday"; 
+            break;
+        case 5:
+            dayOfWeek = "Friday"; 
+            break;
+        case 6:
+            dayOfWeek = "Saturday"; 
+            break;
+    }
     var seconds = Math.floor(Date.now() / 1000);
     var minutes = Math.floor(seconds / 60);
     seconds %= 60;
@@ -18,7 +43,7 @@ function getCurrentTime(){
     hours %= 24;
     hours -= 4;
     console.log('TIME RIGHT NOW: ' + hours + ':' + minutes + ':' + seconds);
-    return { hour: hours, minute: minutes, second: seconds };
+    return { day: dayOfWeek, hour: hours, minute: minutes, second: seconds };
 }
 
 module.exports.displayHomePage = (req, res, next) => {
@@ -33,7 +58,7 @@ module.exports.displayHomePage = (req, res, next) => {
 module.exports.processHomePage = (req, res, next) => {
     let restaurant = Object.keys(req.body)[0].split('.')[0];
     req.session.restaurant = restaurant;
-    console.log("GET NAME: "+ restaurant);
+    console.log("GET NAME: " + restaurant);
     res.redirect('/item-list');
 }
 
