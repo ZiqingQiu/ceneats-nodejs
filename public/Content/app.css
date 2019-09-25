@@ -10,7 +10,7 @@
 } */
 
 .card-container{
- width: calc(100% - 50em);
+ width: calc(100% - 30em);
  margin: 10px auto;
 }
 
