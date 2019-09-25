@@ -1,19 +1,22 @@
 /* custom css goes here */
+
+
 /* 
 .flex-container {
     display: flex;
     flex-direction: row;
 } */
 
+
 /* .flex-container>.card {
     margin: 50px;
 } */
 
-.card-container{
- width: calc(100% - 50em);
- margin: 10px auto;
+.card-container {
+    width: calc(100% - 50em);
+    margin: 10px auto;
 }
 
-.custom{
- margin: 5px;
+.custom {
+    margin: 5px;
 }

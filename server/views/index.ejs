@@ -1,41 +1,40 @@
 <% include ./partials/header.ejs %>
 
     <form method="POST">
-            <img src="Content/Images/banner.png" class="img-fluid" alt="Responsive image">
-        
-        <div class="d-flex flex-row justify-content-around flex-wrap card-container">
-     <!--   <div class="flex-container">-->
-            <div class="custom card flex-sm-fill" style="width: 15rem;">
+        <div class="container">
+            <img src="..." class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="flex-container">
+            <div class="card" style="width: 15rem;">
                 <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png" class="img-thumbnail rounded" alt="burgerking" value="Burger King">
                 <div class="card-body">
                     <h5 class="card-title">Burger King</h5>
                     <p class="card-text">Burger King is the King of the burgers</p>
                 </div>
             </div>
-            <div class="custom card flex-sm-fill" style="width: 15rem;">
+            <div class="card" style="width: 15rem;">
                 <input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png" class="img-thumbnail rounded" alt="macdonalds">
                 <div class="card-body">
                     <h5 class="card-title">Mcdonald's</h5>
                     <p class="card-text">Mcdonald's is where the fun is at.</p>
                 </div>
             </div>
-            <div class="custom card flex-sm-fill" style="width: 15rem;">
+            <div class="card" style="width: 15rem;">
                 <input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png" class="img-thumbnail rounded" alt="pizzapizza">
                 <div class="card-body">
                     <h5 class="card-title">Pizza Pizza</h5>
                     <p class="card-text">Who doesn't like pizza?</p>
                 </div>
             </div>
-            <div class="custom card flex-sm-fill" style="width: 15rem;">
+            <div class="card" style="width: 15rem;">
                 <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png" class="img-thumbnail rounded" alt="timhortons">
                 <div class="card-body">
                     <h5 class="card-title">Tim Hortons</h5>
                     <p class="card-text">Ever wake up in the morning needing a coffee? Well we can help.</p>
                 </div>
             </div>
-    <!--    </div>-->
-        
-      <!--  <div class="flex-container"> -->
+        </div>
+        <div class="flex-container">
             <div class="card" style="width: 15rem;">
                 <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png" class="img-thumbnail rounded" alt="timhortons">
                 <div class="card-body">
@@ -50,8 +49,7 @@
                     <p class="card-text">No where is as fresh as Subway</p>
                 </div>
             </div>
-      <!--  </div>-->
-      </div> 
+        </div>
     </form>
 
     <% include ./partials/footer.ejs %>
