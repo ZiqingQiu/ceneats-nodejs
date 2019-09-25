@@ -16,7 +16,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Centennial Eats</a>
+        <a class="navbar-brand" href="/"><span class="letter-spacing-5"><span class="font-weight-bold">CEN</span>EATS</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
                     </li>
                     <li class="nav-item">
                         <% } %>
-                            <a class="nav-link" href="/"><i class="fas fa-lg fa-hamburger"></i> Home
+                            <a class="nav-link" href="/"><i class="fas fa-lg fa-home"></i> Home
                         <span class="sr-only">(current)</span></a>
                     </li>
 
@@ -39,7 +39,7 @@
                         </li>
                         <li class="nav-item">
                             <% } %>
-                                <a class="nav-link" href="/order-list"><i class="fa fa-lg fa-briefcase"></i> View Orders</a>
+                                <a class="nav-link" href="/order-list"><i class="far fa-paper-plane"></i> Orders</a>
                         </li>
 
                         <% if(title == "Services") { %>
@@ -50,38 +50,18 @@
                             <li class="nav-item">
                                 <% } %>
 
-                                    <a class="nav-link" href="/review-list"><i class="fa fa-lg fa-birthday-cake"></i> Reviews</a>
+                                    <a class="nav-link" href="/review-list"><i class="far fa-comment-dots"></i> Reviews</a>
                             </li>
 
-                            <% if(title == "Contact") { %>
-                                <li class="nav-item active">
-                                    <% } else { %>
-                                </li>
-
-                                <li class="nav-item">
-                                    <% } %>
-
-                                        <a class="nav-link" href="/contact"><i class="fa fa-lg fa-phone"></i> Contact</a>
-                                </li>
-
-                                <% if(title == "About") { %>
-                                    <li class="nav-item active">
-                                        <% } else { %>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <% } %>
-
-                                            <a class="nav-link" href="/about"><i class="fa fa-lg fa-info"></i> About</a>
-                                    </li>
-
+                            
+                            
                                     <% if(typeof displayName == 'string' && displayName) { %>
                                         <li class="navbar-text"><i class="fas fa-lg fa-user"></i> Welcome,
                                             <%= displayName %>
                                         </li>
                                         <li class="nav-item">
                                             <a href="/logout" class="nav-link">
-                                                <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a>
+                                                <i class="fas  fa-sign-out-alt"></i> Logout</a>
                                         </li>
                                         <% } else { %>
                                             <li class="nav-item">
