@@ -1,66 +1,115 @@
 <% include ./partials/header.ejs %>
-<!--
+    <!--
 <%=time.day%>
 <%=time.hour%>
 <%=time.minute%>
 <%=time.second%>
 -->
+    <form method="POST" class="">
+        <img src="Content/Images/banner.png" class="img-fluid" alt="Responsive image">
+        <div class="d-flex flex-row justify-content-around flex-wrap card-container   rounded">
+            <!--   <div class="flex-container">-->
+            <div class="custom card flex-sm-fill shadow rounded" style="width: 15rem;">
+                <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                    <img src="/Content/Images/restaurants/burgerking_closed.png" alt="burgerking" class="img-thumbnail rounded">
+                    <% } else { %>
+                        <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png" class="img-thumbnail rounded" alt="burgerking" value="Burger King">
+                        <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title ">Burger King</h5>
+                                <p class="card-subtitle mb-2 text-muted text-size-small">
+                                    <span class="text-black-50"><i class="fas fa-coffee "></i><span class="px-2">Coffee</span></span>
 
-<form method="POST">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="col">
-                    <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
-                        <img src="/Content/Images/restaurants/burgerking_closed.png" alt="burgerking" class="img-thumbnail rounded">
+                                    <span class="text-black-50"><i class="fas fa-utensils"></i><span class="px-2">Combos</span></span>
+                                </p>
+                                <span class="card-text text-black-50">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    </span>
+                            </div>
+            </div>
+
+            <div class="custom card flex-sm-fill shadow " style="width: 15rem;">
+                <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                    <img src="/Content/Images/restaurants/mcdonalds_closed.png" alt="macdonalds" class="img-thumbnail rounded">
                     <% } else { %>
-                        <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png"
-                        class="img-thumbnail rounded" alt="burgerking" value="Burger King">
-                    <% } %>
-                </div>
+                        <input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png" class="img-thumbnail rounded" alt="macdonalds">
+                        <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title">McDonald's</h5>
+                                <p class="card-subtitle mb-2 text-muted text-size-small">
+                                    <span class="text-black-50"><i class="fas fa-coffee "></i><span class="px-2">Coffee</span></span>
+                                    <span class="text-black-50"><i class="fas fa-hamburger"></i><span class="px-2">Burgers</span></span>
+                                    <span class="text-black-50"><i class="fas fa-leaf"></i><span class="px-2">Vegan</span></span>
+                                </p>
+                                <span class="card-text text-black-50">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    </span>
+                            </div>
             </div>
-            <div class="col-1">
-            </div>
-            <div class="col">
-                <div class="col">
-                    <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
-                        <img src="/Content/Images/restaurants/mcdonalds_closed.png" alt="macdonalds" class="img-thumbnail rounded">
+            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+                <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                    <img src="/Content/Images/restaurants/pizzapizza_closed.png" alt="pizzapizza" class="img-thumbnail rounded">
                     <% } else { %>
-                    <input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png"
-                        class="img-thumbnail rounded" alt="macdonalds">
-                    <% } %>
-                </div>
+                        <input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png" class="img-thumbnail rounded" alt="pizzapizza">
+                        <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title">Pizza Pizza</h5>
+                                <p class="card-subtitle mb-2 text-muted text-size-small">
+                                    <span class="text-black-50"><i class="fas fa-pizza-slice"></i><span class="px-2">Pizza</span></span>
+                                    <span class="text-black-50"><i class="fab fa-gulp"></i><span class="px-2">Pop</span></span>
+                                </p>
+                                <span class="card-text text-black-50">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    </span>
+                            </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="col">
-                    <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
-                        <img src="/Content/Images/restaurants/pizzapizza_closed.png" alt="pizzapizza" class="img-thumbnail rounded">
-                    <% } else { %>
-                    <input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png"
-                        class="img-thumbnail rounded" alt="pizzapizza">
-                    <% } %>
-                </div>
-            </div>
-            <div class="col-1">
-                <div class="w-100"></div>
-            </div>
-            <div class="col">
-                <div class="col">
-                    <% if((time.day != "Sunday") || 
+
+            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+                <% if((time.day != "Sunday") || 
                         (time.day == "Saturday" && time.hour >= 8 && time.hour < 15) || 
                         (time.day == "Friday" && ((time.hour == 7 && time.minute >= 30) || time.hour >= 8) && time.hour < 17) || 
                         ((time.day != "Sunday" && time.day != "Saturday" && time.day != "Friday") && ((time.hour == 7 && time.minute >= 30) || time.hour >= 8) && time.hour < 19)) { %>
-                    <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png"
-                        class="img-thumbnail rounded" alt="timhortons">
+                    <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png" class="img-thumbnail rounded" alt="timhortons">
                     <% } else { %>
                         <img src="/Content/Images/restaurants/timhortons_closed.png" alt="timhortons" class="img-thumbnail rounded">
-                    <% } %>
+                        <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title">Tim Hortons</h5>
+                                <p class="card-text">Ever wake up in the morning needing a coffee? Well we can help.</p>
+                            </div>
+            </div>
+            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+                <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png" class="img-thumbnail rounded" alt="timhortons">
+                <div class="card-body">
+                    <h5 class="card-title">Smokes Poutinerie</h5>
+                    <p class="card-text">Poutine Eh!</p>
+                </div>
+            </div>
+            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+                <input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png" class="img-thumbnail rounded" alt="timhortons">
+                <div class="card-body">
+                    <h5 class="card-title">Subway</h5>
+                    <p class="card-text">No where is as fresh as Subway</p>
+
                 </div>
             </div>
         </div>
-    </div>
-</form>
 
-<% include ./partials/footer.ejs %>
+
+
+        </div>
+
+        </div>
+    </form>
+
+    <% include ./partials/footer.ejs %>

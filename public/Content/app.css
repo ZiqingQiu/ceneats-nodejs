@@ -1,1 +1,21 @@
-/* custom css goes here */
+/*
+* Author: Gursharan, Devin, James
+* Description: This is the custom css file for the whole website
+* Date: September 25, 2019
+*/
+.card-container {
+    width: calc(100% - 30em);
+    margin: 10px auto;
+}
+
+.custom {
+    margin: 5px;
+}
+
+.letter-spacing-5{
+    letter-spacing: 0.5em;
+}
+
+.text-size-small{
+    font-size:0.9em;
+}
