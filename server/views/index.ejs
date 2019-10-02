@@ -10,7 +10,7 @@
         <div class="d-flex flex-row justify-content-around flex-wrap card-container   rounded">
             <!--   <div class="flex-container">-->
             <div class="custom card flex-sm-fill shadow rounded" style="width: 15rem;">
-                <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                <% if((time.hour >= 16 || time.hour < 8) || (time.day == "Sunday" || time.day == "Saturday")){ %>
                     <img src="/Content/Images/restaurants/burgerking_closed.png" alt="burgerking" class="img-thumbnail rounded">
                     <% } else { %>
                         <input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png" class="img-thumbnail rounded" alt="burgerking" value="Burger King">
@@ -32,7 +32,7 @@
             </div>
 
             <div class="custom card flex-sm-fill shadow " style="width: 15rem;">
-                <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                <% if((time.hour >= 16 || time.hour < 8) || (time.day == "Sunday" || time.day == "Saturday")){ %>
                     <img src="/Content/Images/restaurants/mcdonalds_closed.png" alt="macdonalds" class="img-thumbnail rounded">
                     <% } else { %>
                         <input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png" class="img-thumbnail rounded" alt="macdonalds">
@@ -54,7 +54,7 @@
                             </div>
             </div>
             <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
-                <% if((time.hour >= 16 || time.hour < 8) && (time.day == "Sunday" || time.day == "Saturday")){ %>
+                <% if((time.hour >= 16 || time.hour < 8) || (time.day == "Sunday" || time.day == "Saturday")){ %>
                     <img src="/Content/Images/restaurants/pizzapizza_closed.png" alt="pizzapizza" class="img-thumbnail rounded">
                     <% } else { %>
                         <input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png" class="img-thumbnail rounded" alt="pizzapizza">
