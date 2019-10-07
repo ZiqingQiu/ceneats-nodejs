@@ -19,3 +19,16 @@
 .text-size-small{
     font-size:0.9em;
 }
+
+footer {
+    position: fixed;
+    bottom: -10px;
+    width: 100%;
+}
+@media(min-width: 768px){
+    #loginForm {
+        left: 30%;
+        width: 700px;
+        position: fixed;
+    }
+}
