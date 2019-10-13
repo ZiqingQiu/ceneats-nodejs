@@ -26,8 +26,13 @@ footer {
     width: 100%;
 }
 @media(min-width: 768px){
-    #loginForm {
+    #centerForm {
         left: 30%;
+        width: 700px;
+        position: fixed;
+    }
+    #centerForm_B{
+        left: 27%;
         width: 700px;
         position: fixed;
     }
