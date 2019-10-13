@@ -32,3 +32,26 @@ footer {
         position: fixed;
     }
 }
+#restaurant-card-space{
+    width: 15rem; 
+    visibility: hidden;
+}
+@media(max-width: 1497px){
+    #restaurant-card-space{
+        width: 15rem; 
+        display: none;
+    }
+}
+#restaurant-card{
+    width: 15rem;
+}
+@media(max-width: 996px){
+    #restaurant-card{
+        width: 150px!important;
+    }
+}
+@media(max-width: 657px){
+    #restaurant-card{
+        flex: 0 0 150px !important;
+    }
+}
