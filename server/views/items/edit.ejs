@@ -1,9 +1,10 @@
 <% include ../partials/header.ejs %>
 
 <!-- Content for the Add Item Page -->
+<div class="background_form"></div>
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-offset-3 col-md-6" id="centerForm_B">
             <h1><%= title %></h1>
 
             <form class="form" method="POST">
@@ -50,9 +51,9 @@
                         value="<%= item.price %>" >
                 </div>
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
                     <i class="fas fa-edit"></i> Submit</button>
-                <a href="/item-list" class="btn btn-warning">
+                <a href="/item-list" class="btn btn-warning" style="margin-bottom: 10px;">
                     <i class="fas fa-undo"></i> Cancel</a>
             </form>
 

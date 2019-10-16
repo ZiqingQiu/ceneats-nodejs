@@ -1,8 +1,9 @@
 <% include ../partials/header.ejs %>
 
+<div class="background_form"></div>
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-offset-3 col-md-6" id="centerForm_C">
             <h1><%= title %></h1>
             <% if (accountType === 'Restaurant') { %>
             <a class="btn btn-primary" href="/item-list/add" role="button">
@@ -59,7 +60,7 @@
                         <% } %>
                     <% } %>
                 </table>
-                <a href="/item-list" class="btn btn-warning">
+                <a href="/item-list" class="btn btn-warning" style="margin-bottom: 10px;">
                     <i class="fas fa-undo"></i> Cancel</a>
             </div>
         </div>
