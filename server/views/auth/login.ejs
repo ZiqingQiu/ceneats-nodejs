@@ -1,5 +1,7 @@
 <% include ../partials/header.ejs %>
 
+<div class="background_form"></div>
+
 <main class="container">
     <% if(messages.length > 0) { %>
         <div class="alert alert-danger">
@@ -25,7 +27,7 @@
                     <a href="/register">Register Here</a>
                 </fieldset>
                 <fieldset class="form-group text-right">
-                    <input type="submit" class="btn btn-success" value="Login">
+                    <input type="submit" class="btn btn-success" value="Login" >
                     <a href="/">
                         <input type="button" class="btn btn-warning" value="Cancel">
                     </a>

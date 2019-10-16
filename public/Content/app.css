@@ -25,15 +25,25 @@ footer {
     bottom: -10px;
     width: 100%;
 }
+#centerForm, #centerForm_B, #centerForm_C{
+    background: white;
+    border-radius: 10px;
+    top: 75px;
+}
 @media(min-width: 768px){
     #centerForm {
-        left: 30%;
+        left: 33%;
         width: 700px;
         position: fixed;
     }
     #centerForm_B{
         left: 27%;
         width: 700px;
+        position: fixed;
+    }
+    #centerForm_C{
+        left: 5%;
+        max-width: 90%;
         position: fixed;
     }
 }
@@ -59,4 +69,15 @@ footer {
     #restaurant-card{
         flex: 0 0 150px !important;
     }
+}
+
+.background_form{
+    background-image: url('Images/background.png');
+    height: 100%; 
+    width: 100%; 
+    position: fixed;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
