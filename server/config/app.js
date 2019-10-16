@@ -22,7 +22,7 @@ mongoose.connect(DB.URI, { useNewUrlParser: true });
 
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
-mongoDB.once('open', ()=> {
+mongoDB.once('open', () => {
   console.log("Connected to MongoDB...");
 });
 
@@ -80,16 +80,16 @@ passport.deserializeUser(User.deserializeUser());
 //routers
 app.use('/', indexRouter);
 app.use('/order-list', orderRouter);
-app.use('/item-list',itemRouter);
-app.use('/review-list',reviewRouter);
+app.use('/item-list', itemRouter);
+app.use('/review-list', reviewRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -98,5 +98,42 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// set periodic task to check internet connection
+const cron = require('node-cron');
+const dns = require('dns');
+
+function checkInternet(cb) {
+  dns.lookup('google.com', function (err) {
+    if (err && err.code == "ENOTFOUND") {
+      cb(false);
+    } else {
+      cb(true);
+    }
+  })
+};
+
+const confirm = require('dialogs');
+app.set('is_connect', true);
+cron.schedule('* * * * *', () => {
+  checkInternet(function (isConnected) {
+
+    console.log('isConnected: ' + isConnected);
+    if (isConnected != app.get('is_connect')) {
+      let d = new Date();
+      let n = d.toLocaleTimeString();
+      if (isConnected) {
+        dialogs.alert("Internet is ON");
+        console.log('detected OFF -> ON ' + " by last updated: " + n);
+      } else {
+        dialogs.alert("Internet is OFF");
+        console.log('detected ON -> OFF'  + " by last updated: " + n);
+      }
+      //update app status
+      app.set('is_connect', isConnected);
+    }
+  });
+});
+
 
 module.exports = app;
