@@ -113,7 +113,7 @@ function checkInternet(cb) {
   })
 };
 
-const confirm = require('dialogs');
+
 app.set('is_connect', true);
 cron.schedule('* * * * *', () => {
   checkInternet(function (isConnected) {
@@ -123,11 +123,9 @@ cron.schedule('* * * * *', () => {
       let d = new Date();
       let n = d.toLocaleTimeString();
       if (isConnected) {
-        dialogs.alert("Internet is ON");
         console.log('detected OFF -> ON ' + " by last updated: " + n);
       } else {
-        dialogs.alert("Internet is OFF");
-        console.log('detected ON -> OFF'  + " by last updated: " + n);
+        console.log('detected ON -> OFF' + " by last updated: " + n);
       }
       //update app status
       app.set('is_connect', isConnected);
