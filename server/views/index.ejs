@@ -1,15 +1,15 @@
 <% include ./partials/header.ejs %>
-    <!--
-<%=time.day%>
+   
+<!-- <%=time.day%>
 <%=time.hour%>
 <%=time.minute%>
-<%=time.second%>
--->
+<%=time.second%> -->
+
     <form method="POST" class="">
         <img src="Content/Images/banner.png" class="img-fluid" alt="Responsive image">
         <div class="d-flex flex-row justify-content-around flex-wrap card-container   rounded">
             <!--   <div class="flex-container">-->
-            <div class="custom card flex-sm-fill shadow rounded" style="width: 15rem;">
+            <div class="custom card flex-sm-fill shadow rounded" id="restaurant-card">
                 <% if(
                         (time.hour >= 16 || time.hour < 8) || 
                         (time.day == "Sunday" || time.day == "Saturday")
@@ -34,7 +34,7 @@
                             </div>
             </div>
 
-            <div class="custom card flex-sm-fill shadow " style="width: 15rem;">
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card">
                 <% if(
                         (time.hour >= 16 || time.hour < 8) || 
                         (time.day == "Sunday" || time.day == "Saturday")
@@ -59,7 +59,7 @@
                     </span>
                             </div>
             </div>
-            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
                 <% if(
                         (time.hour >= 16 || time.hour < 8) || 
                         (time.day == "Sunday" || time.day == "Saturday")
@@ -83,7 +83,7 @@
                             </div>
             </div>
 
-            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
                 <% if (
                         (time.day != "Sunday") && 
                         (
@@ -106,10 +106,10 @@
                                 <p class="card-text">Ever wake up in the morning needing a coffee? Well we can help.</p>
                             </div>
             </div>
-            <div class="custom card flex-sm-fill shadow" style="width: 15rem; visibility: hidden;"></div>
-            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card-space"></div>
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
                 <% if (
-                        (time.day != "Sunday" || time.day != "Saturday") && 
+                        (time.day != "Sunday" && time.day != "Saturday") && 
                         (
                             ((time.hour == 10 && time.minute >= 30) || time.hour >= 11) &&
                             ((time.hour == 16 && time.minute < 30) || time.hour <= 15)
@@ -124,9 +124,9 @@
                     <p class="card-text">Poutine Eh!</p>
                 </div>
             </div>
-            <div class="custom card flex-sm-fill shadow" style="width: 15rem;">
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
                 <% if (
-                        (time.day != "Sunday" || time.day != "Saturday") && 
+                        (time.day != "Sunday" && time.day != "Saturday") && 
                         (
                             ((time.hour == 10 && time.minute >= 30) || time.hour >= 11) && 
                             (
@@ -145,7 +145,7 @@
 
                 </div>
             </div>
-            <div class="custom card flex-sm-fill shadow" style="width: 15rem; visibility: hidden;"></div>
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card-space"></div>
         </div>
 
 

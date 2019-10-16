@@ -19,3 +19,65 @@
 .text-size-small{
     font-size:0.9em;
 }
+
+footer {
+    position: fixed;
+    bottom: -10px;
+    width: 100%;
+}
+#centerForm, #centerForm_B, #centerForm_C{
+    background: white;
+    border-radius: 10px;
+    top: 75px;
+}
+@media(min-width: 768px){
+    #centerForm {
+        left: 33%;
+        width: 700px;
+        position: fixed;
+    }
+    #centerForm_B{
+        left: 27%;
+        width: 700px;
+        position: fixed;
+    }
+    #centerForm_C{
+        left: 5%;
+        max-width: 90%;
+        position: fixed;
+    }
+}
+#restaurant-card-space{
+    width: 15rem; 
+    visibility: hidden;
+}
+@media(max-width: 1497px){
+    #restaurant-card-space{
+        width: 15rem; 
+        display: none;
+    }
+}
+#restaurant-card{
+    width: 15rem;
+}
+@media(max-width: 996px){
+    #restaurant-card{
+        width: 150px!important;
+    }
+}
+@media(max-width: 657px){
+    #restaurant-card{
+        flex: 0 0 150px !important;
+    }
+}
+
+.background_form{
+    background-image: url('Images/background.png');
+    height: 100%; 
+    width: 100%; 
+    position: fixed;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
