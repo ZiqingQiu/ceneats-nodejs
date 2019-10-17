@@ -24,5 +24,12 @@
     }
 
     window.addEventListener("load", Start);
+    window.addEventListener('online', () => {
+        alert('Internet connection is resumed.\n All functions back to online mode.');
+     });
+     
+     window.addEventListener('offline', () => {
+        alert('Internet connection is lost.\n All functions works offline mode.');  
+     });
 
 })();

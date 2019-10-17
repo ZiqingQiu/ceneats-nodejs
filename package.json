@@ -1,6 +1,6 @@
 {
-  "name": "comp308-w2019-lesson6b",
-  "version": "0.0.1",
+  "name": "comp313-sw-prj-2",
+  "version": "2.0.1",
   "private": true,
   "scripts": {
     "start": "node server.js"
@@ -24,15 +24,16 @@
     "jquery": "^3.4.1",
     "mongoose": "^5.4.9",
     "morgan": "^1.9.1",
+    "node-cron": "^2.0.3",
     "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
     "popper.js": "^1.15.0"
   },
-  "description": "Mongo and Mongoose Demo",
+  "description": "Software Prj 2",
   "main": "server.js",
-  "author": "Tom Tsiliopoulos",
+  "author": "COMP313-Grp5",
   "license": "ISC",
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
@@ -49,10 +50,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UTSCCSCC01/-smiley-face.git"
+    "url": "https://github.com/ZiqingQiu/ceneats-nodejs.git"
   },
-  "bugs": {
-    "url": "https://github.com/UTSCCSCC01/-smiley-face.git"
-  },
-  "homepage": "https://github.com/UTSCCSCC01/-smiley-face.git"
+  "homepage": "https://ceneats.herokuapp.com"
 }
