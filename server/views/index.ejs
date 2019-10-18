@@ -1,6 +1,6 @@
 <% include ./partials/header.ejs %>
-   
-<!-- <%=time.day%>
+
+    <!-- <%=time.day%>
 <%=time.hour%>
 <%=time.minute%>
 <%=time.second%> -->
@@ -59,7 +59,7 @@
                     </span>
                             </div>
             </div>
-            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card">
                 <% if(
                         (time.hour >= 16 || time.hour < 8) || 
                         (time.day == "Sunday" || time.day == "Saturday")
@@ -83,7 +83,7 @@
                             </div>
             </div>
 
-            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card">
                 <% if (
                         (time.day != "Sunday") && 
                         (
@@ -103,11 +103,22 @@
                         <% } %>
                             <div class="card-body">
                                 <h5 class="card-title">Tim Hortons</h5>
-                                <p class="card-text">Ever wake up in the morning needing a coffee? Well we can help.</p>
+                                <p class="card-subtitle mb-2 text-muted text-size-small">
+                                    <span class="text-black-50"><i class="fas fa-coffee "></i><span class="px-2">Coffee</span></span>
+
+                                    <span class="text-black-50"><i class="fas fa-utensils"></i><span class="px-2">Combos</span></span>
+                                </p>
+                                <span class="card-text text-black-50">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    </span>
                             </div>
             </div>
             <div class="custom card flex-sm-fill shadow" id="restaurant-card-space"></div>
-            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card">
                 <% if (
                         (time.day != "Sunday" && time.day != "Saturday") && 
                         (
@@ -115,16 +126,28 @@
                             ((time.hour == 16 && time.minute < 30) || time.hour <= 15)
                         )
                 ){ %>
-                <input id="img-th" name="Smokes Poutinerie" type="image" src="/Content/Images/restaurants/smokespoutinerie.png" class="img-thumbnail rounded" alt="smokespoutinerie">
-                <% } else { %>
-                    <img src="/Content/Images/restaurants/smokespoutinerie_closed.png" alt="smokespoutinerie" class="img-thumbnail rounded">
-                <% } %>
-                <div class="card-body">
-                    <h5 class="card-title">Smokes Poutinerie</h5>
-                    <p class="card-text">Poutine Eh!</p>
-                </div>
+                    <input id="img-th" name="Smokes Poutinerie" type="image" src="/Content/Images/restaurants/smokespoutinerie.png" class="img-thumbnail rounded" alt="smokespoutinerie">
+                    <% } else { %>
+                        <img src="/Content/Images/restaurants/smokespoutinerie_closed.png" alt="smokespoutinerie" class="img-thumbnail rounded">
+                        <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title">Smokes Poutinerie</h5>
+                                <p class="card-subtitle mb-2 text-muted text-size-small">
+
+                                    <span class="text-black-50"><i class="fab fa-gulp"></i><span class="px-2">Pop</span></span>
+
+                                    <span class="text-black-50"><i class="fas fa-utensils"></i><span class="px-2">Combos</span></span>
+                                </p>
+                                <span class="card-text text-black-50">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        </span>
+                            </div>
             </div>
-            <div class="custom card flex-sm-fill shadow" id="restaurant-card" >
+            <div class="custom card flex-sm-fill shadow" id="restaurant-card">
                 <% if (
                         (time.day != "Sunday" && time.day != "Saturday") && 
                         (
@@ -135,15 +158,25 @@
                             )
                         ) 
                     ) { %>
-                <input id="img-th" name="Subway" type="image" src="/Content/Images/restaurants/subway.png" class="img-thumbnail rounded" alt="subway">
-                <% } else { %>
-                    <img src="/Content/Images/restaurants/subway_closed.png" alt="subway" class="img-thumbnail rounded">
-                <% } %>
-                <div class="card-body">
-                    <h5 class="card-title">Subway</h5>
-                    <p class="card-text">No where is as fresh as Subway</p>
+                    <input id="img-th" name="Subway" type="image" src="/Content/Images/restaurants/subway.png" class="img-thumbnail rounded" alt="subway">
+                    <% } else { %>
+                        <img src="/Content/Images/restaurants/subway_closed.png" alt="subway" class="img-thumbnail rounded">
+                        <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title">Subway</h5>
+                                <p class="card-subtitle mb-2 text-muted text-size-small">
 
-                </div>
+                                    <span class="text-black-50"><i class="fab fa-gulp"></i><span class="px-2">Pop</span></span>
+
+                                    <span class="text-black-50"><i class="fas fa-utensils"></i><span class="px-2">Combos</span></span>
+                                </p>
+                                <span class="card-text text-black-50">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        </span>
+                            </div>
             </div>
             <div class="custom card flex-sm-fill shadow" id="restaurant-card-space"></div>
         </div>
