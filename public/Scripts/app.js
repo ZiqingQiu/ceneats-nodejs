@@ -25,11 +25,22 @@
 
     window.addEventListener("load", Start);
     window.addEventListener('online', () => {
-        alert('Internet connection is resumed.\n All functions back to online mode.');
+        alert('Internet connection is resumed.\nAll functions back to online mode.');
+        console.log("internet online");
      });
      
      window.addEventListener('offline', () => {
-        alert('Internet connection is lost.\n All functions works offline mode.');  
+        alert('Internet connection is lost.\nAll functions works offline mode.');  
+        console.log("internet offline");
      });
+
+     if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('sw_cached_site.js', { scope: '/' })
+            .then(reg => console.log('Service Worker: Registered (sw_cached_site)'))
+            .catch(err => console.log(`Service Worker: Error: ${err}`));
+        });
+      }
 
 })();
