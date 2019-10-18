@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let mongoose = require('mongoose')
 
 // create a reference to the db schema
 let orderModel = require('../models/order');
@@ -7,9 +8,9 @@ let orderModel = require('../models/order');
 // common apis
 let common_api = require('./api')
 
-module.exports.displayOrderList = (req, res, next) =>{
+module.exports.displayOrderList = (req, res, next) => {
     orderModel.find((err, orderList) => {
-        if(err) {
+        if (err) {
             return console.error(err);
         }
         else {
@@ -19,12 +20,12 @@ module.exports.displayOrderList = (req, res, next) =>{
                 displayName: req.user ? req.user.displayName : "",
                 username: req.user ? req.user.username : "",
                 accountType: req.user ? req.user.accountType : "Student"
-            });        
+            });
         }
     });
 }
 
-module.exports.displayAddPage = (req, res, next) => {    
+module.exports.displayAddPage = (req, res, next) => {
     res.render('orders/add', {
         title: 'Add New Order',
         displayName: req.user ? req.user.displayName : ""
@@ -41,7 +42,7 @@ module.exports.processAddPage = (req, res, next) => {
     });
 
     orderModel.create(newOrder, (err, contactModel) => {
-        if(err) {
+        if (err) {
             console.log(err);
             res.end(err);
         }
@@ -56,51 +57,53 @@ module.exports.processAddPage = (req, res, next) => {
 
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
-    orderModel.findById(id, (err, orderObject) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            // show the edit view
-            res.render('orders/edit', {
-                title: 'Edit Order',
-                order: orderObject,
-                displayName: req.user ? req.user.displayName : ""
-            });
-        }
-    });
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        orderModel.findById(id, (err, orderObject) => {
+            if (err) {
+                console.log(err);
+                res.end(err);
+            }
+            else {
+                // show the edit view
+                res.render('orders/edit', {
+                    title: 'Edit Order',
+                    order: orderObject,
+                    displayName: req.user ? req.user.displayName : ""
+                });
+            }
+        });
+    }
 }
 
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        let updatedContact = orderModel({
+            "_id": id,
+            "cenId": req.body.cenid,
+            "foodId": req.body.foodid,
+            "quantity": req.body.quantity,
+            "status": req.body.status
+        });
 
-    let updatedContact = orderModel({
-        "_id": id,
-        "cenId": req.body.cenid,
-        "foodId": req.body.foodid,
-        "quantity": req.body.quantity,
-        "status": req.body.status
-    });
-
-    orderModel.update({_id: id}, updatedContact, (err) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else {
-            // refresh the contact list
-            res.redirect('/order-list');
-        }
-    })
+        orderModel.update({ _id: id }, updatedContact, (err) => {
+            if (err) {
+                console.log(err);
+                res.end(err);
+            }
+            else {
+                // refresh the contact list
+                res.redirect('/order-list');
+            }
+        })
+    }
 }
 
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    orderModel.remove({_id: id}, (err) => {
-        if(err) {
+    orderModel.remove({ _id: id }, (err) => {
+        if (err) {
             console.log(err);
             res.end(err);
         }
