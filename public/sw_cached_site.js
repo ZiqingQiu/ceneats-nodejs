@@ -26,19 +26,30 @@ self.addEventListener('activate', e => {
 
 // Call Fetch Event
 self.addEventListener('fetch', e => {
-  console.log('Service Worker: Fetching');
-  e.respondWith(
-    fetch(e.request)
-      .then(res => {
-        // Make copy/clone of response
-        const resClone = res.clone();
-        // Open cahce
-        caches.open(cacheName).then(cache => {
-          // Add response to cache
-          cache.put(e.request, resClone);
-        });
-        return res;
-      })
-      .catch(err => caches.match(e.request).then(res => res))
-  );
+  if (e.request.clone().method === 'GET') {
+    console.log('Service Worker: Fetching -- GET');
+    e.respondWith(
+      fetch(e.request)
+        .then(res => {
+          // Make copy/clone of response
+          const resClone = res.clone();
+          // Open cahce
+          caches.open(cacheName).then(cache => {
+            // Add response to cache
+            cache.put(e.request, resClone);
+          });
+          return res;
+        })
+        .catch(err => caches.match(e.request).then(res => res))
+    );
+  }
+  else if (e.request.clone().method === 'POST') {
+    console.log('Service Worker: Fetching -- POST');
+        // attempt to send request normally
+        e.respondWith(fetch(e.request.clone()).catch(function
+          (error) {
+            // only save post requests in browser, if an error occurs
+            //savePostRequests(e.request.clone().url, form_data)
+          }))
+  }
 });
