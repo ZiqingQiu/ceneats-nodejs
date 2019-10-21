@@ -42,6 +42,18 @@
                 .then(reg => console.log('Service Worker: Registered (sw_cached_site)'))
                 .catch(err => console.log(`Service Worker: Error: ${err}`));
         });
+
+        // sync event
+        navigator.serviceWorker.ready.then((registration) => {
+            console.log('Service Worker Ready')
+            return registration.sync.register('sendFormData')
+        }).then(() => {
+            console.log('sync event registered')
+        }).catch(() => {
+            // system was unable to register for a sync,
+            // this could be an OS-level restriction
+            console.log('sync registration failed')
+        });
     }
 
     //check for indexdb support

@@ -27,13 +27,12 @@ function createIndexDB() {
 
 function getObjectStore(objStoreName, mode) {
   // retrieve our object store
-  return post_req_db.transaction(objStoreName, mode
-  ).objectStore(objStoreName)
+  return post_req_db.transaction(objStoreName, mode).objectStore(objStoreName)
 }
 
 function savePostRequests(url, payload) {
   // get object_store and save our payload inside it
-  var request = getObjectStore(OBJSTORE_POST_REQ_NAME, 'readwrite').add({
+  let request = getObjectStore(OBJSTORE_POST_REQ_NAME, 'readwrite').add({
     url: url,
     payload: payload,
     method: 'POST'
@@ -43,6 +42,47 @@ function savePostRequests(url, payload) {
   }
   request.onerror = function (error) {
     console.error(error)
+  }
+}
+
+function sendPostToServer() {
+  if (post_req_db == null) return; // not init yet
+  let savedRequests = []
+  let req = getObjectStore(OBJSTORE_POST_REQ_NAME).openCursor() // get object store
+  // is 'post_requests'
+  req.onsuccess = async function (event) {
+    let cursor = event.target.result
+    if (cursor) {
+      // Keep moving the cursor forward and collecting saved requests.
+      savedRequests.push(cursor.value)
+      cursor.continue()
+    }
+    else {
+      for (let savedRequest of savedRequests) {
+        let requestUrl = savedRequest.url
+        let payload = JSON.stringify(savedRequest.payload)
+        let method = savedRequest.method
+        let headers = {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+        fetch(requestUrl, {
+          headers: headers,
+          method: method,
+          body: payload
+        }).then(function (response) {
+          console.log('server response', response)
+          if (response.status < 400) {
+            // If sending the POST request was successful, then
+            // remove it from the IndexedDB.
+            getObjectStore(OBJSTORE_POST_REQ_NAME, 'readwrite').delete(savedRequest.id)
+          }
+        }).catch(function (error) {
+          console.error('Send to Server failed:', error)
+          throw error
+        })
+      }
+    }
   }
 }
 
@@ -93,12 +133,16 @@ self.addEventListener('fetch', e => {
   }
   else if (e.request.clone().method === 'POST') {
     console.log('Service Worker: Fetching -- POST');
-        // attempt to send request normally
-        e.respondWith(fetch(e.request.clone())
-        .catch(err => {
-            // only save post requests in browser, if an error occurs
-            savePostRequests(e.request.clone().url, form_data)
-          }))
+    // attempt to send request normally
+    let faster_fail = new Promise(function (resolve, reject) {
+      setTimeout(() => reject(new Error('waited 10s and fail faster')), 10000);
+    });
+    e.respondWith(
+      Promise.race([faster_fail, fetch(e.request.clone())])
+      .catch(err => {
+        // only save post requests in browser, if an error occurs
+        savePostRequests(e.request.clone().url, form_data)
+      }))
   }
 });
 
@@ -108,5 +152,17 @@ self.addEventListener('message', e => {
   if (e.data.hasOwnProperty('form_data')) {
     // receives form data from post js upon submission
     form_data = e.data.form_data
+  }
+})
+
+
+self.addEventListener('sync', function (event) {
+  console.log('now online')
+  if (event.tag === 'sendFormData') {
+    event.waitUntil(
+      // Send our POST request to the server, now that the user is
+      // online
+      sendPostToServer()
+    )
   }
 })
