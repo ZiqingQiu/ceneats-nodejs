@@ -1,10 +1,21 @@
-const cacheName = 'v2';
-const INDEX_DB_NAME = 'ceneats_form'
-const OBJSTORE_POST_REQ_NAME = 'post_requests'
+// Precatch home page
+const PRECACHE_URLS = [
+  'index.html',
+  './', // Alias for index.html
+  'styles.css',
+  '../../styles/main.css',
+  'demo.js'
+];
 
 // Index DB
+const cacheName = 'v2';
+const INDEX_DB_NAME = 'ceneats_form';
+const OBJSTORE_POST_REQ_NAME = 'post_requests';
+
 let post_req_db;
 let form_data;
+
+
 function createIndexDB() {
   let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
   indexedDBOpenRequest.onerror = function (error) {
@@ -142,6 +153,8 @@ self.addEventListener('fetch', e => {
       .catch(err => {
         // only save post requests in browser, if an error occurs
         savePostRequests(e.request.clone().url, form_data)
+        // redirect 
+        caches.match(e.request.clone).then(res => res)
       }))
   }
 });
