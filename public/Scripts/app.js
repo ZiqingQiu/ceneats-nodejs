@@ -18,7 +18,7 @@
             }
         });
 
-        $("input[type=number]").click(function(e) {
+        $("input[type=number]").click(function (e) {
             $(this).attr('value', $(this).val());
         });
     }
@@ -27,20 +27,38 @@
     window.addEventListener('online', () => {
         alert('Internet connection is resumed.\nAll functions back to online mode.');
         console.log("internet online");
-     });
-     
-     window.addEventListener('offline', () => {
-        alert('Internet connection is lost.\nAll functions works offline mode.');  
+    });
+
+    window.addEventListener('offline', () => {
+        alert('Internet connection is lost.\nAll functions works offline mode.');
         console.log("internet offline");
-     });
+    });
 
-     if ('serviceWorker' in navigator) {
+    // register service-worker
+    if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('sw_cached_site.js', { scope: '/' })
-            .then(reg => console.log('Service Worker: Registered (sw_cached_site)'))
-            .catch(err => console.log(`Service Worker: Error: ${err}`));
+            navigator.serviceWorker
+                .register('sw_cached_site.js', { scope: '/' })
+                .then(reg => console.log('Service Worker: Registered (sw_cached_site)'))
+                .catch(err => console.log(`Service Worker: Error: ${err}`));
         });
-      }
 
+        // sync event
+        navigator.serviceWorker.ready.then((registration) => {
+            console.log('Service Worker Ready')
+            return registration.sync.register('sendFormData')
+        }).then(() => {
+            console.log('sync event registered')
+        }).catch(() => {
+            // system was unable to register for a sync,
+            // this could be an OS-level restriction
+            console.log('sync registration failed')
+        });
+    }
+
+    //check for indexdb support
+    if ('indexedDB' in window) {
+        console.log('This browser support IndexedDB');
+        return;
+    }
 })();
