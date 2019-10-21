@@ -23,16 +23,16 @@ function getCurrentTime() {
             dayOfWeek = "Tuesday";
             break;
         case 3:
-            dayOfWeek = "Wednesday"; 
+            dayOfWeek = "Wednesday";
             break;
         case 4:
-            dayOfWeek = "Thursday"; 
+            dayOfWeek = "Thursday";
             break;
         case 5:
-            dayOfWeek = "Friday"; 
+            dayOfWeek = "Friday";
             break;
         case 6:
-            dayOfWeek = "Saturday"; 
+            dayOfWeek = "Saturday";
             break;
     }
     var seconds = Math.floor(Date.now() / 1000);
@@ -81,6 +81,14 @@ module.exports.displayReviewPage = (req, res, next) => {
 module.exports.displayContactPage = (req, res, next) => {
     res.render("index", {
         title: "Contact",
+        displayName: req.user ? req.user.displayName : "",
+        time: getCurrentTime()
+    });
+};
+
+module.exports.displayStatsPage = (req, res, next) => {
+    res.render("stats/index", {
+        title: "Statistics",
         displayName: req.user ? req.user.displayName : "",
         time: getCurrentTime()
     });

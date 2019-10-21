@@ -15,6 +15,9 @@ router.get('/contact', indexController.displayContactPage);
 /* GET about page. */
 router.get('/about', indexController.displayAboutPage);
 
+/* GET - displays statistics */
+router.get('/stats', indexController.displayStatsPage);
+
 /* GET - displays the Login Page */
 router.get('/login', indexController.displayLoginPage);
 
@@ -29,6 +32,7 @@ router.post('/register', indexController.processRegisterPage);
 
 /* GET - perform user logout */
 router.get('/logout', indexController.performLogout);
+
 
 
 module.exports = router;

@@ -3,6 +3,7 @@
 * Description: This is the custom css file for the whole website
 * Date: September 25, 2019
 */
+
 .card-container {
     width: calc(100% - 30em);
     margin: 10px auto;
@@ -12,12 +13,12 @@
     margin: 5px;
 }
 
-.letter-spacing-5{
+.letter-spacing-5 {
     letter-spacing: 0.5em;
 }
 
-.text-size-small{
-    font-size:0.9em;
+.text-size-small {
+    font-size: 0.9em;
 }
 
 footer {
@@ -25,59 +26,71 @@ footer {
     bottom: -10px;
     width: 100%;
 }
-#centerForm, #centerForm_B, #centerForm_C{
+
+#centerForm,
+#centerForm_B,
+#centerForm_C {
     background: white;
     border-radius: 10px;
     top: 75px;
 }
-@media(min-width: 768px){
+
+@media(min-width: 768px) {
     #centerForm {
         left: 33%;
         width: 700px;
         position: fixed;
     }
-    #centerForm_B{
+    #centerForm_B {
         left: 27%;
         width: 700px;
         position: fixed;
     }
-    #centerForm_C{
+    #centerForm_C {
         left: 5%;
         max-width: 90%;
         position: fixed;
     }
 }
-#restaurant-card-space{
-    width: 15rem; 
+
+#restaurant-card-space {
+    width: 15rem;
     visibility: hidden;
 }
-@media(max-width: 1497px){
-    #restaurant-card-space{
-        width: 15rem; 
+
+@media(max-width: 1497px) {
+    #restaurant-card-space {
+        width: 15rem;
         display: none;
     }
 }
-#restaurant-card{
+
+#restaurant-card {
     width: 15rem;
 }
-@media(max-width: 996px){
-    #restaurant-card{
+
+@media(max-width: 996px) {
+    #restaurant-card {
         width: 150px!important;
     }
 }
-@media(max-width: 657px){
-    #restaurant-card{
+
+@media(max-width: 657px) {
+    #restaurant-card {
         flex: 0 0 150px !important;
     }
 }
 
-.background_form{
+.background_form {
     background-image: url('Images/background.png');
-    height: 100%; 
-    width: 100%; 
+    height: 100%;
+    width: 100%;
     position: fixed;
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.center_chart {
+    text-align: center;
 }
