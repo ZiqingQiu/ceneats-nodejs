@@ -5,13 +5,13 @@ let reviewController = require('../controllers/review');
 
 function requireAuth(req, res, next) {
     // check if the user is logged in
-    if(!req.isAuthenticated()) {
+    if (!req.isAuthenticated()) {
         return res.redirect('/login');
     }
     next();
 }
 
-/* GET Contact List page - READ Operation */
+/* GET review List page - READ Operation */
 router.get('/', requireAuth, reviewController.displayReviewList);
 
 /* GET Route for the Add page 

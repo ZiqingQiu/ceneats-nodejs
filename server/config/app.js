@@ -23,7 +23,7 @@ mongoose.connect(DB.URI, { useNewUrlParser: true });
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
 mongoDB.once('open', () => {
-  console.log("Connected to MongoDB...");
+    console.log("Connected to MongoDB...");
 });
 
 
@@ -35,7 +35,7 @@ let reviewRouter = require('../routes/review');
 let app = express();
 
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 
 // view engine setup
@@ -52,9 +52,9 @@ app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 // setup express-session
 app.use(session({
-  secret: "SomeSecret",
-  saveUninitialized: false,
-  resave: false
+    secret: "SomeSecret",
+    saveUninitialized: false,
+    resave: false
 }));
 
 // initialize flash
@@ -84,19 +84,19 @@ app.use('/item-list', itemRouter);
 app.use('/review-list', reviewRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+app.use(function(req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 // set periodic task to check internet connection
@@ -104,33 +104,33 @@ const cron = require('node-cron');
 const dns = require('dns');
 
 function checkInternet(cb) {
-  dns.lookup('google.com', function (err) {
-    if (err && err.code == "ENOTFOUND") {
-      cb(false);
-    } else {
-      cb(true);
-    }
-  })
+    dns.lookup('google.com', function(err) {
+        if (err && err.code == "ENOTFOUND") {
+            cb(false);
+        } else {
+            cb(true);
+        }
+    })
 };
 
 
 app.set('is_connect', true);
 cron.schedule('* * * * *', () => {
-  checkInternet(function (isConnected) {
+    checkInternet(function(isConnected) {
 
-    console.log('isConnected: ' + isConnected);
-    if (isConnected != app.get('is_connect')) {
-      let d = new Date();
-      let n = d.toLocaleTimeString();
-      if (isConnected) {
-        console.log('detected OFF -> ON ' + " by last updated: " + n);
-      } else {
-        console.log('detected ON -> OFF' + " by last updated: " + n);
-      }
-      //update app status
-      app.set('is_connect', isConnected);
-    }
-  });
+        console.log('isConnected: ' + isConnected);
+        if (isConnected != app.get('is_connect')) {
+            let d = new Date();
+            let n = d.toLocaleTimeString();
+            if (isConnected) {
+                console.log('detected OFF -> ON ' + " by last updated: " + n);
+            } else {
+                console.log('detected ON -> OFF' + " by last updated: " + n);
+            }
+            //update app status
+            app.set('is_connect', isConnected);
+        }
+    });
 });
 
 
