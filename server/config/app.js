@@ -100,38 +100,38 @@ app.use(function (err, req, res, next) {
 });
 
 // set periodic task to check internet connection
-const cron = require('node-cron');
-const dns = require('dns');
+// const cron = require('node-cron');
+// const dns = require('dns');
 
-function checkInternet(cb) {
-  dns.lookup('google.com', function (err) {
-    if (err && err.code == "ENOTFOUND") {
-      cb(false);
-    } else {
-      cb(true);
-    }
-  })
-};
+// function checkInternet(cb) {
+//   dns.lookup('google.com', function (err) {
+//     if (err && err.code == "ENOTFOUND") {
+//       cb(false);
+//     } else {
+//       cb(true);
+//     }
+//   })
+// };
 
 
-app.set('is_connect', true);
-cron.schedule('* * * * *', () => {
-  checkInternet(function (isConnected) {
+// app.set('is_connect', true);
+// cron.schedule('* * * * *', () => {
+//   checkInternet(function (isConnected) {
 
-    console.log('isConnected: ' + isConnected);
-    if (isConnected != app.get('is_connect')) {
-      let d = new Date();
-      let n = d.toLocaleTimeString();
-      if (isConnected) {
-        console.log('detected OFF -> ON ' + " by last updated: " + n);
-      } else {
-        console.log('detected ON -> OFF' + " by last updated: " + n);
-      }
-      //update app status
-      app.set('is_connect', isConnected);
-    }
-  });
-});
+//     console.log('isConnected: ' + isConnected);
+//     if (isConnected != app.get('is_connect')) {
+//       let d = new Date();
+//       let n = d.toLocaleTimeString();
+//       if (isConnected) {
+//         console.log('detected OFF -> ON ' + " by last updated: " + n);
+//       } else {
+//         console.log('detected ON -> OFF' + " by last updated: " + n);
+//       }
+//       //update app status
+//       app.set('is_connect', isConnected);
+//     }
+//   });
+// });
 
 
 module.exports = app;
