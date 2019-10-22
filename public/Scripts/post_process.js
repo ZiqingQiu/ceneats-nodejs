@@ -1,8 +1,8 @@
     // submit function
     function sw_add_order() {
         let data = {
-            "cenId": $('#cenid').val(),
-            "foodId": $('#foodid').val(),
+            "cenid": $('#cenid').val(),
+            "foodid": $('#foodid').val(),
             "quantity": $('#quantity').val(),
             "status": $('#status').val()
         }

@@ -9,7 +9,7 @@ let orderModel = require("../models/order");
 module.exports.sendEmail = (user_id) => {
     User.findOne({username: user_id}, (err, userObject) => {
         if(err) {
-            return console.error(err);
+            return console.error("Can not find user: " + user_id + " with error: " +err);
         }
         else {
             // get email
