@@ -13,6 +13,7 @@ module.exports.sendEmail = (user_id) => {
         }
         else {
             // get email
+            if (userObject == null) return;
             let tgt_email = userObject.email;
             // get latest order
             orderModel.findOne({cenId: user_id}, 
@@ -47,3 +48,4 @@ module.exports.sendEmail = (user_id) => {
         }
     });
 }
+

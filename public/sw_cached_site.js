@@ -1,15 +1,11 @@
 // Index DB
-const cacheName = 'v2.2';
+const cacheName = 'v2.91';
 const INDEX_DB_NAME = 'ceneats_form';
 const OBJSTORE_POST_REQ_NAME = 'post_requests';
 
 let post_req_db;
 let form_data;
 
-// attempt to send request normally
-let faster_fail = new Promise(function (resolve, reject) {
-  setTimeout(() => reject(new Error('waited 10s and fail faster')), 10000);
-});
 
 function createIndexDB() {
   let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
@@ -56,7 +52,7 @@ function sendPostToServer() {
   let savedRequests = []
   let req = getObjectStore(OBJSTORE_POST_REQ_NAME).openCursor() // get object store
   // is 'post_requests'
-  req.onsuccess = async function (event) {
+  req.onsuccess = function (event) {
     let cursor = event.target.result
     if (cursor) {
       // Keep moving the cursor forward and collecting saved requests.
@@ -96,7 +92,7 @@ function sendPostToServer() {
 self.addEventListener('install', e => {
   self.skipWaiting();
   console.log('Service Worker: Installed');
-  let offlineRequest = new Request('/');
+  let offlineRequest = new Request('/offline');
   caches.match(offlineRequest).catch( err => {
     e.waitUntil(
       fetch(offlineRequest).then((response) => {
@@ -133,6 +129,9 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.clone().method === 'GET') {
     console.log('Service Worker: Fetching -- GET');
+    let faster_fail = new Promise((resolve, reject) => {
+      setTimeout(() => reject(new Error('waited 10s and fail faster')), 10000);
+    });
     e.respondWith(
       Promise.race([faster_fail, fetch(e.request)])
         .then(res => {
@@ -150,14 +149,19 @@ self.addEventListener('fetch', e => {
   }
   else if (e.request.clone().method === 'POST') {
     console.log('Service Worker: Fetching -- POST');
+    let faster_fail = new Promise((resolve, reject) => {
+      setTimeout(() => reject(new Error('waited 7s and fail faster')), 7000);
+    });
     e.respondWith(
+      // attempt to send request normally
       Promise.race([faster_fail, fetch(e.request.clone())])
+      .then (res => res)
       .catch(err => {
         // only save post requests in browser, if an error occurs
         savePostRequests(e.request.clone().url, form_data);
         // redirect to index
         return caches.open(cacheName).then(function(cache) {
-          return cache.match('/');
+          return cache.match('/offline');
         });
       }))
   }
