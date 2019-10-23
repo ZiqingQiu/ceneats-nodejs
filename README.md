@@ -1,8 +1,53 @@
 # Ceneats -- Sw Prj 2
 
+## Membership
 
-[Week 01 Video](https://drive.google.com/open?id=1CM4vmuWhg_xaGE3UmulzSWxkwPSd_6w6)
-[Week 05 Video](https://drive.google.com/open?id=1BUs_244gaxlBxdcCrkYitnyaZeZ5WdVW)
-[Week 09 Video](https://drive.google.com/open?id=1eowIXEWq2SUr-fNoEe1TVNkYIPtN9soA)
-[Week 10 Video](https://drive.google.com/open?id=1eowIXEWq2SUr-fNoEe1TVNkYIPtN9soA)
-[Week 12 Video](https://drive.google.com/open?id=1LwhRBpYAumOYGuH9CvHHyi0iGr5OUfiC)
+* Log in
+
+* Role management
+
+* Encrypt password
+
+## Friendly UI
+
+* Restaurant opening and closing hour
+
+* Mobile platform support
+
+* Good layout design
+
+## CRUD
+
+* Order
+
+* Item
+
+* Feedback
+
+## Cloud deploy
+
+* Web on Heroku
+
+* Db on Mlab
+
+## Offline first
+
+* Service worker
+
+* Index DB
+
+* Internet connection detect
+
+* Fall back to offline page
+
+* Optimize
+
+## BI visualize chart
+
+* Embedded Mlab
+
+* Real Time
+
+## Google analytics
+
+## Email notification
