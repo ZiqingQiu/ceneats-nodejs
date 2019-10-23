@@ -1,5 +1,5 @@
 // Index DB
-const cacheName = 'v2.91';
+const cacheName = 'v2.95';
 const INDEX_DB_NAME = 'ceneats_form';
 const OBJSTORE_POST_REQ_NAME = 'post_requests';
 
@@ -92,17 +92,23 @@ function sendPostToServer() {
 self.addEventListener('install', e => {
   self.skipWaiting();
   console.log('Service Worker: Installed');
+  // always cache offline page and index page
   let offlineRequest = new Request('/offline');
-  caches.match(offlineRequest).catch( err => {
-    e.waitUntil(
-      fetch(offlineRequest).then((response) => {
-        return caches.open(cacheName).then((cache) => {
-          console.log('[oninstall] Cached offline page', response.url);
-          return cache.put(offlineRequest, response);
-        });
-      })
-    )
-  });
+  e.waitUntil(
+    fetch(offlineRequest).then(function(response) {
+      return caches.open(cacheName).then(function(cache) {
+        return cache.put(offlineRequest, response);
+      });
+    })
+  );
+  let indexRequest = new Request('/');
+  e.waitUntil(
+    fetch(indexRequest).then(function(response) {
+      return caches.open(cacheName).then(function(cache) {
+        return cache.put(indexRequest, response);
+      });
+    })
+  );
 });
 
 // Call Activate Event
@@ -130,7 +136,7 @@ self.addEventListener('fetch', e => {
   if (e.request.clone().method === 'GET') {
     console.log('Service Worker: Fetching -- GET');
     let faster_fail = new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('waited 10s and fail faster')), 10000);
+      setTimeout(() => reject(new Error('waited 7s and fail faster')), 7000);
     });
     e.respondWith(
       Promise.race([faster_fail, fetch(e.request)])
@@ -144,7 +150,24 @@ self.addEventListener('fetch', e => {
           });
           return res;
         })
-        .catch(err => caches.match(e.request).then(res => res))
+        .catch(() => caches.match(e.request)
+          .then(res => {
+            if (res.status < 400) {
+              return res;
+            }
+            else {
+              // redirect to offline
+              return caches.open(cacheName).then(cache => {
+                return cache.match('/offline');
+              });
+            }
+          })
+          .catch(() => {
+            // redirect to offline
+            return caches.open(cacheName).then(cache =>{
+              return cache.match('/offline');
+            });
+          }))
     );
   }
   else if (e.request.clone().method === 'POST') {
@@ -156,11 +179,11 @@ self.addEventListener('fetch', e => {
       // attempt to send request normally
       Promise.race([faster_fail, fetch(e.request.clone())])
       .then (res => res)
-      .catch(err => {
+      .catch(() => {
         // only save post requests in browser, if an error occurs
         savePostRequests(e.request.clone().url, form_data);
         // redirect to index
-        return caches.open(cacheName).then(function(cache) {
+        return caches.open(cacheName).then(cache => {
           return cache.match('/offline');
         });
       }))
@@ -174,7 +197,7 @@ self.addEventListener('message', e => {
     // receives form data from post js upon submission
     form_data = e.data.form_data;
   }
-})
+});
 
 
 self.addEventListener('sync', function (event) {
@@ -185,4 +208,4 @@ self.addEventListener('sync', function (event) {
       sendPostToServer()
     )
   }
-})
+});
