@@ -1,5 +1,5 @@
 // Index DB
-const cacheName = 'v2.91';
+const cacheName = 'v2.95';
 const INDEX_DB_NAME = 'ceneats_form';
 const OBJSTORE_POST_REQ_NAME = 'post_requests';
 
@@ -127,44 +127,36 @@ self.addEventListener('activate', e => {
 
 // Call Fetch Event
 self.addEventListener('fetch', e => {
-  if (e.request.clone().method === 'GET') {
-    console.log('Service Worker: Fetching -- GET');
-    let faster_fail = new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('waited 10s and fail faster')), 10000);
-    });
-    e.respondWith(
-      Promise.race([faster_fail, fetch(e.request)])
-        .then(res => {
-          // Make copy/clone of response
-          const resClone = res.clone();
-          // Open cahce
-          caches.open(cacheName).then(cache => {
-            // Add response to cache
-            cache.put(e.request, resClone);
-          });
-          return res;
-        })
-        .catch(err => caches.match(e.request).then(res => res))
-    );
-  }
-  else if (e.request.clone().method === 'POST') {
-    console.log('Service Worker: Fetching -- POST');
-    let faster_fail = new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('waited 7s and fail faster')), 7000);
-    });
-    e.respondWith(
-      // attempt to send request normally
-      Promise.race([faster_fail, fetch(e.request.clone())])
-      .then (res => res)
-      .catch(err => {
-        // only save post requests in browser, if an error occurs
-        savePostRequests(e.request.clone().url, form_data);
-        // redirect to index
-        return caches.open(cacheName).then(function(cache) {
-          return cache.match('/offline');
+  let faster_fail = new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('waited 7s and fail fetch faster')), 7000);
+  });
+  e.respondWith(
+    Promise.race([faster_fail, fetch(e.request)])
+      .then(res => {
+        // Make copy/clone of response
+        const resClone = res.clone();
+        // Open cahce
+        caches.open(cacheName).then(cache => {
+          // Add response to cache
+          cache.put(e.request, resClone);
         });
-      }))
-  }
+        return res;
+      })
+      .catch(err => {
+        caches.match(e.request)
+          .then(res => res)
+          .catch(() => {
+            if (e.request.clone().method === 'POST') {
+              // only save post requests in browser, if an error occurs
+              savePostRequests(e.request.clone().url, form_data);
+            }
+            // fall back to offline page
+            return caches.open(cacheName).then(cache => {
+              return cache.match('/offline');
+            });
+          })
+      })
+  );
 });
 
 // Capture message event
@@ -174,7 +166,7 @@ self.addEventListener('message', e => {
     // receives form data from post js upon submission
     form_data = e.data.form_data;
   }
-})
+});
 
 
 self.addEventListener('sync', function (event) {
@@ -185,4 +177,4 @@ self.addEventListener('sync', function (event) {
       sendPostToServer()
     )
   }
-})
+});
