@@ -28,6 +28,7 @@ module.exports.displayOrderList = (req, res, next) => {
 module.exports.displayAddPage = (req, res, next) => {
     res.render('orders/add', {
         title: 'Add New Order',
+        cenid: req.user.username,
         displayName: req.user ? req.user.displayName : ""
     });
 }
