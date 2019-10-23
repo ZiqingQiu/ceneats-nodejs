@@ -93,16 +93,13 @@ self.addEventListener('install', e => {
   self.skipWaiting();
   console.log('Service Worker: Installed');
   let offlineRequest = new Request('/offline');
-  caches.match(offlineRequest).catch( err => {
-    e.waitUntil(
-      fetch(offlineRequest).then((response) => {
-        return caches.open(cacheName).then((cache) => {
-          console.log('[oninstall] Cached offline page', response.url);
-          return cache.put(offlineRequest, response);
-        });
-      })
-    )
-  });
+  event.waitUntil(
+    fetch(offlineRequest).then(function(response) {
+      return caches.open(cacheName).then(function(cache) {
+        return cache.put(offlineRequest, response);
+      });
+    })
+  );
 });
 
 // Call Activate Event
@@ -145,9 +142,19 @@ self.addEventListener('fetch', e => {
           return res;
         })
         .catch(() => caches.match(e.request)
-          .then(res => res)
+          .then(res => {
+            if (res.status < 400) {
+              return res;
+            }
+            else {
+              // redirect to offline
+              return caches.open(cacheName).then(cache => {
+                return cache.match('/offline');
+              });
+            }
+          })
           .catch(() => {
-            // redirect to index
+            // redirect to offline
             return caches.open(cacheName).then(cache =>{
               return cache.match('/offline');
             });
