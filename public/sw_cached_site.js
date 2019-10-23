@@ -92,11 +92,20 @@ function sendPostToServer() {
 self.addEventListener('install', e => {
   self.skipWaiting();
   console.log('Service Worker: Installed');
+  // always cache offline page and index page
   let offlineRequest = new Request('/offline');
   e.waitUntil(
     fetch(offlineRequest).then(function(response) {
       return caches.open(cacheName).then(function(cache) {
         return cache.put(offlineRequest, response);
+      });
+    })
+  );
+  let indexRequest = new Request('/');
+  e.waitUntil(
+    fetch(indexRequest).then(function(response) {
+      return caches.open(cacheName).then(function(cache) {
+        return cache.put(indexRequest, response);
       });
     })
   );
