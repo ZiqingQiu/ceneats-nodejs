@@ -93,7 +93,7 @@ self.addEventListener('install', e => {
   self.skipWaiting();
   console.log('Service Worker: Installed');
   let offlineRequest = new Request('/offline');
-  event.waitUntil(
+  e.waitUntil(
     fetch(offlineRequest).then(function(response) {
       return caches.open(cacheName).then(function(cache) {
         return cache.put(offlineRequest, response);
