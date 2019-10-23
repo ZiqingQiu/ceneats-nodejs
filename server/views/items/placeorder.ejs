@@ -9,9 +9,15 @@
 
             <form class="form" method="POST">
                 <div class="form-group">
-                    <label for="itemId">itemId:</label>
-                    <input type="text" class="form-control" name="itemId" placeholder="Enter Item Id" id="itemId"
-                        readonly autocomplete="off" value="<%= item.itemId %>">
+                    <label for="cenid">Centennial Id:</label>
+                    <input type="text" class="form-control" name="cenid" placeholder="Enter Centennial Id" id="cenid"
+                        readonly required autocomplete="off" value="<%= cenid %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="foodid">itemId:</label>
+                    <input type="text" class="form-control" name="foodid" placeholder="Enter Item Id" id="foodid"
+                        readonly required autocomplete="off" value="<%= item.itemId %>">
                 </div>
 
                 <div class="form-group">
@@ -27,12 +33,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="itemURL">Image URL</label>
-                    <input type="text" class="form-control" name="itemURL" placeholder="Enter image URL" id="itemURL"
-                        required autocomplete="off" value="<%= item.imageURL %>">
-                </div>
-
-                <div class="form-group">
                     <label for="price">Price:</label>
                     <input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
                         class="form-control currency" name="price" placeholder="Enter price" id="price" readonly
@@ -40,15 +40,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inventory">Inventory:</label>
-                    <input type="number" class="form-control" name="inventory" placeholder="Current Inventory" id="inventory"
-                        readonly autocomplete="off" value="<%= item.quantity %>">
-                </div>
-
-                <div class="form-group">
                     <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control" name="quantity" id="quantity"
-                        required autocomplete="off" min="1" max="<%= item.quantity %>" value="1">
+                    <input type="number" class="form-control" name="quantity" id="quantity" required autocomplete="off"
+                        min="1" max="<%= item.quantity %>" value="1">
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">

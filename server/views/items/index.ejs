@@ -41,12 +41,7 @@
                                 <td class="text-center"><%= parseFloat(itemList[count].price - (itemList[count].price/(100/15))).toFixed(2) %></td>
                             <% } else { %>
                                 <td class="text-center"><%= itemList[count].price %></td>
-                            <% } %>
-                            <td class="text-center">
-                                <a href="/item-list/placeorder/<%= itemList[count]._id %>" class="btn btn-success"><i
-                                        class="fas fa-utensils"></i> Order</a>
-                            </td>
-                        
+                            <% } %>                        
                             <td class="text-center">
                                 <a href="/item-list/edit/<%= itemList[count]._id %>" class="btn btn-primary"><i
                                         class="fas fa-pencil-alt"></i> Edit</a>

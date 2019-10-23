@@ -36,9 +36,9 @@ router.post('/edit/:id', requireAuth, itemController.processEditPage);
 router.get('/delete/:id', requireAuth, itemController.performDelete);
 
 /* GET request to perform the view selected item action */
-router.get('/placeorder/:id', requireAuth, itemController.displaySelecetedItem);
+router.get('/placeorder', requireAuth, itemController.displaySelecetedItem);
 
 /* POST request to perform the process selected item action */
-router.post('/placeorder/:id', requireAuth, itemController.processSelecetedItem);
+router.post('/placeorder', requireAuth, itemController.processSelecetedItem);
 
 module.exports = router;

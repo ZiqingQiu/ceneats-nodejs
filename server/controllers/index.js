@@ -129,7 +129,7 @@ module.exports.processLoginPage = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                return res.redirect('/order-list');
+                return res.redirect('/');
             });
         })(req, res, next);
 }

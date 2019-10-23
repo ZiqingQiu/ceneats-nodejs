@@ -40,6 +40,7 @@ module.exports.displaySelecetedItem = (req, res, next) => {
                 //routing to place order view
                 res.render('items/placeorder', {
                     title: 'Place Order',
+                    cenid: req.user.username,
                     item: itemObject,
                     displayName: req.user ? req.user.displayName : ""
                 });
