@@ -1,8 +1,8 @@
     // submit function
     function sw_add_order() {
         let data = {
-            "cenId": $('#cenid').val(),
-            "foodId": $('#foodid').val(),
+            "cenid": $('#cenid').val(),
+            "foodid": $('#foodid').val(),
             "quantity": $('#quantity').val(),
             "status": $('#status').val()
         }
@@ -11,7 +11,21 @@
             'form_data': data
         }
         // send data to sw_cached_site.j
-        navigator.serviceWorker.controller.postMessage(msg)  
-    
+        navigator.serviceWorker.controller.postMessage(msg)
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: '/order-list/add',
+        //     contentType: 'application/json',
+        //     data: JSON.stringify(data),
+        //     success: function () {
+        //         console.log('Ajax data sent to server successfully')
+        //     },
+        //     error: function () {
+        //         console.log('Ajax data sent to server failed,,')
+        //     },
+        //     dataType: 'json'
+        // });
+
         return true;
      }
