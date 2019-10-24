@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let mongoose = require('mongoose')
 
 // create a reference to the db schema
 let reviewModel = require('../models/review');
@@ -48,21 +49,23 @@ module.exports.processAddPage = (req, res, next) => {
 
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
-    reviewModel.findById(id, (err, reviewObject) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            // show the edit view
-            res.render('reviews/edit', {
-                title: 'Edit Review',
-                review: reviewObject,
-                displayName: req.user ? req.user.displayName : ""
-            });
-        }
-    });
+    if (mongoose.Types.ObjectId.isValid(id))  {
+        reviewModel.findById(id, (err, reviewObject) => {
+            if(err) {
+                console.log(err);
+                res.end(err);
+            }
+            else
+            {
+                // show the edit view
+                res.render('reviews/edit', {
+                    title: 'Edit Review',
+                    review: reviewObject,
+                    displayName: req.user ? req.user.displayName : ""
+                });
+            }
+        });
+    }
 }
 
 module.exports.processEditPage = (req, res, next) => {
