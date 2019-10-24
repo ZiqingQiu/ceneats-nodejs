@@ -1,5 +1,4 @@
 <% include ../partials/header.ejs %>
-
     <!-- Content for the Edit Page -->
     <div class="background_form"></div>
     <div class="container">
@@ -30,18 +29,17 @@
                             <label for="statusDropdown">Status:</label>
                             <br />
                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="statusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name="statusDropdown" value="<%= order.status %>">
-                                Select Status
-                            </button>
+                            Select Status
+                        </button>
                             <div class="dropdown-menu" aria-labelledby="status">
                                 <a class="dropdown-item" a href="#">Ordered</a>
                                 <a class="dropdown-item" a href="#">Cancelled</a>
                             </div>
                             <input type="text" class="form-control" hidden="true" name="status" placeholder="Choose Status" id="status" required autocomplete="off">
                         </fieldset>
-
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;" onclick="return sw_add_order();">
                     <i class="fas fa-edit"></i> Submit</button>
                     <a href="/order-list" class="btn btn-warning" style="margin-bottom: 10px;">
                         <i class="fas fa-undo"></i> Cancel</a>

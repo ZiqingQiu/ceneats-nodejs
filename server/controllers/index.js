@@ -54,6 +54,10 @@ module.exports.displayHomePage = (req, res, next) => {
     });
 };
 
+module.exports.displayOfflineHomePage = (req, res, next) => {
+    res.render("offline");
+};
+
 //display item list
 module.exports.processHomePage = (req, res, next) => {
     let restaurant = Object.keys(req.body)[0].split('.')[0];
@@ -125,7 +129,7 @@ module.exports.processLoginPage = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                return res.redirect('/order-list');
+                return res.redirect('/');
             });
         })(req, res, next);
 }
