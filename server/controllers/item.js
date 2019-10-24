@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let mongoose = require('mongoose')
 
 // create a reference to the db schema
 let itemModel = require('../models/item');
@@ -28,21 +29,24 @@ module.exports.displaySelecetedItem = (req, res, next) => {
     let id = req.params.id;
     let session = req.session;
     session.curselitemid = id;
-    itemModel.findById(id, (err, itemObject) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            //routing to place order view
-            res.render('items/placeorder', {
-                title: 'Place Order',
-                item: itemObject,
-                displayName: req.user ? req.user.displayName : ""
-            });
-        }
-    });
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        itemModel.findById(id, (err, itemObject) => {
+            if(err) {
+                console.log(err);
+                res.end(err);
+            }
+            else
+            {
+                //routing to place order view
+                res.render('items/placeorder', {
+                    title: 'Place Order',
+                    cenid: req.user.username,
+                    item: itemObject,
+                    displayName: req.user ? req.user.displayName : ""
+                });
+            }
+        });
+    }
 }
 
 module.exports.processSelecetedItem = (req, res, next) => {
@@ -119,21 +123,23 @@ module.exports.processAddPage = (req, res, next) => {
 
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
-    itemModel.findById(id, (err, itemObject) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            // show the edit view
-            res.render('items/edit', {
-                title: 'Edit Order',
-                item: itemObject,
-                displayName: req.user ? req.user.displayName : ""
-            });
-        }
-    });
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        itemModel.findById(id, (err, itemObject) => {
+            if(err) {
+                console.log(err);
+                res.end(err);
+            }
+            else
+            {
+                // show the edit view
+                res.render('items/edit', {
+                    title: 'Edit Order',
+                    item: itemObject,
+                    displayName: req.user ? req.user.displayName : ""
+                });
+            }
+        });
+    }
 }
 
 module.exports.processEditPage = (req, res, next) => {

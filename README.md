@@ -1,8 +1,62 @@
-# Ceneats -- Sw Prj 2
+# CenEats -- A Capstone Project developed by a team of 6 final year students in Fall 2019 
+## Course: Software Development Project 2                                                 
+------------------------------------------------------------------------------------------
+## Description
+An online platforms that allow students and faculty members to efficiently order food in advance from any restaurant at Centennial College Progress campus. It's main priority is to reduce waiting time in lines at restaurants to encourage more students and faculty to use the restaurant facilities at Centennial.
 
+#Deliverables
+-------------
+## Membership
 
-[Week 01 Video](https://drive.google.com/open?id=1CM4vmuWhg_xaGE3UmulzSWxkwPSd_6w6)
-[Week 05 Video](https://drive.google.com/open?id=1BUs_244gaxlBxdcCrkYitnyaZeZ5WdVW)
-[Week 09 Video](https://drive.google.com/open?id=1eowIXEWq2SUr-fNoEe1TVNkYIPtN9soA)
-[Week 10 Video](https://drive.google.com/open?id=1eowIXEWq2SUr-fNoEe1TVNkYIPtN9soA)
-[Week 12 Video](https://drive.google.com/open?id=1LwhRBpYAumOYGuH9CvHHyi0iGr5OUfiC)
+* Log in
+
+* Role management
+
+* Encrypt password
+
+## Friendly UI
+
+* Restaurant opening and closing hour
+
+* Mobile platform support
+
+* Good layout design
+
+## CRUD
+
+* Order
+
+* Item
+
+* Feedback
+
+## Cloud deploy
+
+* Web on Heroku
+
+* Db on Mlab
+
+## Offline first
+
+* Service worker
+
+* Index DB
+
+* Internet connection detect
+
+* Fall back to offline page
+
+* Optimize
+
+## BI visualize chart
+
+* Embedded Mlab
+
+* Real Time
+
+## Google analytics
+ * Realtime overview of active users
+ * Geographical analysis and number of sessions started every few minutes
+
+## Email notification
+ * A complimentary email confirmation sent to the user 

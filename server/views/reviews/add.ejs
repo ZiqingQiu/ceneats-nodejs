@@ -1,45 +1,55 @@
 <% include ../partials/header.ejs %>
 
-<!-- Content for the Add Item Page -->
-<div class="background_form"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6" id="centerForm_B">
-            <h1><%= title %></h1>
+    <!-- Content for the Add Item Page -->
+    <div class="background_form"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6" id="centerForm_B">
+                <h1>
+                    <%= title %>
+                </h1>
 
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <label for="displayName">Display Name:</label>
-                    <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name"
-                        id="displayName" required autocomplete="off"
-                        value="<%= displayName %>">
-                </div>
-                <div class="form-group">
-                    <label for="restaurantName">Restaurant Name:</label>
-                    <input type="text" class="form-control" name="restaurantName" placeholder="Enter Restaurant Name"
-                        id="displayName" required autocomplete="off"
-                        >
-                </div>
-                <div class="form-group">
-                    <label for="comment"> comment:</label>
-                    <textarea row="5" type="text" class="form-control" name="comment" placeholder="Enter Comment"
-                        id="comment" required autocomplete="off"
-                        ></textarea>
-                </div>
+                <form class="form" method="POST">
+                    <div class="form-group">
+                        <label for="displayName">Display Name:</label>
+                        <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name" id="displayName" required autocomplete="off" value="<%= displayName %>">
+                    </div>
+                    <div class="form-group">
+                        <fieldset class="form-group dropdown">
+                            <label for="restaurantDropdown">Restuarant Name:</label>
+                            <br />
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="restaurantDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name="restaurantDropdown">
+                            Select Restaurant
+                        </button>
+                            <div class="dropdown-menu" aria-labelledby="restaurantName">
+                                <a class="dropdown-item" a href="#">Burger King</a>
+                                <a class="dropdown-item" a href="#">Mcdonald's</a>
+                                <a class="dropdown-item" a href="#">Pizza Pizza</a>
+                                <a class="dropdown-item" a href="#">Tim Hortons</a>
+                                <a class="dropdown-item" a href="#">Smokes Poutinerie</a>
+                                <a class="dropdown-item" a href="#">Subway</a>
+                            </div>
+                            <input type="text" class="form-control" hidden="true" name="restaurantName" placeholder="Choose Restaurant" id="restaurantName" required autocomplete="off">
+                        </fieldset>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment"> comment:</label>
+                        <textarea row="5" type="text" class="form-control" name="comment" placeholder="Enter Comment" id="comment" required autocomplete="off"></textarea>
+                    </div>
 
-                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
                     <i class="fas fa-edit"></i> Submit</button>
-                <a href="/review-list" class="btn btn-warning" style="margin-bottom: 10px;">
-                    <i class="fas fa-undo"></i> Cancel</a>
-            </form>
+                    <a href="/review-list" class="btn btn-warning" style="margin-bottom: 10px;">
+                        <i class="fas fa-undo"></i> Cancel</a>
+                </form>
 
 
+            </div>
         </div>
     </div>
-</div>
 
 
 
 
 
-<% include ../partials/footer.ejs %>
+    <% include ../partials/footer.ejs %>

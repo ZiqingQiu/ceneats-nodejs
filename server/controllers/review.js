@@ -1,16 +1,16 @@
 let express = require('express');
 let router = express.Router();
+let mongoose = require('mongoose')
 
 // create a reference to the db schema
 let reviewModel = require('../models/review');
 
 
-module.exports.displayReviewList = (req, res, next) =>{
+module.exports.displayReviewList = (req, res, next) => {
     reviewModel.find((err, reviewList) => {
         if (err) {
             return console.error(err);
-        }
-        else {
+        } else {
             res.render('reviews/index', {
                 title: 'Review List',
                 reviewList: reviewList,
@@ -19,7 +19,7 @@ module.exports.displayReviewList = (req, res, next) =>{
         }
     });
 }
-module.exports.displayAddPage = (req, res, next) => {    
+module.exports.displayAddPage = (req, res, next) => {
     res.render('reviews/add', {
         title: 'Add New Review',
         displayName: req.user ? req.user.displayName : ""
@@ -35,11 +35,10 @@ module.exports.processAddPage = (req, res, next) => {
     });
 
     reviewModel.create(newReview, (err, contactModel) => {
-        if(err) {
+        if (err) {
             console.log(err);
             res.end(err);
-        }
-        else {
+        } else {
             // refresh the contact list
             res.redirect('/review-list');
         }
@@ -48,21 +47,21 @@ module.exports.processAddPage = (req, res, next) => {
 
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
-    reviewModel.findById(id, (err, reviewObject) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            // show the edit view
-            res.render('reviews/edit', {
-                title: 'Edit Review',
-                review: reviewObject,
-                displayName: req.user ? req.user.displayName : ""
-            });
-        }
-    });
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        reviewModel.findById(id, (err, reviewObject) => {
+            if (err) {
+                console.log(err);
+                res.end(err);
+            } else {
+                // show the edit view
+                res.render('reviews/edit', {
+                    title: 'Edit Review',
+                    review: reviewObject,
+                    displayName: req.user ? req.user.displayName : ""
+                });
+            }
+        });
+    }
 }
 
 module.exports.processEditPage = (req, res, next) => {
@@ -75,12 +74,11 @@ module.exports.processEditPage = (req, res, next) => {
         "comment": req.body.comment,
     });
 
-    reviewModel.update({_id: id}, updatedReview, (err) => {
-        if(err) {
+    reviewModel.update({ _id: id }, updatedReview, (err) => {
+        if (err) {
             console.log(err);
             res.end(err);
-        }
-        else {
+        } else {
             // refresh the contact list
             res.redirect('/review-list');
         }
@@ -90,12 +88,11 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    reviewModel.remove({_id: id}, (err) => {
-        if(err) {
+    reviewModel.remove({ _id: id }, (err) => {
+        if (err) {
             console.log(err);
             res.end(err);
-        }
-        else {
+        } else {
             // refresh the contact list
             res.redirect('/review-list');
         }

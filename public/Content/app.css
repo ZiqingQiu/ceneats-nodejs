@@ -62,6 +62,25 @@ footer {
     }
 }
 
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 #restaurant-card-space {
     width: 15rem;
     visibility: hidden;
@@ -85,11 +104,10 @@ footer {
 }
 
 @media(max-width: 657px) {
-
-    .card-container{
-        width: 100%;;
+    .card-container {
+        width: 100%;
+        ;
     }
-
     #restaurant-card {
         flex: 0 0 300px !important;
     }
