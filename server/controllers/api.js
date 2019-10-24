@@ -26,7 +26,7 @@ module.exports.sendEmail = (user_id) => {
                     let transporter = nodeMailer.createTransport({
                         service: 'gmail',
                         auth: {
-                        user: 'ceneats@gmail.com',
+                        user: 'ceneatsapp@gmail.com',
                         pass: 'ceneats201909'
                         }
                     });
