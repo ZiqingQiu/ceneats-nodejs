@@ -1,10 +1,12 @@
-# CenEats -- A Capstone Project developed by a team of 6 final year students in Fall 2019 
+# CenEats 
+A Capstone Project developed by a team of 6 students for Fall 2019 
+
 ## Course: Software Development Project 2                                                 
 ------------------------------------------------------------------------------------------
 ## Description
 An online platforms that allow students and faculty members to efficiently order food in advance from any restaurant at Centennial College Progress campus. It's main priority is to reduce waiting time in lines at restaurants to encourage more students and faculty to use the restaurant facilities at Centennial.
 
-#Deliverables
+# Milestones
 -------------
 ## Membership
 
