@@ -76,8 +76,13 @@ footer {
 }
 
 @media(max-width: 657px) {
+
+    .card-container{
+        width: 100%;;
+    }
+
     #restaurant-card {
-        flex: 0 0 150px !important;
+        flex: 0 0 300px !important;
     }
 }
 
