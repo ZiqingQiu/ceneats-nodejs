@@ -136,7 +136,7 @@ self.addEventListener('fetch', e => {
   if (e.request.clone().method === 'GET') {
     console.log('Service Worker: Fetching -- GET');
     let faster_fail = new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('waited 7s and fail faster')), 7000);
+      setTimeout(() => reject(new Error('waited 3s and fail faster')), 3000);
     });
     e.respondWith(
       Promise.race([faster_fail, fetch(e.request)])
@@ -173,7 +173,7 @@ self.addEventListener('fetch', e => {
   else if (e.request.clone().method === 'POST') {
     console.log('Service Worker: Fetching -- POST');
     let faster_fail = new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('waited 7s and fail faster')), 7000);
+      setTimeout(() => reject(new Error('waited 3s and fail faster')), 3000);
     });
     e.respondWith(
       // attempt to send request normally
