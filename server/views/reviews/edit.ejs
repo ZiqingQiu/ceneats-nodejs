@@ -1,44 +1,43 @@
 <% include ../partials/header.ejs %>
 
-<!-- Content for the Edit Page -->
-<div class="background_form"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6" id="centerForm_B">
-            <h1><%= title %></h1>
+    <!-- Content for the Edit Page -->
+    <div class="background_form"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6" id="centerForm_B">
+                <h1>
+                    <%= title %>
+                </h1>
 
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <label for="displayName">Display Name:</label>
-                    <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name"
-                        value="<%= review.displayName %>" id="displayName" required autocomplete="off">
-                </div>
+                <form class="form" method="POST">
+                    <div class="form-group">
+                        <label for="displayName">Display Name:</label>
+                        <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name" value="<%= review.displayName %>" id="displayName" readonly required autocomplete="off">
+                    </div>
 
-                <div class="form-group">
-                    <label for="restaurantName">Restaurant Name:</label>
-                    <input type="text" class="form-control" name="restaurantName" placeholder="Enter Restaurant Name"
-                        value="<%= review.restaurantName %>" id="restaurantName" required autocomplete="off">
-                </div>
+                    <div class="form-group">
+                        <label for="restaurantName">Restaurant Name:</label>
+                        <input type="text" class="form-control" name="restaurantName" placeholder="Enter Restaurant Name" value="<%= review.restaurantName %>" id="restaurantName" readonly required autocomplete="off">
+                    </div>
 
-                <div class="form-group">
-                    <label for="comment">Comment:</label>
-                    <input type="text" class="form-control" name="comment" placeholder="Enter Comment"
-                        value="<%= review.comment %>" id="comment" required autocomplete="off">
-                </div>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <input type="text" class="form-control" name="comment" placeholder="Enter Comment" value="<%= review.comment %>" id="comment" required autocomplete="off">
+                    </div>
 
-                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
                     <i class="fas fa-edit"></i> Submit</button>
-                <a href="/review-list" class="btn btn-warning" style="margin-bottom: 10px;">
-                    <i class="fas fa-undo"></i> Cancel</a>
-            </form>
+                    <a href="/review-list" class="btn btn-warning" style="margin-bottom: 10px;">
+                        <i class="fas fa-undo"></i> Cancel</a>
+                </form>
 
 
+            </div>
         </div>
     </div>
-</div>
 
 
 
 
 
-<% include ../partials/footer.ejs %>
+    <% include ../partials/footer.ejs %>

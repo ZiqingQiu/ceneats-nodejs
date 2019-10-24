@@ -1,50 +1,57 @@
 <% include ../partials/header.ejs %>
+    <!-- Content for the Edit Page -->
+    <div class="background_form"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6" id="centerForm_B">
+                <h1>
+                    <%= title %>
+                </h1>
 
-<!-- Content for the Edit Page -->
-<div class="background_form"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6" id="centerForm_B">
-            <h1><%= title %></h1>
+                <form class="form" method="POST">
+                    <div class="form-group">
+                        <label for="cenid">Centennial Id:</label>
+                        <input type="text" class="form-control" name="cenid" placeholder="Enter Centennial Id" value="<%= order.cenId %>" id="cenid" readonly required autocomplete="off">
+                    </div>
 
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <label for="cenid">Centennial Id:</label>
-                    <input type="text" class="form-control" name="cenid" placeholder="Enter Centennial Id"
-                        value="<%= order.cenId %>" id="cenid" required autocomplete="off">
-                </div>
+                    <div class="form-group">
+                        <label for="foodid">Food Id:</label>
+                        <input type="text" class="form-control" name="foodid" placeholder="Enter Food Id" value="<%= order.foodId %>" id="foodid" readonly required autocomplete="off">
+                    </div>
 
-                <div class="form-group">
-                    <label for="foodid">Food Id:</label>
-                    <input type="text" class="form-control" name="foodid" placeholder="Enter Food Id"
-                        value="<%= order.foodId %>" id="foodid" required autocomplete="off">
-                </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" value="<%= order.quantity %>" id="quantity" required autocomplete="off">
+                    </div>
 
-                <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity"
-                        value="<%= order.quantity %>" id="quantity" required autocomplete="off">
-                </div>
+                    <div class="form-group">
+                        <fieldset class="form-group dropdown">
+                            <label for="statusDropdown">Status:</label>
+                            <br />
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="statusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" name="statusDropdown" value="<%= order.status %>">
+                            Select Status
+                        </button>
+                            <div class="dropdown-menu" aria-labelledby="status">
+                                <a class="dropdown-item" a href="#">Ordered</a>
+                                <a class="dropdown-item" a href="#">Cancelled</a>
+                            </div>
+                            <input type="text" class="form-control" hidden="true" name="status" placeholder="Choose Status" id="status" required autocomplete="off">
+                        </fieldset>
+                    </div>
 
-                <div class="form-group">
-                    <label for="status">Status:</label>
-                    <input type="text" class="form-control" name="status" placeholder="Enter Status" id="status"
-                        value="<%= order.status %>" required autocomplete="off">
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;" onclick="return sw_add_order();">
+                    <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;" onclick="return sw_add_order();">
                     <i class="fas fa-edit"></i> Submit</button>
-                <a href="/order-list" class="btn btn-warning" style="margin-bottom: 10px;">
-                    <i class="fas fa-undo"></i> Cancel</a>
-            </form>
+                    <a href="/order-list" class="btn btn-warning" style="margin-bottom: 10px;">
+                        <i class="fas fa-undo"></i> Cancel</a>
+                </form>
 
 
+            </div>
         </div>
     </div>
-</div>
 
 
 
 
 
-<% include ../partials/footer.ejs %>
+    <% include ../partials/footer.ejs %>

@@ -22,7 +22,7 @@
     "font-awesome": "^4.7.0",
     "http-errors": "^1.7.3",
     "jquery": "^3.4.1",
-    "mongoose": "^5.4.9",
+    "mongoose": "^5.7.6",
     "morgan": "^1.9.1",
     "node-cron": "^2.0.3",
     "nodemailer": "^6.3.0",
