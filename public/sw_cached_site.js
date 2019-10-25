@@ -26,6 +26,16 @@ function createIndexDB() {
 }
 
 
+function deletePostRequests(post_msg_id) {
+  let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
+  indexedDBOpenRequest.onsuccess = function(event) {
+    let indexdb = this.result;
+    let indexT = indexdb.transaction(OBJSTORE_POST_REQ_NAME,'readwrite');
+    let indexO = indexT.objectStore(OBJSTORE_POST_REQ_NAME);
+    indexO.delete(post_msg_id);
+  }
+}
+
 function savePostRequests(url, payload) {
   let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
   indexedDBOpenRequest.onsuccess = function(event) {
@@ -75,7 +85,7 @@ function sendPostToServer() {
             if (response.ok) {
               // If sending the POST request was successful, then
               // remove it from the IndexedDB.
-              indexO.delete(savedRequest.id);
+              deletePostRequests(savedRequest.id);
             }
           }).catch(function (error) {
             console.error('SyncSend to Server failed:', error);
