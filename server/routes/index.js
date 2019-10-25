@@ -9,9 +9,6 @@ router.get('/', indexController.displayHomePage);
 /* GET offlinehome page. */
 router.get('/offline', indexController.displayOfflineHomePage);
 
-/* POST home page. */
-router.post('/', indexController.processHomePage);
-
 /* GET contact page. */
 router.get('/contact', indexController.displayContactPage);
 
