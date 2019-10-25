@@ -9,7 +9,7 @@ let orderModel = require('../models/order');
 let common_api = require('./api')
 
 module.exports.displayOrderList = (req, res, next) => {
-    orderModel.find((err, orderList) => {
+    orderModel.find({cenId: req.user.username}, (err, orderList) => {
         if (err) {
             return console.error(err);
         }
