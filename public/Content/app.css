@@ -21,9 +21,16 @@
     font-size: 0.9em;
 }
 
+.navbar{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+}
+
 footer {
     position: fixed;
-    bottom: -10px;
+    bottom:0px;
     width: 100%;
 }
 
@@ -50,6 +57,8 @@ footer {
         left: 5%;
         max-width: 90%;
         position: fixed;
+        height: calc(100% - 10em);
+        overflow: scroll;
     }
 }
 
@@ -112,6 +121,7 @@ th {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: -1;
 }
 
 .center_chart {
