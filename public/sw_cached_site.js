@@ -95,16 +95,16 @@ self.addEventListener('install', e => {
   // always cache offline page and index page
   let offlineRequest = new Request('/offline');
   e.waitUntil(
-    fetch(offlineRequest).then(function(response) {
-      return caches.open(cacheName).then(function(cache) {
+    fetch(offlineRequest).then(function (response) {
+      return caches.open(cacheName).then(function (cache) {
         return cache.put(offlineRequest, response);
       });
     })
   );
   let indexRequest = new Request('/');
   e.waitUntil(
-    fetch(indexRequest).then(function(response) {
-      return caches.open(cacheName).then(function(cache) {
+    fetch(indexRequest).then(function (response) {
+      return caches.open(cacheName).then(function (cache) {
         return cache.put(indexRequest, response);
       });
     })
@@ -114,6 +114,8 @@ self.addEventListener('install', e => {
 // Call Activate Event
 self.addEventListener('activate', e => {
   console.log('Service Worker: Activated');
+  // Create Index DB
+  e.waitUntil(createIndexDB());
   // Remove unwanted caches
   e.waitUntil(
     caches.keys().then(cacheNames => {
@@ -127,8 +129,6 @@ self.addEventListener('activate', e => {
       );
     })
   );
-  // Create Index DB
-  e.waitUntil(createIndexDB());
 });
 
 // Call Fetch Event
@@ -164,7 +164,7 @@ self.addEventListener('fetch', e => {
           })
           .catch(() => {
             // redirect to offline
-            return caches.open(cacheName).then(cache =>{
+            return caches.open(cacheName).then(cache => {
               return cache.match('/offline');
             });
           }))
@@ -178,15 +178,15 @@ self.addEventListener('fetch', e => {
     e.respondWith(
       // attempt to send request normally
       Promise.race([faster_fail, fetch(e.request.clone())])
-      .then (res => res)
-      .catch(() => {
-        // only save post requests in browser, if an error occurs
-        savePostRequests(e.request.clone().url, form_data);
-        // redirect to index
-        return caches.open(cacheName).then(cache => {
-          return cache.match('/offline');
-        });
-      }))
+        .then(res => res)
+        .catch(() => {
+          // only save post requests in browser, if an error occurs
+          savePostRequests(e.request.clone().url, form_data);
+          // redirect to index
+          return caches.open(cacheName).then(cache => {
+            return cache.match('/offline');
+          });
+        }))
   }
 });
 
