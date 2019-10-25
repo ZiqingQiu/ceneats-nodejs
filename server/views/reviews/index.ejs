@@ -8,9 +8,6 @@
                 <h1>
                     <%= title %>
                 </h1>
-                <a class="btn btn-primary" href="/review-list/add" role="button">
-                    <i class="fas fa-plus-circle"></i> Add an review</a>
-                <br>
                 <div class="form">
                     <table class="table table-bordered table-striped table-hover">
                         <!-- Header Row-->
@@ -52,8 +49,10 @@
                             </tr>
                             <% } %>
                     </table>
-                    <a href="/review-list" class="btn btn-warning" style="margin-bottom: 10px;">
-                        <i class="fas fa-undo"></i> Cancel</a>
+                    <a class="btn btn-primary" href="/review-list/add" role="button" style="margin-bottom: 10px;">
+                        <i class="fas fa-plus-circle"></i> Add an review</a>
+                    <a href="/" class="btn btn-warning" style="margin-bottom: 10px;">
+                        <i class="fas fa-undo"></i> Home</a>
                 </div>
             </div>
         </div>
