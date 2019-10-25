@@ -58,14 +58,6 @@ module.exports.displayOfflineHomePage = (req, res, next) => {
     res.render("offline");
 };
 
-//display item list
-module.exports.processHomePage = (req, res, next) => {
-    let restaurant = Object.keys(req.body)[0].split('.')[0];
-    req.session.restaurant = restaurant;
-    console.log("GET NAME: " + restaurant);
-    res.redirect('/item-list');
-}
-
 module.exports.displayAboutPage = (req, res, next) => {
     res.render("index", {
         title: "About",
@@ -156,8 +148,6 @@ module.exports.processRegisterPage = (req, res, next) => {
         displayName: req.body.displayName,
         accountType: req.body.accountType
     });
-    console.log("dbg processRegisterPage [accountType]: " + req.body.accountType);
-
 
     User.register(newUser, req.body.password, (err) => {
         if (err) {

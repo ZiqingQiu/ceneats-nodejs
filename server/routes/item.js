@@ -12,7 +12,7 @@ function requireAuth(req, res, next) {
 }
 
 /* GET Item List page - READ Operation */
-router.get('/', requireAuth, itemController.displayItemList);
+router.get('/:id', requireAuth, itemController.displayItemList);
 
 
 /* POST Item List page - Make a new order */
