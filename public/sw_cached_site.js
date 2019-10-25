@@ -1,14 +1,13 @@
-// Index DB
+// Cache
 const cacheName = 'v2.95';
+// Index DB
 const INDEX_DB_NAME = 'ceneats_form';
 const OBJSTORE_POST_REQ_NAME = 'post_requests';
-
-let post_req_db;
 let form_data;
-
 
 function createIndexDB() {
   let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
+
   indexedDBOpenRequest.onerror = function (error) {
     // error creating db
     console.error('IndexedDB error:', error)
@@ -22,71 +21,72 @@ function createIndexDB() {
   }
   // This will execute each time the database is opened.
   indexedDBOpenRequest.onsuccess = function () {
-    console.log('post_req_db success inited...');
-    post_req_db = this.result
+    console.log('index db success inited...');
   }
 }
 
-function getObjectStore(objStoreName, mode) {
-  // retrieve our object store
-  return post_req_db.transaction(objStoreName, mode).objectStore(objStoreName)
-}
 
 function savePostRequests(url, payload) {
-  // get object_store and save our payload inside it
-  let request = getObjectStore(OBJSTORE_POST_REQ_NAME, 'readwrite').add({
-    url: url,
-    payload: payload,
-    method: 'POST'
-  })
-  request.onsuccess = function (event) {
-    console.log('a new post request has been added to indexedb');
-  }
-  request.onerror = function (error) {
-    console.error(error);
+  let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
+  indexedDBOpenRequest.onsuccess = function(event) {
+    let indexdb = this.result;
+    let indexT = indexdb.transaction(OBJSTORE_POST_REQ_NAME,'readwrite');
+    let indexO = indexT.objectStore(OBJSTORE_POST_REQ_NAME);
+    indexO.add({
+      url: url,
+      payload: payload,
+      method: 'POST'
+    })
   }
 }
 
 function sendPostToServer() {
-  if (post_req_db == null) return; // not init yet
-  let savedRequests = []
-  let req = getObjectStore(OBJSTORE_POST_REQ_NAME).openCursor() // get object store
-  // is 'post_requests'
-  req.onsuccess = function (event) {
-    let cursor = event.target.result
-    if (cursor) {
-      // Keep moving the cursor forward and collecting saved requests.
-      savedRequests.push(cursor.value)
-      cursor.continue()
-    }
-    else {
-      for (let savedRequest of savedRequests) {
-        let requestUrl = savedRequest.url
-        let payload = JSON.stringify(savedRequest.payload)
-        let method = savedRequest.method
-        let headers = {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-        fetch(requestUrl, {
-          headers: headers,
-          method: method,
-          body: payload
-        }).then(function (response) {
-          console.log('SyncSend to Server success with response:', response)
-          if (response.status < 400) {
-            // If sending the POST request was successful, then
-            // remove it from the IndexedDB.
-            getObjectStore(OBJSTORE_POST_REQ_NAME, 'readwrite').delete(savedRequest.id);
+  let indexedDBOpenRequest = indexedDB.open(INDEX_DB_NAME, 1);
+  indexedDBOpenRequest.onsuccess = function(event) {
+    let indexdb = this.result;
+    let indexT = indexdb.transaction(OBJSTORE_POST_REQ_NAME,'readwrite');
+    let indexO = indexT.objectStore(OBJSTORE_POST_REQ_NAME);
+
+    let req = indexO.openCursor();
+    let savedRequests = [];
+
+    req.onsuccess = function (event) {
+      let cursor = event.target.result
+      if (cursor) {
+        // Keep moving the cursor forward and collecting saved requests.
+        savedRequests.push(cursor.value)
+        cursor.continue()
+      }
+      else {
+        for (let savedRequest of savedRequests) {
+          let requestUrl = savedRequest.url
+          let payload = JSON.stringify(savedRequest.payload)
+          let method = savedRequest.method
+          let headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
           }
-        }).catch(function (error) {
-          console.error('SyncSend to Server failed:', error);
-          throw error;
-        })
+          fetch(requestUrl, {
+            headers: headers,
+            method: method,
+            body: payload
+          }).then(function (response) {
+            console.log('SyncSend to Server success with response:', response)
+            if (response.ok) {
+              // If sending the POST request was successful, then
+              // remove it from the IndexedDB.
+              indexO.delete(savedRequest.id);
+            }
+          }).catch(function (error) {
+            console.error('SyncSend to Server failed:', error);
+            throw error;
+          })
+        }
       }
     }
   }
 }
+
 
 // Call Install Event
 self.addEventListener('install', e => {
