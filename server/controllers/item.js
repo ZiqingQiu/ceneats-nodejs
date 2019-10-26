@@ -7,7 +7,7 @@ let itemModel = require('../models/item');
 let orderModel = require('../models/order');
 
 module.exports.displayItemList = (req, res, next) =>{
-    itemModel.find((err, itemList) => {
+    itemModel.find({restaurantName: req.params.id},(err, itemList) => {
         if (err) {
             return console.error(err);
         }
