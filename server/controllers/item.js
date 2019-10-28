@@ -143,7 +143,7 @@ module.exports.displayEditPage = (req, res, next) => {
 
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
-
+    console.log ('dbg processEditPage id: ' + id);
     let updatedItem = itemModel({
         "_id": id,
         "itemId": req.body.itemId,
@@ -161,7 +161,7 @@ module.exports.processEditPage = (req, res, next) => {
         }
         else {
             // refresh the item list
-            res.redirect('/item-list');
+            res.redirect('/item-list/' + req.body.resName);
         }
     })
 }
@@ -176,7 +176,7 @@ module.exports.performDelete = (req, res, next) => {
         }
         else {
             // refresh the item list
-            res.redirect('/item-list');
+            res.redirect('/item-list/' + req.body.resName);
         }
     });
 }
