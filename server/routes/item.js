@@ -21,10 +21,10 @@ router.post('/', requireAuth, itemController.displaySelecetedItem);
 
 /* GET Route for the Add page 
    this will display the Add page */
-router.get('/add', requireAuth, itemController.displayAddPage);
+router.get('/add/:id', requireAuth, itemController.displayAddPage);
 
 /* POST Route for processing the Add page */
-router.post('/add', requireAuth, itemController.processAddPage);
+router.post('/add/:id', requireAuth, itemController.processAddPage);
 
 /* GET request - display the Edit page */
 router.get('/edit/:id', requireAuth, itemController.displayEditPage);

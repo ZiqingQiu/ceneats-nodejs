@@ -6,7 +6,7 @@
         <div class="col-md-offset-3 col-md-6" id="centerForm_C">
             <h1><%= title %></h1>
             <% if (accountType === 'Restaurant') { %>
-            <a class="btn btn-primary" href="/item-list/add" role="button">
+            <a class="btn btn-primary" href="/item-list/add/<%= restaurant %>" role="button">
                 <i class="fas fa-plus-circle"></i> Add an Item</a>
             <% } %>
             <br>
