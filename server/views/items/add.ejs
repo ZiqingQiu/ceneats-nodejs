@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="resName">restaurantName:</label>
-                    <input type="text" class="form-control" name="resName" placeholder="Enter RestaurantName"
+                    <input type="text" class="form-control" name="resName" readonly
                         id="resName" required autocomplete="off" value="<%=restaurant%>">
                 </div>
 
@@ -40,14 +40,14 @@
 
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="number" value="9.99" min="0" step="0.01" data-number-to-fixed="2"
+                    <input type="number" min="0" step="0.01" data-number-to-fixed="2"
                         data-number-stepfactor="100" class="form-control currency" name="price"
                         placeholder="Enter price" id="price" required autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">
                     <i class="fas fa-edit"></i> Submit</button>
-                <a href="/item-list" class="btn btn-warning" style="margin-bottom: 10px;">
+                <a href="/item-list/<%=restaurant%>" class="btn btn-warning" style="margin-bottom: 10px;">
                     <i class="fas fa-undo"></i> Cancel</a>
             </form>
         </div>

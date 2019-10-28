@@ -93,7 +93,7 @@ module.exports.displayAddPage = (req, res, next) => {
     res.render('items/add', {
         title: 'Add New Item',
         displayName: req.user ? req.user.displayName : "",
-        restaurant: req.session.restaurant,
+        restaurant: req.params.id,
     });
 }
 
@@ -115,7 +115,7 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else {
             // refresh the item list
-            res.redirect('/item-list');
+            res.redirect('/item-list/' + + req.body.resName);
         }
     });
 }
