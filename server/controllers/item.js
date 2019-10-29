@@ -7,8 +7,7 @@ let itemModel = require('../models/item');
 let orderModel = require('../models/order');
 
 module.exports.displayItemList = (req, res, next) =>{
-    console.log(req.session.restaurant);
-    itemModel.find((err, itemList) => {
+    itemModel.find({restaurantName: req.params.id},(err, itemList) => {
         if (err) {
             return console.error(err);
         }
@@ -18,7 +17,7 @@ module.exports.displayItemList = (req, res, next) =>{
                 itemList: itemList,
                 displayName: req.user ? req.user.displayName : "",
                 accountType: req.user ? req.user.accountType : "Student",
-                restaurant: req.session.restaurant,
+                restaurant: req.params.id,
             });
         }
     });

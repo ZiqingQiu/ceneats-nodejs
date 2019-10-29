@@ -36,7 +36,7 @@
                             <td class="text-center"><%= itemList[count].restaurantName %></td>
                             <td class="text-center"><%= itemList[count].itemName %></td>
                             <td class="text-center"><%= itemList[count].quantity %></td>
-                            <td class="text-center"><%= itemList[count].imageURL %></td>
+                            <td class="text-center"><img src="../Content/Images/food/<%= itemList[count].imageURL %>"></td>
                             <!-- Showcase the Faculty Discount -->
                             <% if (accountType === 'Faculty') { %>
                                 <td class="text-center"><%= parseFloat(itemList[count].price - (itemList[count].price/(100/15))).toFixed(2) %></td>
@@ -59,6 +59,8 @@
                         <% } %>
                     <% } %>
                 </table>
+                <a class="btn btn-primary" href="/order-list/add" style="margin-bottom: 10px;">
+                    <i class="fas fa-plus-circle"></i> Add an Order</a>
                 <a href="/" class="btn btn-warning" style="margin-bottom: 10px;">
                     <i class="fas fa-undo"></i> Home</a>
             </div>
