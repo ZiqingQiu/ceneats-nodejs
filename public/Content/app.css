@@ -13,6 +13,11 @@
     margin: 5px;
 }
 
+.banner{
+    position: relative;
+    margin-top:3.5em;
+}
+
 .letter-spacing-5 {
     letter-spacing: 0.5em;
 }
