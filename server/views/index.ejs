@@ -5,7 +5,7 @@
 <%=time.minute%>
 <%=time.second%> -->
 
-    <img src="Content/Images/banner.png" class="img-fluid" alt="Responsive image">
+    <img src="Content/Images/banner.png" class="img-fluid banner" alt="Responsive image">
     <div class="d-flex flex-row justify-content-around flex-wrap card-container   rounded">
         <!--   <div class="flex-container">-->
         <div class="custom card flex-sm-fill shadow rounded" id="restaurant-card">
@@ -15,7 +15,7 @@
                     ){ %>
                 <img src="/Content/Images/restaurants/burgerking_closed.png" alt="burgerking" class="img-thumbnail rounded">
                 <% } else { %>
-                    <a href="/item-list/Burger King"><input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png" class="img-thumbnail rounded" alt="burgerking" value="Burger King"></a>
+                    <a href="/item-list/Burger King" class="img-thumbnail rounded"><input id="img-bk" name="Burger King" type="image" src="/Content/Images/restaurants/burgerking.png"  alt="burgerking" value="Burger King"></a>
                     <% } %>
                         <div class="card-body">
                             <h5 class="card-title ">Burger King</h5>
@@ -40,7 +40,7 @@
                     ){ %>
                 <img src="/Content/Images/restaurants/mcdonalds_closed.png" alt="macdonalds" class="img-thumbnail rounded">
                 <% } else { %>
-                    <a href="/item-list/McDonalds"><input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png" class="img-thumbnail rounded" alt="macdonalds"></a>
+                    <a href="/item-list/McDonalds" class="img-thumbnail rounded"><input id="img-mc" name="McDonalds" type="image" src="/Content/Images/restaurants/mcdonalds.png"  alt="macdonalds"></a>
                     <% } %>
                         <div class="card-body">
                             <h5 class="card-title">McDonald's</h5>
@@ -65,7 +65,7 @@
                     ){ %>
                 <img src="/Content/Images/restaurants/pizzapizza_closed.png" alt="pizzapizza" class="img-thumbnail rounded">
                 <% } else { %>
-                    <a href="/item-list/Pizza Pizza"><input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png" class="img-thumbnail rounded" alt="pizzapizza"></a>
+                    <a href="/item-list/Pizza Pizza" class="img-thumbnail rounded"><input id="img-pza" name="Pizza Pizza" type="image" src="/Content/Images/restaurants/pizzapizza.png"  alt="pizzapizza"></a>
                     <% } %>
                         <div class="card-body">
                             <h5 class="card-title">Pizza Pizza</h5>
@@ -96,7 +96,7 @@
                             )
                         ) 
                     ) { %>
-                <a href="/item-list/Tim Hortons"><input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png" class="img-thumbnail rounded" alt="timhortons"></a>
+                <a href="/item-list/Tim Hortons" class="img-thumbnail rounded"><input id="img-th" name="Tim Hortons" type="image" src="/Content/Images/restaurants/timhortons.png"  alt="timhortons"></a>
                 <% } else { %>
                     <img src="/Content/Images/restaurants/timhortons_closed.png" alt="timhortons" class="img-thumbnail rounded">
                     <% } %>
@@ -125,7 +125,7 @@
                             ((time.hour == 16 && time.minute < 30) || time.hour <= 15)
                         )
                 ){ %>
-                <a href="/item-list/Smokes Poutinerie"><input id="img-th" name="Smokes Poutinerie" type="image" src="/Content/Images/restaurants/smokespoutinerie.png" class="img-thumbnail rounded" alt="smokespoutinerie"></a>
+                <a href="/item-list/Smokes Poutinerie" class="img-thumbnail rounded"><input id="img-th" name="Smokes Poutinerie" type="image" src="/Content/Images/restaurants/smokespoutinerie.png"  alt="smokespoutinerie"></a>
                 <% } else { %>
                     <img src="/Content/Images/restaurants/smokespoutinerie_closed.png" alt="smokespoutinerie" class="img-thumbnail rounded">
                     <% } %>
@@ -157,7 +157,7 @@
                             )
                         ) 
                     ) { %>
-                <a href="/item-list/Subway"><input id="img-th" name="Subway" type="image" src="/Content/Images/restaurants/subway.png" class="img-thumbnail rounded" alt="subway"></a>
+                <a href="/item-list/Subway" class="img-thumbnail rounded"><input id="img-th" name="Subway" type="image" src="/Content/Images/restaurants/subway.png"  alt="subway"></a>
                 <% } else { %>
                     <img src="/Content/Images/restaurants/subway_closed.png" alt="subway" class="img-thumbnail rounded">
                     <% } %>
