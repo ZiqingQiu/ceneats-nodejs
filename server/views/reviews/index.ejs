@@ -1,61 +1,65 @@
 <% include ../partials/header.ejs %>
 
-    <div class="background_form"></div>
+<div class="background_form"></div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-3 col-md-6" id="centerForm_C">
-                <h1>
-                    <%= title %>
-                </h1>
-                <div class="form">
-                    <table class="table table-bordered table-striped table-hover">
-                        <!-- Header Row-->
-                        <tr>
-                            <th class="text-center">Index</th>
-                            <th class="text-center">Display Name</th>
-                            <th class="text-center">Restaurant Name</th>
-                            <th class="text-center">comment</th>
-                            <th class="text-center">Edit</th>
-                            <th class="text-center">Delete</th>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6" id="centerForm_C">
+            <h1>
+                <%= title %>
+            </h1>
+            <div class="form">
+                <table class="table table-bordered table-striped table-hover">
+                    <!-- Header Row-->
+                    <tr>
+                        <th class="text-center">Index</th>
+                        <th class="text-center">Display Name</th>
+                        <th class="text-center">Restaurant Name</th>
+                        <th class="text-center">Comment</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
 
-                        </tr>
+                    </tr>
 
-                        <!-- Repeatable Template Row -->
-                        <% for(let count = 0; count < reviewList.length; count++) { %>
-                            <tr>
-                                <td class="text-center">
-                                    <%= (count+1) %>
-                                </td>
-                                <td class="text-center">
-                                    <%= reviewList[count].displayName %>
-                                </td>
-                                <td class="text-center">
-                                    <%= reviewList[count].restaurantName %>
-                                </td>
-                                <td class="text-center">
-                                    <%= reviewList[count].comment %>
-                                </td>
+                    <!-- Repeatable Template Row -->
+                    <% for(let count = 0; count < reviewList.length; count++) { %>
+                    <tr>
+                        <td class="text-center">
+                            <%= (count+1) %>
+                        </td>
+                        <td class="text-center">
+                            <%= reviewList[count].displayName %>
+                        </td>
+                        <td class="text-center">
+                            <%= reviewList[count].restaurantName %>
+                        </td>
+                        <td class="text-center">
+                            <%= reviewList[count].comment %>
+                        </td>
 
-                                <td class="text-center">
-                                    <a href="/review-list/edit/<%= reviewList[count]._id %>" class="btn btn-primary"><i
+                        <td class="text-center">
+                            <% if( reviewList[count].displayName == displayName ){ %>
+                            <a href="/review-list/edit/<%= reviewList[count]._id %>" class="btn btn-primary"><i
                                     class="fas fa-pencil-alt"></i> Edit</a>
-                                </td>
-
-                                <td class="text-center">
-                                    <a href="/review-list/delete/<%= reviewList[count]._id %>" class="btn btn-danger"><i
-                                    class="fas fa-trash-alt"></i> Delete</a>
-                                </td>
-                            </tr>
                             <% } %>
-                    </table>
-                    <a class="btn btn-primary" href="/review-list/add" role="button" style="margin-bottom: 10px;">
-                        <i class="fas fa-plus-circle"></i> Add an review</a>
-                    <a href="/" class="btn btn-warning" style="margin-bottom: 10px;">
-                        <i class="fas fa-undo"></i> Home</a>
-                </div>
+                        </td>
+
+                        <td class="text-center">
+                            <% if( reviewList[count].displayName == displayName ){ %>
+                            <a href="/review-list/delete/<%= reviewList[count]._id %>" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i> Delete</a>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+                <a class="btn btn-primary" href="/review-list/add" role="button" style="margin-bottom: 10px;">
+                    <i class="fas fa-plus-circle"></i> Add an review</a>
+                <a href="/" class="btn btn-warning" style="margin-bottom: 10px;">
+                    <i class="fas fa-undo"></i> Home</a>
             </div>
         </div>
     </div>
+</div>
 
-    <% include ../partials/footer.ejs %>
+<% include ../partials/footer.ejs %>
