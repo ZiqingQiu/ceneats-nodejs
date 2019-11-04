@@ -18,15 +18,15 @@ process.on('unhandledRejection', () => { });
                 page = new Page();
                 driver = page.driver;
                 await page.visit('https://ceneats.herokuapp.com');
+                //await page.visit('localhost:3000');
             });
 
             afterEach (async () => {
-                await page.quit();
+                //await page.quit();
             });
 
-            it ('find the login button', async () => {
-                const result = await page.clickLogInButton();
-                expect(result.inputEnabled).to.equal(true);
+            it ('Log in', async () => {
+                const result = await page.logIn();
             });
         });
     } catch (ex) {

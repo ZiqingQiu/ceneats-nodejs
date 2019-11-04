@@ -1,4 +1,4 @@
-const {Builder, By, until} = require('selenium-webdriver');
+const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 let o = new chrome.Options();
 
@@ -13,6 +13,8 @@ class Page {
             .setChromeOptions(o)
             .forBrowser('chrome')
             .build();
+        // max the screen
+        this.driver.manage().window().maximize();
         // visit a webpage
         this.visit = async function (theUrl) {
             return await this.driver.get(theUrl);
@@ -30,6 +32,16 @@ class Page {
         this.findByName = async function (name) {
             await this.driver.wait(until.elementLocated(By.name(name)), 15000, 'Looking for element');
             return await this.driver.findElement(By.name(name));
+        };
+        // wait and find a specific element with it's class name
+        this.findByClassName = async function (name) {
+            await this.driver.wait(until.elementLocated(By.className(name)), 15000, 'Looking for element');
+            return await this.driver.findElement(By.className(name));
+        };
+
+        this.findByXPath= async function (url) {
+            await this.driver.wait(until.elementLocated(By.xpath('//a[@href="'+url+'"]')), 15000, 'Looking for element');
+            return await this.driver.findElement(By.xpath('//a[@href="'+url+'"]'));
         };
         // fill input web elements
         this.write = async function (el, txt) {

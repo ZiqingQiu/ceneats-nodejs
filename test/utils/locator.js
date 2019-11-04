@@ -1,4 +1,6 @@
 module.exports = {
-    loginButtonClass: 'fa-sign-in-alt',
-    logoutButtonClass: 'fa-sign-out-alt'
+    loginButtonId: 'LoginBtn',
+    loginUserName: 'username',
+    loginPwdName: 'password',   
+    submitBtnClassName: 'btn-success' 
 };
