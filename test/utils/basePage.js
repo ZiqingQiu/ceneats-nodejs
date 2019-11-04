@@ -1,0 +1,54 @@
+const { Builder, By, until } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+let o = new chrome.Options();
+
+// o.addArguments('start-fullscreen');
+o.addArguments('disable-infobars');
+// o.addArguments('headless'); // running test on visual chrome browser
+o.setUserPreferences({ credential_enable_service: false });
+
+class Page {
+    constructor() {
+        this.driver = new Builder()
+            .setChromeOptions(o)
+            .forBrowser('chrome')
+            .build();
+        // max the screen
+        this.driver.manage().window().maximize();
+        // visit a webpage
+        this.visit = async function (theUrl) {
+            return await this.driver.get(theUrl);
+        };
+        // quit current session
+        this.quit = async function () {
+            return await this.driver.quit();
+        };
+        // wait and find a specific element with it's id
+        this.findById = async function (id) {
+            await this.driver.wait(until.elementLocated(By.id(id)), 15000, 'Looking for element');
+            return await this.driver.findElement(By.id(id));
+        };
+        // wait and find a specific element with it's name
+        this.findByName = async function (name) {
+            await this.driver.wait(until.elementLocated(By.name(name)), 15000, 'Looking for element');
+            return await this.driver.findElement(By.name(name));
+        };
+        // wait and find a specific element with it's class name
+        this.findByClassName = async function (name) {
+            await this.driver.wait(until.elementLocated(By.className(name)), 15000, 'Looking for element');
+            return await this.driver.findElement(By.className(name));
+        };
+
+        this.findByXPath= async function (url) {
+            await this.driver.wait(until.elementLocated(By.xpath('//a[@href="'+url+'"]')), 15000, 'Looking for element');
+            return await this.driver.findElement(By.xpath('//a[@href="'+url+'"]'));
+        };
+        // fill input web elements
+        this.write = async function (el, txt) {
+            return await el.sendKeys(txt);
+        };
+    }
+}
+
+module.exports = Page;
+
