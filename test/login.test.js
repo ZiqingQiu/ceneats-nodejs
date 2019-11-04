@@ -17,12 +17,12 @@ process.on('unhandledRejection', () => { });
             beforeEach (async () => {
                 page = new Page();
                 driver = page.driver;
-                await page.visit('https://ceneats.herokuapp.com');
-                //await page.visit('localhost:3000');
+                //await page.visit('https://ceneats.herokuapp.com');
+                await page.visit('localhost:3000');
             });
 
             afterEach (async () => {
-                //await page.quit();
+                await page.quit();
             });
 
             it ('Log in', async () => {

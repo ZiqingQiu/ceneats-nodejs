@@ -8,11 +8,16 @@ o.addArguments('disable-infobars');
 o.setUserPreferences({ credential_enable_service: false });
 
 class Page {
-    constructor() {
-        this.driver = new Builder()
+    constructor(driverObj = null) {
+        if (driverObj == null) {
+            this.driver = new Builder()
             .setChromeOptions(o)
             .forBrowser('chrome')
             .build();
+        }
+        else {
+            this.driver = driverObj;
+        }
         // max the screen
         this.driver.manage().window().maximize();
         // visit a webpage
