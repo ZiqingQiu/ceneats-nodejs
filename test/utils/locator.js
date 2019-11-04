@@ -1,6 +1,22 @@
 module.exports = {
-    loginButtonId: 'LoginBtn',
+    //common
+    submitBtnClassName: 'btn-success',
+    selectBtnClassName: 'btn-primary',
+
+    //index page
+    loginBtnId: 'LoginBtn',
     loginUserName: 'username',
     loginPwdName: 'password',   
-    submitBtnClassName: 'btn-success' 
+    orderPageBtnId: 'orderListBtn',
+
+    timhortonResName: 'Tim Hortons',
+    
+    //order-list page
+    contiueOrderBtnId: 'continueOrderBtn',
+    inputFoodId: 'foodid',
+    inputQuantityId: 'quantity',
+    orderStatusDpDownId: 'statusDropdown',
+    orderStatusDpDownItemId: 'dpdown_ordered',
+
+    //item page
 };

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "test": "mocha test --reporter mochawesome --reporter-options autoOpen=true"
+    "test": "mocha test/order.crud.test.js --reporter mochawesome --reporter-options autoOpen=true"
   },
   "engines": {
     "node": "^10.15.0",
