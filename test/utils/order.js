@@ -7,7 +7,7 @@ Page.prototype.continueOrder = async function() {
     return true;
 }
 
-Page.prototype.addOrder = async function(id='1101',quantity='3') {
+Page.prototype.inputOrder = async function(id='1101',quantity='3') {
     inputFoodId = await this.findById(locator.inputFoodId);
     await this.write(inputFoodId, id);
     inputFoodQuantity = await this.findById(locator.inputQuantityId);
@@ -25,16 +25,28 @@ Page.prototype.addOrder = async function(id='1101',quantity='3') {
 }
 
 Page.prototype.getLastOrder = async function() {
-    //get cols
+    //get total row count
     row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
+    //build xpath for food id ele
     let tableCellFoodIdXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[3]";
     food_id = await this.findTableCellTextByXPath(tableCellFoodIdXPath);
+    //build xpath for quantity ele
     let tableCellQuantityXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[4]";
     quantity = await this.findTableCellTextByXPath(tableCellQuantityXPath);
+    //console.log('dbg ' + row_length + ' ' + food_id + '  ' + quantity);
     return {
         food_id: food_id,
         quantity: quantity
     };
+}
+
+Page.prototype.clickEditLastOrder = async function() {
+    //get total row count
+    row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
+    //build xpath for edit btn
+    let edtBtnXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[7]/a";
+    //click edit btn
+    await this.clickBtnByXpath(edtBtnXPath);
 }
 
 module.exports = Page;

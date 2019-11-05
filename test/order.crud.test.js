@@ -17,23 +17,23 @@ process.on('unhandledRejection', () => { });
 
 (async function testCase1() {
     try {
-        describe ('Ceneats order CRUD testing', async function () {
+        describe('Ceneats order CRUD testing', async function () {
             this.timeout(50000);
             let driver, indexPage;
 
-            beforeEach (async () => {
+            beforeEach(async () => {
                 indexPage = new IndexPage();
                 driver = indexPage.driver;
                 await indexPage.visit(startURL);
                 await indexPage.logIn();
             });
 
-            afterEach (async () => {
-                //await indexPage.quit();
-                //await orderPage.quit();
+            afterEach(async () => {
+                await driver.quit();
             });
 
-            it ('Create an order', async () => {
+            // Test Case -- Create an order
+            it('Create an order', async () => {
                 //click order list
                 await indexPage.viewOrderList();
                 orderPage = new OrderPage(driver);
@@ -46,17 +46,31 @@ process.on('unhandledRejection', () => { });
                 await itemPage.clickAddOrder();
                 //add order
                 let food_id_expect = '1101', food_quantity_expect = '5';
-                await orderPage.addOrder(food_id_expect, food_quantity_expect);
+                await orderPage.inputOrder(food_id_expect, food_quantity_expect);
                 //check latest order
                 const result = await orderPage.getLastOrder();
                 expect(result.food_id).to.equal(food_id_expect);
-                expect(result.quantity).to.equal(food_quantity_expect);               
+                expect(result.quantity).to.equal(food_quantity_expect);
             });
 
+            // Test Case -- Edit an order
+            it('Edit an order', async () => {
+                //click order list
+                await indexPage.viewOrderList();
+                orderPage = new OrderPage(driver);
+                //click edit btn
+                orderPage.clickEditLastOrder();
+                let food_id_expect = '1102', food_quantity_expect = '7';
+                await orderPage.inputOrder(food_id_expect, food_quantity_expect);
+                //check latest order
+                const result = await orderPage.getLastOrder();
+                expect(result.food_id).to.equal(food_id_expect);
+                expect(result.quantity).to.equal(food_quantity_expect);
+            });
 
         });
     } catch (ex) {
-        console.log (new Error(ex.message));
+        console.log(new Error(ex.message));
     } finally {
     }
 })();
