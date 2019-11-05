@@ -29,7 +29,7 @@ process.on('unhandledRejection', () => { });
             });
 
             afterEach(async () => {
-                await driver.quit();
+                //await driver.quit();
             });
 
             // Test Case -- Create an order
@@ -58,7 +58,7 @@ process.on('unhandledRejection', () => { });
                 //click order list
                 await indexPage.viewOrderList();
                 orderPage = new OrderPage(driver);
-                //click edit btn
+                //click last edit btn
                 orderPage.clickEditLastOrder();
                 let food_id_expect = '1102', food_quantity_expect = '7';
                 await orderPage.inputOrder(food_id_expect, food_quantity_expect);
@@ -66,6 +66,21 @@ process.on('unhandledRejection', () => { });
                 const result = await orderPage.getLastOrder();
                 expect(result.food_id).to.equal(food_id_expect);
                 expect(result.quantity).to.equal(food_quantity_expect);
+            });
+
+            // Test Case -- Delete an order
+            it('Delete an order', async () => {
+                //click order list
+                await indexPage.viewOrderList();
+                orderPage = new OrderPage(driver);
+                //get current row count
+                let row_length_before_del = await orderPage.getTableRowCount();
+                if (1 == row_length_before_del) {
+                    console.log('There is no order, therefore can not perform delete test');
+                    return true;
+                }
+                //click last delete btn
+                orderPage.clickDelLastOrder();
             });
 
         });

@@ -49,4 +49,19 @@ Page.prototype.clickEditLastOrder = async function() {
     await this.clickBtnByXpath(edtBtnXPath);
 }
 
+Page.prototype.getTableRowCount = async function() {
+    return await this.findTableSizeByXpath(locator.tableRowXPath);
+}
+
+Page.prototype.clickDelLastOrder = async function() {
+    //get total row count
+    row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
+    //build xpath for delete btn
+    let delBtnXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[8]/a";
+    //click delete btn
+    await this.clickBtnByXpath(delBtnXPath);
+    //click yes to alert
+    await this.acceptAlert();
+}
+
 module.exports = Page;

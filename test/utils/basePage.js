@@ -67,6 +67,16 @@ class Page {
             await el.clear();
             return await el.sendKeys(txt);
         };
+
+        // send keys
+        this.sendKeys = async function (key) {
+            return this.driver.sendKeys(key);
+        }
+
+        // accpet alert
+        this.acceptAlert = async function () {
+            await this.driver.switchTo().alert().accept();
+        }
     }
 }
 
