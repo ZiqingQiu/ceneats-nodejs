@@ -1,3 +1,7 @@
+//test env
+//const startURL = 'https://ceneats.herokuapp.com';
+const startURL = 'localhost:3000';
+
 const { describe, it, after, before } = require('mocha');
 const Page = require('./utils/index');
 
@@ -17,8 +21,7 @@ process.on('unhandledRejection', () => { });
             beforeEach (async () => {
                 page = new Page();
                 driver = page.driver;
-                //await page.visit('https://ceneats.herokuapp.com');
-                await page.visit('localhost:3000');
+                await page.visit(startURL);
             });
 
             afterEach (async () => {
