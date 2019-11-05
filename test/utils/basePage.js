@@ -44,10 +44,6 @@ class Page {
             return await this.driver.findElement(By.className(name));
         };
 
-        this.findByXPath = async function (path) {
-            await this.driver.wait(until.elementLocated(By.xpath(path)), 15000, 'Looking for element');
-            return this.driver.findElement(By.xpath(path));
-        };
 
         //table APIs 
         this.findTableCellTextByXPath = async function (path) {
@@ -61,9 +57,14 @@ class Page {
                 return rows.length}).catch(e => console.log('dbg well we do NOT find it ' + e));
         }
 
+        this.clickBtnByXpath = async function (path) {
+            await this.driver.wait(until.elementLocated(By.xpath(path)), 15000, 'Looking for element');
+            return this.driver.findElement(By.xpath(path)).click();
+        }
 
         // fill input web elements
         this.write = async function (el, txt) {
+            await el.clear();
             return await el.sendKeys(txt);
         };
     }
