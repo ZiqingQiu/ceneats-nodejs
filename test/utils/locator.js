@@ -17,6 +17,8 @@ module.exports = {
     inputQuantityId: 'quantity',
     orderStatusDpDownId: 'statusDropdown',
     orderStatusDpDownItemId: 'dpdown_ordered',
-
+    orderTableClassName: 'table-bordered',
+    tableRowXPath: "//*[@id='centerForm_C']/table/tbody/tr",
+    
     //item page
 };

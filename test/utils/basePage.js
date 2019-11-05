@@ -11,9 +11,9 @@ class Page {
     constructor(driverObj = null) {
         if (driverObj == null) {
             this.driver = new Builder()
-            .setChromeOptions(o)
-            .forBrowser('chrome')
-            .build();
+                .setChromeOptions(o)
+                .forBrowser('chrome')
+                .build();
         }
         else {
             this.driver = driverObj;
@@ -44,10 +44,24 @@ class Page {
             return await this.driver.findElement(By.className(name));
         };
 
-        this.findByXPath= async function (url) {
-            await this.driver.wait(until.elementLocated(By.xpath('//a[@href="'+url+'"]')), 15000, 'Looking for element');
-            return await this.driver.findElement(By.xpath('//a[@href="'+url+'"]'));
+        this.findByXPath = async function (path) {
+            await this.driver.wait(until.elementLocated(By.xpath(path)), 15000, 'Looking for element');
+            return this.driver.findElement(By.xpath(path));
         };
+
+        //table APIs 
+        this.findTableCellTextByXPath = async function (path) {
+            await this.driver.wait(until.elementLocated(By.xpath(path)), 15000, 'Looking for element');
+            return this.driver.findElement(By.xpath(path)).getText();
+        }
+
+        this.findTableSizeByXpath = async function (path) {
+            await this.driver.wait(until.elementLocated(By.xpath(path)), 15000, 'Looking for element');
+            return this.driver.findElements(By.xpath(path)).then(rows => {
+                return rows.length}).catch(e => console.log('dbg well we do NOT find it ' + e));
+        }
+
+
         // fill input web elements
         this.write = async function (el, txt) {
             return await el.sendKeys(txt);

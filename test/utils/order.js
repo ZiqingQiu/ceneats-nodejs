@@ -7,7 +7,7 @@ Page.prototype.continueOrder = async function() {
     return true;
 }
 
-Page.prototype.addOrder = async function(id='1001',quantity='3') {
+Page.prototype.addOrder = async function(id='1101',quantity='3') {
     inputFoodId = await this.findById(locator.inputFoodId);
     await this.write(inputFoodId, id);
     inputFoodQuantity = await this.findById(locator.inputQuantityId);
@@ -24,6 +24,17 @@ Page.prototype.addOrder = async function(id='1001',quantity='3') {
     return true;
 }
 
-
+Page.prototype.getLastOrder = async function() {
+    //get cols
+    row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
+    let tableCellFoodIdXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[3]";
+    food_id = await this.findTableCellTextByXPath(tableCellFoodIdXPath);
+    let tableCellQuantityXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[4]";
+    quantity = await this.findTableCellTextByXPath(tableCellQuantityXPath);
+    return {
+        food_id: food_id,
+        quantity: quantity
+    };
+}
 
 module.exports = Page;

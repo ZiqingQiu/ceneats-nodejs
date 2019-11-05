@@ -45,9 +45,15 @@ process.on('unhandledRejection', () => { });
                 itemPage = new ItemPage(driver);
                 await itemPage.clickAddOrder();
                 //add order
-                await orderPage.addOrder();
-                let 
+                let food_id_expect = '1101', food_quantity_expect = '5';
+                await orderPage.addOrder(food_id_expect, food_quantity_expect);
+                //check latest order
+                const result = await orderPage.getLastOrder();
+                expect(result.food_id).to.equal(food_id_expect);
+                expect(result.quantity).to.equal(food_quantity_expect);               
             });
+
+
         });
     } catch (ex) {
         console.log (new Error(ex.message));
