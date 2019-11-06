@@ -8,6 +8,7 @@ module.exports = {
     loginUserName: 'username',
     loginPwdName: 'password',   
     orderPageBtnId: 'orderListBtn',
+    reviewPageBtnId: 'reviewListBtn',
 
     timhortonResName: 'Tim Hortons',
     
@@ -20,5 +21,16 @@ module.exports = {
     orderTableClassName: 'table-bordered',
     tableRowXPath: "//*[@id='centerForm_C']/table/tbody/tr",
     
+    //feedback page
+    addReviewBtnId: 'addReviewBtn',
+    fdResDpDownId: 'restaurantDropdown',
+    fdBackResBKId: 'fdBackResBK',
+    fdBackResMCDId: 'fdBackResMCD',
+    fdBackResPPId: 'fdBackResPP',
+    fdBackResTHId: 'fdBackResTH',
+    fdBackResSPId: 'fdBackResSP',
+    fdBackResSWId: 'fdBackResSW',
+    fdBackCommentId: 'comment',
+
     //item page
 };
