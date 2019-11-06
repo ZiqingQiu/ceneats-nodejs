@@ -7,7 +7,7 @@
 
     <img src="Content/Images/banner.png" class="img-fluid banner" alt="Responsive image">
     <div class="d-flex flex-row justify-content-around flex-wrap card-container   rounded">
-        <!--   <div class="flex-container">-->
+       
         <div class="custom card flex-sm-fill shadow rounded" id="restaurant-card">
             <% if(
                         (time.hour >= 16 || time.hour < 8) || 
@@ -116,7 +116,6 @@
             </span>
                         </div>
         </div>
-        <div class="custom card flex-sm-fill shadow" id="restaurant-card-space"></div>
         <div class="custom card flex-sm-fill shadow" id="restaurant-card">
             <% if (
                         (time.day != "Sunday" && time.day != "Saturday") && 
@@ -177,7 +176,6 @@
             </span>
                         </div>
         </div>
-        <div class="custom card flex-sm-fill shadow" id="restaurant-card-space"></div>
     </div>
     </div>
     </div>
