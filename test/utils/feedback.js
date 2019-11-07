@@ -61,5 +61,24 @@ Page.prototype.inputFeedBack = async function (resName, fdBack) {
         };
     }
 
+    Page.prototype.clickEditLastFeedBack = async function() {
+        //get total row count
+        row_length = await this.findTableSizeByXpath(locator.fdBackTableRowXpath);
+        //build xpath for edit btn
+        let edtBtnXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[5]/a";
+        //click edit btn
+        await this.clickBtnByXpath(edtBtnXPath);
+    }
+
+    Page.prototype.inputFeedBackonly = async function (fdBack) {
+       
+            //input feedback
+            let inputCommentBox = await this.findById(locator.fdBackCommentId);
+            await this.write(inputCommentBox, fdBack);
+            //submit new feedback
+            let submitBtn = await this.findByClassName(locator.selectBtnClassName);
+            await submitBtn.click();
+        }
+
 
     module.exports = Page;
