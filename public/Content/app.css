@@ -33,6 +33,10 @@
     overflow: hidden;
 }
 
+a.img-thumbnail.rounded > input{
+    width: 100%;
+}
+
 footer {
     position: fixed;
     bottom:0px;
@@ -91,10 +95,10 @@ th {
     visibility: hidden;
 }
 
-@media(max-width: 1497px) {
-    #restaurant-card-space {
-        width: 15rem;
-        display: none;
+@media(min-width: 1497px) {
+    .card-container {
+        width: calc( 100% - 60em);
+        
     }
 }
 
