@@ -81,6 +81,7 @@ process.on('unhandledRejection', () => { });
                 }
                 //click last delete btn
                 await orderPage.clickDelLastOrder();
+                //validate total order number -1
                 let row_length_after_del = await orderPage.getTableRowCount();
                 expect(row_length_after_del).to.equal(row_length_before_del-1);
             });

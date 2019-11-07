@@ -16,7 +16,7 @@ process.on('unhandledRejection', () => { });
 
 (async function testCase1() {
     try {
-        describe('Ceneats order CRUD testing', async function () {
+        describe('Ceneats feedback CRUD testing', async function () {
             this.timeout(50000);
             let driver, indexPage;
 
@@ -28,7 +28,7 @@ process.on('unhandledRejection', () => { });
             });
 
             afterEach(async () => {
-                //await driver.quit();
+                await driver.quit();
             });
 
             // Test Case -- Create a feedback
@@ -62,6 +62,24 @@ process.on('unhandledRejection', () => { });
                 //validate results
                 const result = await fdBackPage.getLastFeedback();
                 expect(result.comment).to.equal(newComments);
+            });
+
+            // Test Case -- Delete a feedback
+            it('Delete a feedback', async () => {
+                //click view feedback
+                await indexPage.viewFeedBackList();
+                fdBackPage = new FeedBackPage(driver);
+                //get current row count
+                let row_length_before_del = await fdBackPage.getTableRowCount();     
+                if (1 == row_length_before_del) {
+                    console.log('There is no feedback, therefore can not perform delete test');
+                    return true;
+                }      
+                //click last delete btn
+                await fdBackPage.clickDelLastFeedBack();         
+                //validate total feedback number -1
+                let row_length_after_del = await fdBackPage.getTableRowCount();
+                expect(row_length_after_del).to.equal(row_length_before_del-1);            
             });
 
         });
