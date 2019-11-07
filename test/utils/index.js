@@ -1,13 +1,28 @@
 let Page = require('./basePage');
 const locator = require('./locator');
 
-Page.prototype.logIn = async function() {
+Page.prototype.logIn = async function(logInRole='Student') {
     logInButton = await this.findById(locator.loginBtnId);
     await logInButton.click();
+    let userName, userPwd;
+    switch (logInRole) {
+        case 'Student': 
+            userName = '300919236';
+            userPwd = '12345';
+            break;
+        case 'Restaurant':
+            userName = '300919237';
+            userPwd = '23456';
+            break;
+        default:
+            console.log('Error.. Invalid logInRole ' + logInRole);
+            this.quit();
+    }
+
     usrName = await this.findByName(locator.loginUserName);
-    await usrName.sendKeys('300919236');
+    await usrName.sendKeys(userName);
     usrPwd = await this.findByName(locator.loginPwdName);
-    await usrPwd.sendKeys('12345');
+    await usrPwd.sendKeys(userPwd);
     submitBtn = await this.findByClassName(locator.submitBtnClassName);
     await submitBtn.click();
     return true;

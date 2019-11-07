@@ -10,12 +10,11 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 const IndexPage = require('./utils/index');
-const OrderPage = require('./utils/order');
 const ItemPage = require('./utils/item');
 
 process.on('unhandledRejection', () => { });
 
-(async function orderCrud() {
+(async function itemCrud() {
     try {
         describe('Ceneats order CRUD testing', async function () {
             this.timeout(50000);

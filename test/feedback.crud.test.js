@@ -14,7 +14,7 @@ const FeedBackPage = require('./utils/feedback');
 
 process.on('unhandledRejection', () => { });
 
-(async function testCase1() {
+(async function feedBackCrud() {
     try {
         describe('Ceneats feedback CRUD testing', async function () {
             this.timeout(50000);
