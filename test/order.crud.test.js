@@ -60,7 +60,7 @@ process.on('unhandledRejection', () => { });
                 orderPage = new OrderPage(driver);
                 //click last edit btn
                 orderPage.clickEditLastOrder();
-                let food_id_expect = '1102', food_quantity_expect = '7';
+                let food_id_expect = '1103', food_quantity_expect = '8';
                 await orderPage.inputOrder(food_id_expect, food_quantity_expect);
                 //check latest order
                 const result = await orderPage.getLastOrder();

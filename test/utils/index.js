@@ -25,4 +25,10 @@ Page.prototype.clickRestaurant = async function(resName = locator.timhortonResNa
     return true;
 }
 
+Page.prototype.viewFeedBackList = async function() {
+    fdBackBtn = await this.findById(locator.reviewPageBtnId);
+    await fdBackBtn.click();
+    return true;
+}
+
 module.exports = Page;
