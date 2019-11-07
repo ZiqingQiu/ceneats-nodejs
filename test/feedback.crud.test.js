@@ -42,6 +42,11 @@ process.on('unhandledRejection', () => { });
                 let restaurant = "Tim Hortons";
                 let comments = "The chicken wrap tastes good.";
                 fdBackPage.inputFeedBack(restaurant, comments);
+                //check latest feedback
+                fdBackPage = new FeedBackPage(driver);
+                const result = await fdBackPage.getLastFeedback();
+                expect(result.resName).to.equal(restaurant);
+                expect(result.comment).to.equal(comments);
             });
 
         });

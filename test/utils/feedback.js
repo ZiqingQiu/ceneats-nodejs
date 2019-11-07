@@ -46,5 +46,20 @@ Page.prototype.inputFeedBack = async function (resName, fdBack) {
         await submitBtn.click();
     }
 
+    Page.prototype.getLastFeedback = async function() {
+        //get total row count
+        row_length = await this.findTableSizeByXpath(locator.fdBackTableRowXpath);
+        //build xpath for restaurant ele
+        let resNameXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[3]";
+        resName = await this.findTableCellTextByXPath(resNameXPath);
+        //build xpath for comments ele
+        let commentsXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[4]";
+        comment = await this.findTableCellTextByXPath(commentsXPath);
+        return {
+            resName: resName,
+            comment: comment
+        };
+    }
+
 
     module.exports = Page;

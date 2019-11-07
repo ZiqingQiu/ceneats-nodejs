@@ -31,6 +31,7 @@ module.exports = {
     fdBackResSPId: 'fdBackResSP',
     fdBackResSWId: 'fdBackResSW',
     fdBackCommentId: 'comment',
+    fdBackTableRowXpath: '//*[@id="centerForm_C"]/div/table/tbody/tr',
 
     //item page
 };
