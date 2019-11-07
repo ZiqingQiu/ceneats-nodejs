@@ -41,12 +41,27 @@ process.on('unhandledRejection', () => { });
                 //input feedback
                 let restaurant = "Tim Hortons";
                 let comments = "The chicken wrap tastes good.";
-                fdBackPage.inputFeedBack(restaurant, comments);
+                await fdBackPage.inputFeedBack(restaurant, comments);
                 //check latest feedback
                 fdBackPage = new FeedBackPage(driver);
                 const result = await fdBackPage.getLastFeedback();
                 expect(result.resName).to.equal(restaurant);
                 expect(result.comment).to.equal(comments);
+            });
+
+            // Test Case -- Edit a feedback
+            it('Edit a feedback', async () => {
+                //click view feedback
+                await indexPage.viewFeedBackList();
+                fdBackPage = new FeedBackPage(driver);
+                //click edit feedback
+                fdBackPage.clickEditLastFeedBack();
+                //edit comments
+                let newComments = "This is tested editing comments."
+                await fdBackPage.inputFeedBackonly(newComments);
+                //validate results
+                const result = await fdBackPage.getLastFeedback();
+                expect(result.comment).to.equal(newComments);
             });
 
         });

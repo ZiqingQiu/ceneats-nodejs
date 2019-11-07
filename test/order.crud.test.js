@@ -80,7 +80,7 @@ process.on('unhandledRejection', () => { });
                     return true;
                 }
                 //click last delete btn
-                orderPage.clickDelLastOrder();
+                await orderPage.clickDelLastOrder();
             });
 
         });
