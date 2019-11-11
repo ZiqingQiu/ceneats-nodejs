@@ -115,7 +115,7 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else {
             // refresh the item list
-            res.redirect('/item-list/' + + req.body.resName);
+            res.redirect('/item-list/' + req.body.resName);
         }
     });
 }
@@ -169,15 +169,27 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    itemModel.remove({_id: id}, (err) => {
-        if(err) {
-            console.log(err);
-            res.end(err);
-        }
-        else {
-            // refresh the item list
-            res.redirect('/item-list/' + req.body.resName);
-        }
-    });
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        itemModel.findById(id, (err, itemObject) => {
+            if(err) {
+                console.log(err);
+                res.end(err);
+            }
+            else
+            {
+                let resName = itemObject.restaurantName;
+                itemModel.remove({_id: id}, (err) => {
+                    if(err) {
+                        console.log(err);
+                        res.end(err);
+                    }
+                    else {
+                        // refresh the item list
+                        res.redirect('/item-list/' + resName);
+                    }
+                });
+            }
+        });
+    }
 }
 
