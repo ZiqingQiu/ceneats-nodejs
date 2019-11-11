@@ -35,5 +35,10 @@ module.exports = {
 
     //item page
     addItemBtnId: 'addItemBtn',
-    addOrderBtnId: 'addOrderBtn'
+    addOrderBtnId: 'addOrderBtn',
+    itemId: 'itemId',
+    itemNameId: 'itemName',
+    itemInventoryId: 'quantity',
+    itemURLId: 'itemURL',
+    itemPriceId: 'price'
 };

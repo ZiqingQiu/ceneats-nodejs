@@ -38,6 +38,13 @@ process.on('unhandledRejection', () => { });
                 //click add item
                 itemPage = new ItemPage(driver);
                 await itemPage.clickAddItem();
+                //prepare item para
+                let itemId = '1188';
+                let itemName = 'testItem';
+                let inventory = '888';
+                let imgurl = 'testDummyUrl';
+                let price = '4.56';
+                itemPage.inputItem(itemId,itemName,inventory,imgurl,price);
             });
 
             // // Test Case -- Edit an item
