@@ -15,7 +15,7 @@ const ItemPage = require('./utils/item');
 
 process.on('unhandledRejection', () => { });
 
-(async function testCase1() {
+(async function orderCrud() {
     try {
         describe('Ceneats order CRUD testing', async function () {
             this.timeout(50000);

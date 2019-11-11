@@ -34,4 +34,11 @@ module.exports = {
     fdBackTableRowXpath: '//*[@id="centerForm_C"]/div/table/tbody/tr',
 
     //item page
+    addItemBtnId: 'addItemBtn',
+    addOrderBtnId: 'addOrderBtn',
+    itemId: 'itemId',
+    itemNameId: 'itemName',
+    itemInventoryId: 'quantity',
+    itemURLId: 'itemURL',
+    itemPriceId: 'price'
 };

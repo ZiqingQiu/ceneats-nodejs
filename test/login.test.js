@@ -12,7 +12,7 @@ chai.use(chaiAsPromised);
 
 process.on('unhandledRejection', () => { });
 
-(async function testCase1() {
+(async function Login() {
     try {
         describe ('Ceneats log in testing', async function () {
             this.timeout(50000);
