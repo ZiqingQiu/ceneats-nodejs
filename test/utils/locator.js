@@ -40,5 +40,6 @@ module.exports = {
     itemNameId: 'itemName',
     itemInventoryId: 'quantity',
     itemURLId: 'itemURL',
-    itemPriceId: 'price'
+    itemPriceId: 'price',
+    itemTableRowXpath: '//*[@id="centerForm_C"]/div/table/tbody/tr',
 };

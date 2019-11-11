@@ -36,6 +36,29 @@ Page.prototype.inputItem = async function (itemId, itemName, inventory, imgurl, 
     await submitBtn.click();
 }
 
+Page.prototype.getLastItem = async function() {
+    //get total row count
+    row_length = await this.findTableSizeByXpath(locator.itemTableRowXpath);
+    //build xpath for itemid Element
+    let itemIdEleXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[2]";
+    item_id = await this.findTableCellTextByXPath(itemIdEleXPath);
+    //build xpath for itemName ele
+    let itemNameEleXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[4]";
+    item_name = await this.findTableCellTextByXPath(itemNameEleXPath);
+    //build xpath for itemInventory ele
+    let itemInventoryEleXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[5]";
+    item_inventory = await this.findTableCellTextByXPath(itemInventoryEleXPath);    
+    //build xpath for itemPrice ele
+    let itemPriceEleXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[7]";
+    item_price = await this.findTableCellTextByXPath(itemPriceEleXPath);   
 
+    //console.log('dbg ' + row_length + ' ' + food_id + '  ' + quantity);
+    return {
+        item_id: item_id,
+        item_name: item_name,
+        item_inventory: item_inventory,
+        item_price: item_price
+    };
+}
 
 module.exports = Page;

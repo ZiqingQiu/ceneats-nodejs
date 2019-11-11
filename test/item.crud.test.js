@@ -44,7 +44,13 @@ process.on('unhandledRejection', () => { });
                 let inventory = '888';
                 let imgurl = 'testDummyUrl';
                 let price = '4.56';
-                itemPage.inputItem(itemId,itemName,inventory,imgurl,price);
+                await itemPage.inputItem(itemId,itemName,inventory,imgurl,price);
+                //check latest item
+                const result = await itemPage.getLastItem();
+                expect(result.item_id).to.equal(itemId);
+                expect(result.item_name).to.equal(itemName);
+                expect(result.item_inventory).to.equal(inventory);
+                expect(result.item_price).to.equal(price);
             });
 
             // // Test Case -- Edit an item
