@@ -53,11 +53,27 @@ process.on('unhandledRejection', () => { });
                 expect(result.item_price).to.equal(price);
             });
 
-            // // Test Case -- Edit an item
-            // it('Edit an order', async () => {
-            //     //click item list
-            
-            // });
+            // Test Case -- Edit an item
+            it('Edit an order', async () => {
+                //click tim horton
+                await indexPage.clickRestaurant();
+                //click last edit item
+                itemPage = new ItemPage(driver);
+                await itemPage.clickEditLastItem();
+                //prepare item para
+                let itemId = '1188';
+                let itemName = 'testItem';
+                let inventory = '777';
+                let imgurl = 'testDummyUrlEdit';
+                let price = '3.86';
+                await itemPage.inputItem(itemId,itemName,inventory,imgurl,price);
+                //check latest item
+                const result = await itemPage.getLastItem();
+                expect(result.item_id).to.equal(itemId);
+                expect(result.item_name).to.equal(itemName);
+                expect(result.item_inventory).to.equal(inventory);
+                expect(result.item_price).to.equal(price);               
+            });
 
             // // Test Case -- Delete an item
             // it('Delete an item', async () => {
