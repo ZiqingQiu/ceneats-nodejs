@@ -8,57 +8,59 @@
             <h1>
                 <%= title %>
             </h1>
-            <table class="table table-bordered table-striped table-hover">
-                <!-- Header Row-->
-                <tr>
-                    <th class="text-center">Index</th>
-                    <th class="text-center">Centennial Id</th>
-                    <th class="text-center">Item Id</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Order Date</th>
-                    <th class="text-center">Edit</th>
-                    <th class="text-center">Delete</th>
-                </tr>
+            <div class="form">
+                <table class="table table-bordered table-striped table-hover">
+                    <!-- Header Row-->
+                    <tr>
+                        <th class="text-center">Index</th>
+                        <th class="text-center">Centennial Id</th>
+                        <th class="text-center">Item Id</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Order Date</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
 
-                <!-- Repeatable Template Row -->
-                <% for(let count = 0; count < orderList.length; count++) { %>
-                <% if(orderList[count].cenId === username || accountType === "Admin") { %>
-                <tr>
-                    <td class="text-center">
-                        <%= (count+1) %>
-                    </td>
-                    <td class="text-center">
-                        <%= orderList[count].cenId %>
-                    </td>
-                    <td class="text-center">
-                        <%= orderList[count].foodId %>
-                    </td>
-                    <td class="text-center">
-                        <%= orderList[count].quantity %>
-                    </td>
-                    <td class="text-center">
-                        <%= orderList[count].status %>
-                    </td>
-                    <td class="text-center">
-                        <%= orderList[count].orderDate %>
-                    </td>
+                    <!-- Repeatable Template Row -->
+                    <% for(let count = 0; count < orderList.length; count++) { %>
+                    <% if(orderList[count].cenId === username || accountType === "Admin") { %>
+                    <tr>
+                        <td class="text-center">
+                            <%= (count+1) %>
+                        </td>
+                        <td class="text-center">
+                            <%= orderList[count].cenId %>
+                        </td>
+                        <td class="text-center">
+                            <%= orderList[count].foodId %>
+                        </td>
+                        <td class="text-center">
+                            <%= orderList[count].quantity %>
+                        </td>
+                        <td class="text-center">
+                            <%= orderList[count].status %>
+                        </td>
+                        <td class="text-center">
+                            <%= orderList[count].orderDate %>
+                        </td>
 
-                    <td class="text-center">
-                        <a href="/order-list/edit/<%= orderList[count]._id %>" class="btn btn-primary"><i
-                                class="fas fa-pencil-alt"></i> Edit</a>
-                    </td>
+                        <td class="text-center">
+                            <a href="/order-list/edit/<%= orderList[count]._id %>" class="btn btn-primary"><i
+                                    class="fas fa-pencil-alt"></i> Edit</a>
+                        </td>
 
-                    <td class="text-center">
-                        <a href="/order-list/delete/<%= orderList[count]._id %>" class="btn btn-danger"><i
-                                class="fas fa-trash-alt"></i> Delete</a>
-                    </td>
-                </tr>
-                <% } %>
-                <% } %>
-            </table>
-            <a class="btn btn-success" href="/" role="button" id="continueOrderBtn">
-                <i class="fas fa-utensils"></i> Continue Shopping</a>
+                        <td class="text-center">
+                            <a href="/order-list/delete/<%= orderList[count]._id %>" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                    <% } %>
+                </table>
+                <a class="btn btn-success" href="/" role="button" id="continueOrderBtn">
+                    <i class="fas fa-utensils"></i> Continue Shopping</a>
+            </div>
             <br>
             <br>
         </div>

@@ -85,7 +85,6 @@ process.on('unhandledRejection', () => { });
                 let row_length_after_del = await orderPage.getTableRowCount();
                 expect(row_length_after_del).to.equal(row_length_before_del-1);
             });
-
         });
     } catch (ex) {
         console.log(new Error(ex.message));
