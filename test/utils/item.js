@@ -61,4 +61,13 @@ Page.prototype.getLastItem = async function() {
     };
 }
 
+Page.prototype.clickEditLastItem = async function () {
+    //get total row count
+    row_length = await this.findTableSizeByXpath(locator.itemTableRowXpath);
+    //build xpath for edit btn
+    let edtBtnXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[8]/a";
+    //click edit btn
+    await this.clickBtnByXpath(edtBtnXPath);
+}
+
 module.exports = Page;
