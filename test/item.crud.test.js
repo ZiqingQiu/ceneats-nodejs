@@ -28,7 +28,7 @@ process.on('unhandledRejection', () => { });
             });
 
             afterEach(async () => {
-                //await driver.quit();
+                await driver.quit();
             });
 
             // Test Case -- Create an item
@@ -54,7 +54,7 @@ process.on('unhandledRejection', () => { });
             });
 
             // Test Case -- Edit an item
-            it('Edit an order', async () => {
+            it('Edit an item', async () => {
                 //click tim horton
                 await indexPage.clickRestaurant();
                 //click last edit item
@@ -75,10 +75,23 @@ process.on('unhandledRejection', () => { });
                 expect(result.item_price).to.equal(price);               
             });
 
-            // // Test Case -- Delete an item
-            // it('Delete an item', async () => {
-            //     //click item list
-            // });
+            // Test Case -- Delete an item
+            it('Delete an item', async () => {
+                //click tim horton
+                await indexPage.clickRestaurant();
+                //click last del item
+                itemPage = new ItemPage(driver);
+                //get current row count
+                let row_length_before_del = await itemPage.getTableRowCount();
+                if (1 == row_length_before_del) {
+                    console.log('There is no item, therefore can not perform delete test');
+                    return true;
+                }
+                await itemPage.clickDeleteLastItem();
+                //validate total item number -1
+                let row_length_after_del = await itemPage.getTableRowCount();
+                expect(row_length_after_del).to.equal(row_length_before_del-1);
+            });
 
         });
     } catch (ex) {
