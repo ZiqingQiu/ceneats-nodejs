@@ -28,10 +28,10 @@ Page.prototype.getLastOrder = async function() {
     //get total row count
     row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
     //build xpath for food id ele
-    let tableCellFoodIdXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[3]";
+    let tableCellFoodIdXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[3]";
     food_id = await this.findTableCellTextByXPath(tableCellFoodIdXPath);
     //build xpath for quantity ele
-    let tableCellQuantityXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[4]";
+    let tableCellQuantityXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[4]";
     quantity = await this.findTableCellTextByXPath(tableCellQuantityXPath);
     //console.log('dbg ' + row_length + ' ' + food_id + '  ' + quantity);
     return {
@@ -44,7 +44,7 @@ Page.prototype.clickEditLastOrder = async function() {
     //get total row count
     row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
     //build xpath for edit btn
-    let edtBtnXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[7]/a";
+    let edtBtnXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[7]/a";
     //click edit btn
     await this.clickBtnByXpath(edtBtnXPath);
 }
@@ -57,7 +57,7 @@ Page.prototype.clickDelLastOrder = async function() {
     //get total row count
     row_length = await this.findTableSizeByXpath(locator.tableRowXPath);
     //build xpath for delete btn
-    let delBtnXPath = "//*[@id='centerForm_C']/table/tbody/tr[" + row_length + "]/td[8]/a";
+    let delBtnXPath = "//*[@id='centerForm_C']/div/table/tbody/tr[" + row_length + "]/td[8]/a";
     //click delete btn
     await this.clickBtnByXpath(delBtnXPath);
     //click yes to alert

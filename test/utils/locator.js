@@ -19,7 +19,7 @@ module.exports = {
     orderStatusDpDownId: 'statusDropdown',
     orderStatusDpDownItemId: 'dpdown_ordered',
     orderTableClassName: 'table-bordered',
-    tableRowXPath: "//*[@id='centerForm_C']/table/tbody/tr",
+    tableRowXPath: "//*[@id='centerForm_C']/div/table/tbody/tr",
     
     //feedback page
     addReviewBtnId: 'addReviewBtn',
@@ -31,7 +31,7 @@ module.exports = {
     fdBackResSPId: 'fdBackResSP',
     fdBackResSWId: 'fdBackResSW',
     fdBackCommentId: 'comment',
-    fdBackTableRowXpath: '//*[@id="centerForm_C"]/div/table/tbody/tr',
+    fdBackTableRowXpath: "//*[@id='centerForm_C']/div/table/tbody/tr",
 
     //item page
     addItemBtnId: 'addItemBtn',
@@ -41,5 +41,5 @@ module.exports = {
     itemInventoryId: 'quantity',
     itemURLId: 'itemURL',
     itemPriceId: 'price',
-    itemTableRowXpath: '//*[@id="centerForm_C"]/div/table/tbody/tr',
+    itemTableRowXpath: "//*[@id='centerForm_C']/div/table/tbody/tr",
 };
